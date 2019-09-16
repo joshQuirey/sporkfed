@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14897.2" systemVersion="19A546d" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
+        <attribute name="item" optional="YES" attributeType="String"/>
+        <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="ingredients" inverseEntity="Meal"/>
+    </entity>
+    <entity name="Meal" representedClassName="Meal" syncable="YES" codeGenerationType="class">
+        <attribute name="cookTime" optional="YES" attributeType="String"/>
+        <attribute name="directions" optional="YES" attributeType="String"/>
+        <attribute name="estimatedNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mealDesc" optional="YES" attributeType="String"/>
+        <attribute name="mealImage" optional="YES" attributeType="Binary" spotlightIndexingEnabled="YES"/>
+        <attribute name="mealName" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="nextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="prepTime" optional="YES" attributeType="String"/>
+        <attribute name="previousDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="serves" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="meal" inverseEntity="Ingredient"/>
+        <relationship name="plannedDays" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlannedDay" inverseName="meal" inverseEntity="PlannedDay"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tag" inverseName="meals" inverseEntity="Tag"/>
+    </entity>
+    <entity name="PlannedDay" representedClassName="PlannedDay" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="planEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="planStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="plannedDays" inverseEntity="Meal"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="tags" inverseEntity="Meal"/>
+    </entity>
+    <elements>
+        <element name="Ingredient" positionX="169" positionY="117" width="128" height="75"/>
+        <element name="Meal" positionX="-63" positionY="-18" width="128" height="283"/>
+        <element name="PlannedDay" positionX="36" positionY="135" width="128" height="135"/>
+        <element name="Tag" positionX="-90" positionY="305" width="128" height="73"/>
+    </elements>
+</model>
