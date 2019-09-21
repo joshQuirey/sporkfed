@@ -85,12 +85,21 @@ open class CoreDataManager {
         let storeName = "\(modelName).sqlite"
         let fileManager = FileManager.default
     
-        //let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        //new
         let documentsDirectoryURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier:"group.co.app41.sporkfed")
         
         return documentsDirectoryURL!.appendingPathComponent(storeName)
+    }
+    
+    private var oldPersistentStoreURL: URL { //used before the app group update
+        //Helpers
+            let storeName = "\(modelName).sqlite"
+            let fileManager = FileManager.default
         
-        
+            //old
+            let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+            return documentsDirectoryURL.appendingPathComponent(storeName) as URL
     }
     
     private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
@@ -98,39 +107,134 @@ open class CoreDataManager {
             return nil
         }
         
-        //Helper
+        var options = [AnyHashable : Any]()
+        options[NSMigratePersistentStoresAutomaticallyOption] = true
+        options[NSInferMappingModelAutomaticallyOption] = true
+        
+        let oldPersistentStoreURL = self.oldPersistentStoreURL
         let persistentStoreURL = self.persistentStoreURL
+        var targetURL : URL? = nil
+        var needMigrate = false
+        var needDeleteOld = false
+
+        if FileManager.default.fileExists(atPath: oldPersistentStoreURL.path){
+           needMigrate = true
+           targetURL = oldPersistentStoreURL
+            needDeleteOld = true
+        } else {
+            if FileManager.default.fileExists(atPath: persistentStoreURL.path){
+                needMigrate = false
+                targetURL = persistentStoreURL
+                needDeleteOld = false
+            }
+        }
+    
+       if targetURL == nil {
+           targetURL = persistentStoreURL
+       }
+        
         //Initialize Persistent Store Coordinator
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        
-        do {
-            let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
-            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL as URL, options: options)
-        } catch {
-            let addPersistentStoreError = error as NSError
-            
-            print("Unable to Add Persistent Store")
-            print("\(addPersistentStoreError.localizedDescription)")
+
+        if needMigrate {
+            do {
+                try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: targetURL!, options: options)
+                if let store = persistentStoreCoordinator.persistentStore(for: targetURL!) {
+                    do {
+                        try persistentStoreCoordinator.migratePersistentStore(store, to: persistentStoreURL, options: options, withType: NSSQLiteStoreType)
+                    } catch let error {
+                        print("migrate failed with error : \(error)")
+                    }
+                }
+            } catch {
+                 let addPersistentStoreError = error as NSError
+                 print("Unable to Add Persistent Store")
+                 print("\(addPersistentStoreError.localizedDescription)")
+            }
+        } else {
+            do {
+                try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL as URL, options: options)
+            } catch {
+                let addPersistentStoreError = error as NSError
+    
+                print("Unable to Add Persistent Store")
+                print("\(addPersistentStoreError.localizedDescription)")
+            }
         }
+        
+        if needDeleteOld {
+            CoreDataManager.deleteDocumentAtUrl(url: oldPersistentStoreURL)
+        
+            var storeName = "\(modelName).sqlite-shm"
+            let fileManager = FileManager.default
+            let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let shmDocumentURL = documentsDirectoryURL.appendingPathComponent(storeName)
+            CoreDataManager.deleteDocumentAtUrl(url: shmDocumentURL)
+        
+            storeName = "\(modelName).sqlite-wal"
+            let walDocumentURL = documentsDirectoryURL.appendingPathComponent(storeName)
+            CoreDataManager.deleteDocumentAtUrl(url: walDocumentURL)
+        }
+        
+        print(persistentStoreCoordinator.persistentStores)
+
+        
+//        do {
+//            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldPersistentStoreURL as URL, options: options)
+//        } catch {
+//            let addPersistentStoreError = error as NSError
+//
+//            print("Unable to Add Persistent Store")
+//            print("\(addPersistentStoreError.localizedDescription)")
+//        }
+
+        //Migrate old to new
+//        if let oldStore = persistentStoreCoordinator.persistentStore(for: oldPersistentStoreURL) {
+//            do {
+//                print(persistentStoreCoordinator.persistentStores)
+//                let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+//              try persistentStoreCoordinator.migratePersistentStore(oldStore, to: persistentStoreURL, options: options, withType: NSSQLiteStoreType)
+//
+//                print(persistentStoreCoordinator.persistentStores)
+//               // self.deleteDatabase(url: oldPersistentStoreURL)
+//               // self.cleanDb()
+//            } catch {
+//              // Handle error
+//              print("Failed to move from: \(oldPersistentStoreURL) to \(persistentStoreURL)")
+//            }
+//        }
+            
+        //add new store to psc
+//        do {
+//            let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+//            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL as URL, options: options)
+//            print(persistentStoreCoordinator.persistentStores)
+//        } catch {
+//            let addPersistentStoreError = error as NSError
+//
+//            print("Unable to Add Persistent Store")
+//            print("\(addPersistentStoreError.localizedDescription)")
+//        }
         
         return persistentStoreCoordinator
     }()
     
-    private lazy var persistentContainer: NSPersistentCloudKitContainer = {
-        let container = NSPersistentCloudKitContainer(name: "MealModel")
+    static func deleteDocumentAtUrl(url: URL){
+        let fileCoordinator = NSFileCoordinator(filePresenter: nil)
+        fileCoordinator.coordinate(writingItemAt: url, options: .forDeleting, error: nil, byAccessor: {
+            (urlForModifying) -> Void in
+            do {
+                try FileManager.default.removeItem(at: urlForModifying)
+            }catch let error {
+                print("Failed to remove item with error: \(error.localizedDescription)")
+            }
+        })
+    }
+    
+    private lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "MealModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
