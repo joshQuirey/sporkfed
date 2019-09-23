@@ -91,7 +91,8 @@ open class CoreDataManager {
         return documentsDirectoryURL!.appendingPathComponent(storeName)
     }
     
-    private var oldPersistentStoreURL: URL { //used before the app group update
+    //Used before the app group update
+    private var oldPersistentStoreURL: URL {
         //Helpers
             let storeName = "\(modelName).sqlite"
             let fileManager = FileManager.default
@@ -117,11 +118,12 @@ open class CoreDataManager {
         var needMigrate = false
         var needDeleteOld = false
 
+        //Check if old data store exists
         if FileManager.default.fileExists(atPath: oldPersistentStoreURL.path){
-           needMigrate = true
-           targetURL = oldPersistentStoreURL
+            needMigrate = true
+            targetURL = oldPersistentStoreURL
             needDeleteOld = true
-        } else {
+        } else { //No old data store, use new going forward
             if FileManager.default.fileExists(atPath: persistentStoreURL.path){
                 needMigrate = false
                 targetURL = persistentStoreURL
@@ -164,61 +166,22 @@ open class CoreDataManager {
         
         if needDeleteOld {
             CoreDataManager.deleteDocumentAtUrl(url: oldPersistentStoreURL)
-        
-            var storeName = "\(modelName).sqlite-shm"
+
+            var storeName = "s\(modelName).sqlite-shm"
             let fileManager = FileManager.default
             let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let shmDocumentURL = documentsDirectoryURL.appendingPathComponent(storeName)
             CoreDataManager.deleteDocumentAtUrl(url: shmDocumentURL)
-        
+
             storeName = "\(modelName).sqlite-wal"
             let walDocumentURL = documentsDirectoryURL.appendingPathComponent(storeName)
             CoreDataManager.deleteDocumentAtUrl(url: walDocumentURL)
         }
-        
-        print(persistentStoreCoordinator.persistentStores)
-
-        
-//        do {
-//            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldPersistentStoreURL as URL, options: options)
-//        } catch {
-//            let addPersistentStoreError = error as NSError
-//
-//            print("Unable to Add Persistent Store")
-//            print("\(addPersistentStoreError.localizedDescription)")
-//        }
-
-        //Migrate old to new
-//        if let oldStore = persistentStoreCoordinator.persistentStore(for: oldPersistentStoreURL) {
-//            do {
-//                print(persistentStoreCoordinator.persistentStores)
-//                let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
-//              try persistentStoreCoordinator.migratePersistentStore(oldStore, to: persistentStoreURL, options: options, withType: NSSQLiteStoreType)
-//
-//                print(persistentStoreCoordinator.persistentStores)
-//               // self.deleteDatabase(url: oldPersistentStoreURL)
-//               // self.cleanDb()
-//            } catch {
-//              // Handle error
-//              print("Failed to move from: \(oldPersistentStoreURL) to \(persistentStoreURL)")
-//            }
-//        }
-            
-        //add new store to psc
-//        do {
-//            let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
-//            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL as URL, options: options)
-//            print(persistentStoreCoordinator.persistentStores)
-//        } catch {
-//            let addPersistentStoreError = error as NSError
-//
-//            print("Unable to Add Persistent Store")
-//            print("\(addPersistentStoreError.localizedDescription)")
-//        }
-        
+                
         return persistentStoreCoordinator
     }()
     
+    //Delete of Old Store Files
     static func deleteDocumentAtUrl(url: URL){
         let fileCoordinator = NSFileCoordinator(filePresenter: nil)
         fileCoordinator.coordinate(writingItemAt: url, options: .forDeleting, error: nil, byAccessor: {
