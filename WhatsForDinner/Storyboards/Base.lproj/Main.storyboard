@@ -629,6 +629,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="36L-LV-J3S"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tdC-cu-Aw7"/>
                     <connections>
                         <outlet property="tableView" destination="vGt-Od-xQb" id="rCe-4I-Z7J"/>
                     </connections>

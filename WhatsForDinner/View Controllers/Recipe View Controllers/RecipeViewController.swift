@@ -145,7 +145,8 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
             guard let destination = segue.destination as? CategoriesViewController else {
                 return
             }
-
+            
+            destination.modalPresentationStyle = .fullScreen
             destination.meal = meal
             if (meal!.tags != nil) {
                 destination.selectedTags = (meal?.tags)!
@@ -259,6 +260,23 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         
             meal.mealImage = imageData
         }
+        
+//        print(meal)
+        //categories.text = nil
+//        if (meal!.tags != nil) {
+//            if (meal!.tags!.count > 0) {
+//                categories.text = nil
+//                categories.textColor = UIColor(named: "_Default to White Label")
+//                for _tag in (meal!.tags?.allObjects)! {
+//                    let tag = _tag as! Tag
+//                    categories.text?.append("\(tag.name!) ")
+//                }
+//            } else {
+//                categories.text = "Categories"
+//                categories.textColor = .lightGray
+//            }
+//        }
+        
         
         meal.mealDesc = mealDescription.text
         var _frequency = 0

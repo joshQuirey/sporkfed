@@ -22,10 +22,16 @@ class CategoriesViewController: UIViewController  {
     var meal: Meal?
     var tag: Tag?
     var selectedTags = NSSet()
+    //var currentSegue: Segue?
+    
+    private enum Segue {
+        static let SelectCategories = "SelectCategories"
+    }
     
     let categoryData = [String](arrayLiteral: "🥡 Asian Cuisine", " 🥓 Breakfast for Dinner", "🐷 Barbecue", "🐄 Beef", "🥘 Casserole", "🛌 Comfort Food", "🐓 Chicken", "🌾 Grains", "🌮 Hispanic", "🍜 Noodles", "🍝 Pasta", "🍕 Pizza", "🐖 Pork", "🌡 Pressure Cooker", "🥩 On The Grill", "🍯 Other", "🐇 Quick", "🥗 Salad", "🥪 Sandwich", "🍤 Seafood", "⏲ Slow Cooker", "🥣 Soups Up", "🥕 Vegetarian")
 
     @IBAction func Done(_ sender: Any) {
+        //self.unwind(for: self.currentSegue, towards: recipe)
         self.dismiss(animated: true, completion: nil)
     }
     
