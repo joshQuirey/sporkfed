@@ -330,7 +330,7 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
                 let tag = _tag as! Tag
                 cell.mealCategories?.text?.append("\(tag.name!) ")
             }
-            
+
             if (_plannedDay.meal!.prepTime != "") {
                 cell.prep?.text? = "Prep: \(_plannedDay.meal!.prepTime!)"
             } else {

@@ -87,8 +87,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     override func viewWillAppear(_ animated: Bool) {
         searchBar.delegate = self
         searchBar.layer.borderWidth = 1
-        searchBar.layer.borderColor = UIColor(named: "_Teal Background")!.cgColor
-        
+        searchBar.layer.borderColor = UIColor.systemBackground.cgColor // UIColor(named: "_Teal Background")!.cgColor
         searchBar.text = ""
         fetchMeals()
     }
