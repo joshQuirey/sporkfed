@@ -29,6 +29,9 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var favButton: UIButton!
     //@IBOutlet weak var mealURL: UITextField!
     @IBOutlet weak var mealURL: UITextView!
+    @IBAction func AddRecipeLink(_ sender: Any) {
+        
+    }
     
     @IBAction func favorite(_ sender: UIButton) {
         print(isFavorite)

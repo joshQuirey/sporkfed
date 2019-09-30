@@ -15,6 +15,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     private var titleString: String?
     private var urlString: String?
+//    private var selectedImage: UIImage?
     
     var selectedMeal: Meal!
     let manager = CoreDataManager.init(modelName: "MealModel")
@@ -47,6 +48,24 @@ class ShareViewController: SLComposeServiceViewController {
             })
           }
         }
+        
+        //image
+//        let content = extensionContext!.inputItems[0] as! NSExtensionItem
+//        let contentType = kUTTypeImage as String
+//
+//        for attachment in content.attachments! {
+//            if attachment.hasItemConformingToTypeIdentifier(contentType) {
+//
+//                attachment.loadItem(forTypeIdentifier: contentType, options: nil) { data, error in
+//                    if error == nil {
+//                        let url = data as! NSURL
+//                        if let imageData = NSData(contentsOf: url as URL) {
+//                            self.selectedImage = UIImage(data: imageData as Data)
+//                        }
+//                    }
+//                }
+//            }
+//        }
         
         self.managedObjectContext = manager.managedObjectContext
         self.selectedMeal = Meal(context: self.managedObjectContext!)
