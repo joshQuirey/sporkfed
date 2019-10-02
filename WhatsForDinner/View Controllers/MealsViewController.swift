@@ -384,7 +384,7 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.mealImage.isHidden = true
         }
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             DispatchQueue.main.async {
@@ -421,6 +421,7 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
         alert.view.tintColor = UIColor(named: "_Purple Label")!
         self.present(alert, animated: true, completion: {})
     }
+    
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         guard let _meal = meals?[(indexPath.row)] else { fatalError("Unexpected Index Path")}

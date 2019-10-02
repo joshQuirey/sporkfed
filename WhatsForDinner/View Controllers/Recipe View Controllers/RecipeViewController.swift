@@ -245,7 +245,6 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         return false
     }
     
-    
     func populateMeal(_ meal: Meal) {
         meal.mealName = name.text
     
