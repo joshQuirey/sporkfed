@@ -84,7 +84,7 @@ class ShareViewController: SLComposeServiceViewController {
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
         
-        self.titleString = self.contentText
+        self.titleString = self.contentText.trimmingCharacters(in: .whitespaces)
         
         if (self.titleString != nil) {
 //            print(self.titleString!)

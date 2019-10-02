@@ -29,9 +29,6 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var favButton: UIButton!
     //@IBOutlet weak var mealURL: UITextField!
     @IBOutlet weak var mealURL: UITextView!
-    @IBAction func AddRecipeLink(_ sender: Any) {
-        
-    }
     
     @IBAction func favorite(_ sender: UIButton) {
         print(isFavorite)
@@ -243,6 +240,7 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         let safariVC = SFSafariViewController(url: URL)
+        safariVC.preferredControlTintColor = UIColor(named: "_Purple to Teal")
         present(safariVC, animated: true, completion: nil)
         return false
     }

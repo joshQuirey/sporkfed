@@ -455,19 +455,8 @@
                                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" textContentType="url"/>
                                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                     </textView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynT-3L-LfQ">
-                                                        <rect key="frame" x="0.0" y="346.5" width="394" height="34"/>
-                                                        <color key="backgroundColor" name="_Off-White Background"/>
-                                                        <color key="tintColor" name="_Off-White Background"/>
-                                                        <state key="normal" title="Link to Recipe Source">
-                                                            <color key="titleColor" name="_Purple Label"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="AddRecipeLink:" destination="ZHR-gx-uw6" eventType="touchUpInside" id="qzx-dh-g7n"/>
-                                                        </connections>
-                                                    </button>
                                                     <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-1x-TWg">
-                                                        <rect key="frame" x="0.0" y="388.5" width="394" height="255.5"/>
+                                                        <rect key="frame" x="0.0" y="346.5" width="394" height="297.5"/>
                                                         <color key="backgroundColor" name="_Off-White Background"/>
                                                         <color key="textColor" name="_Off-White Background"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
