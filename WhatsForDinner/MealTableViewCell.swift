@@ -15,7 +15,7 @@ class MealTableViewCell: UITableViewCell {
     /////////////////////////////
     @IBOutlet weak var mealName: UILabel!
     @IBOutlet weak var mealFrequency: UILabel!
-    @IBOutlet weak var mealCategories: UITextField!
+    @IBOutlet weak var mealCategories: UILabel!
     @IBOutlet weak var mealImage: UIImageView!
     
     override func awakeFromNib() {
@@ -53,7 +53,7 @@ class PlanTableViewCell: UITableViewCell {
     @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var prep: UILabel!
     @IBOutlet weak var cook: UILabel!
-    @IBOutlet weak var mealCategories: UITextField!
+    @IBOutlet weak var mealCategories: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -73,7 +73,7 @@ class ReplaceTableViewCell: UITableViewCell {
     /////////////////////////////
     @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var mealName: UILabel!
-    @IBOutlet weak var mealCategories: UITextField!
+    @IBOutlet weak var mealCategories: UILabel!
     @IBOutlet weak var prep: UILabel!
     @IBOutlet weak var cook: UILabel!
     
