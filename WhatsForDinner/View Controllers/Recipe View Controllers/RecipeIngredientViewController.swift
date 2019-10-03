@@ -49,9 +49,59 @@ class RecipeIngredientViewController: UIViewController, UITableViewDelegate, UIT
         setupNotificationHandling()
         ingredientTableView.keyboardDismissMode = .onDrag
         
+        ingredientToolBar()
         navBar.shadowImage = UIImage()
     }
+    
+    func ingredientToolBar() {
+        let bar = UIToolbar()
+        var buttons: [UIBarButtonItem] = []
+        
+        var button = UIBarButtonItem(title: "1/8", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
 
+        button = UIBarButtonItem(title: "1/4", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+
+        button = UIBarButtonItem(title: "1/3", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+
+        button = UIBarButtonItem(title: "1/2", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+
+        button = UIBarButtonItem(title: "2/3", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+    
+        button = UIBarButtonItem(title: "3/4", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+               
+        button = UIBarButtonItem(title: "1", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+               
+        button = UIBarButtonItem(title: "cup", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+        button = UIBarButtonItem(title: "lb", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+        button = UIBarButtonItem(title: "tsp", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+        button = UIBarButtonItem(title: "tbsp", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+        button = UIBarButtonItem(title: "oz", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        buttons.append(button)
+
+        
+        bar.items = buttons
+        bar.sizeToFit()
+        _ingredient.inputAccessoryView = bar
+    }
+    //cup tsp, Tbsp, oz, lb
+    //small, med, lg
+
+    
+    @objc func keyboardBtnTapped(_ sender: UIBarButtonItem) {
+        _ingredient.text?.append(sender.title!)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
