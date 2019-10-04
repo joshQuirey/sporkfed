@@ -55,42 +55,40 @@ class RecipeIngredientViewController: UIViewController, UITableViewDelegate, UIT
     
     func ingredientToolBar() {
         let bar = UIToolbar()
-        var buttons: [UIBarButtonItem] = []
+//        bar.backgroundColor = .red
+//        var buttons: [UIBarButtonItem] = []
+//        let measurements: [String] = ["1/8","1/4","1/3","1/2","2/3","3/4"]
+//        let measurements: [String] = ["8"]
+//        let units: [String] = ["cup","tsp"] //,"tbsp"]
+        var barButtonItem: UIBarButtonItem
+
+         barButtonItem = UIBarButtonItem(title: "test", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+        barButtonItem.tintColor = UIColor(named: "_Purple Label")
+//        var flx = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//        flx.width = 50
+        //buttons.append(flx)
         
-        var button = UIBarButtonItem(title: "1/8", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-
-        button = UIBarButtonItem(title: "1/4", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-
-        button = UIBarButtonItem(title: "1/3", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-
-        button = UIBarButtonItem(title: "1/2", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-
-        button = UIBarButtonItem(title: "2/3", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-    
-        button = UIBarButtonItem(title: "3/4", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-               
-        button = UIBarButtonItem(title: "1", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-               
-        button = UIBarButtonItem(title: "cup", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-        button = UIBarButtonItem(title: "lb", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-        button = UIBarButtonItem(title: "tsp", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-        button = UIBarButtonItem(title: "tbsp", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-        button = UIBarButtonItem(title: "oz", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        buttons.append(button)
-
+//        for m in measurements {
+//            barButtonItem = UIBarButtonItem(title: m, style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+//
+//            barButtonItem.tintColor = UIColor(named: "_Purple Label")
+//            buttons.append(barButtonItem)
+//        }
+//
+//        flx = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//        flx.width = 50
+        //buttons.append(flx)
         
-        bar.items = buttons
+
+//        for u in units {
+//            barButtonItem = UIBarButtonItem(title: u, style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
+//            barButtonItem.width = 10
+//            barButtonItem.tintColor = UIColor(named: "_Purple Label")
+//            buttons.append(barButtonItem)
+//        }
+//        bar.setItems(buttons, animated: true)
+       // bar.items = buttons
+        bar.items = [barButtonItem]
         bar.sizeToFit()
         _ingredient.inputAccessoryView = bar
     }
@@ -157,28 +155,28 @@ class RecipeIngredientViewController: UIViewController, UITableViewDelegate, UIT
         let userInfo = notification.userInfo!
         let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let curve = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]! as AnyObject).uint32Value
-        
+
         let convertedFrame = view.convert(keyboardRect, from: nil)
         let heightOffset = view.bounds.size.height - convertedFrame.origin.y
         let options = UIView.AnimationOptions(rawValue: UInt(curve!) << 16 | UIView.AnimationOptions.beginFromCurrentState.rawValue)
         let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]! as AnyObject).doubleValue
-        
+
         var pureHeightOffset:CGFloat = heightOffset
-        
+
         if isShowing {
             pureHeightOffset = pureHeightOffset + bottomConstraint.constant //+ view.safeAreaInsets.bottom
         } else {
             pureHeightOffset = 0
         }
-        
+
         bottomConstraint.constant = pureHeightOffset
         print(pureHeightOffset)
-        
+
         UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
             self.view.layoutIfNeeded()
         }, completion: { bool in })
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text != nil && textField.text != "") {
             addNewIngredient()
