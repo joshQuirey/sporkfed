@@ -36,6 +36,8 @@
 		A72EDB0A235127AD00E886CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0262118B6D4006EACA0 /* Assets.xcassets */; };
 		A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */; };
 		A777A59C229DB3300071326E /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A59B229DB3300071326E /* BaseTabBarController.swift */; };
+		A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
+		A7C5D50523578C860002F463 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManager.swift */; };
 		A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */; };
 		A7E1BEDB2295D174000F053E /* ReplaceMealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */; };
 		A7F27D1322F9F0C700EA2368 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */; };
@@ -105,6 +107,7 @@
 		A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		A777A59B229DB3300071326E /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsForDinner.entitlements; sourceTree = "<group>"; };
+		A7C5D50623578F910002F463 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceMealController.swift; sourceTree = "<group>"; };
 		A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
@@ -234,6 +237,7 @@
 		A72EDAFD2351215500E886CE /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				A7C5D50623578F910002F463 /* Today.entitlements */,
 				A72EDAFE2351215500E886CE /* TodayViewController.swift */,
 				A72EDB002351215500E886CE /* MainInterface.storyboard */,
 				A72EDB032351215500E886CE /* Info.plist */,
@@ -415,6 +419,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7C5D50523578C860002F463 /* CoreDataManager.swift in Sources */,
+				A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */,
 				A72EDAFF2351215500E886CE /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,6 +697,7 @@
 		A72EDB072351215500E886CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
@@ -713,6 +720,7 @@
 		A72EDB082351215500E886CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
