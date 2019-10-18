@@ -11,7 +11,7 @@ import NotificationCenter
 import CoreData
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+
     var today: [PlannedDay] = []
     let manager = CoreDataManager.init(modelName: "MealModel")
     var managedObjectContext: NSManagedObjectContext?
@@ -22,20 +22,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     @IBOutlet weak var addMealButton: UIButton!
     @IBAction func AddMeal(_ sender: Any) {
-    
+        self.extensionContext?.open(URL(string:"sporkfed://addmeal")!, completionHandler: nil)
     }
     
     @IBOutlet weak var viewMenuButton: UIButton!
     @IBAction func ViewMenu(_ sender: Any) {
-        
+        self.extensionContext?.open(URL(string:"sporkfed://viewmenu")!, completionHandler: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.managedObjectContext = manager.managedObjectContext
-        //self.today =
-        
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -44,15 +42,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        print("before")
-                fetchPlans()
+        fetchPlans()
         
         viewMenuButton.layer.cornerRadius = 8
         viewMenuButton.clipsToBounds = true
         
         addMealButton.layer.cornerRadius = 8
         addMealButton.clipsToBounds = true
-                print("after")
+            
         completionHandler(NCUpdateResult.newData)
     }
     
@@ -64,12 +61,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         let dateFrom = calendar.startOfDay(for: Date())
         let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom)
-        print(dateFrom)
-        print(dateTo)
+
         let fromPredicate = NSPredicate(format: "date >= %@", dateFrom as NSDate)
         let toPredicate = NSPredicate(format: "date < %@", dateTo! as NSDate)
         let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate,toPredicate])
-        
         
         // Create Fetch Request
         let fetchRequest: NSFetchRequest<PlannedDay> = PlannedDay.fetchRequest()
@@ -84,8 +79,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             do {
                 // Execute Fetch Request
                 today = try fetchRequest.execute()
-                print(today)
-
+                
                 //Reload Table View
                 if (today.count > 0) {
                     mealName.text = today[0].meal?.mealName
@@ -97,8 +91,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     } else {
                        mealImage.isHidden = true
                     }
-                    
-//                imageButton.setBackgroundImage(UIImage(data: meal!.mealImage!), for: .normal)
                 }
             } catch {
                 let fetchError = error as NSError

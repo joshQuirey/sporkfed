@@ -17,30 +17,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-bd-84O">
-                                <rect key="frame" x="5" y="5" width="310" height="60"/>
+                                <rect key="frame" x="15" y="5" width="300" height="60"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-BX-RcG">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="GFo-rY-uNn"/>
+                                            <constraint firstAttribute="height" constant="60" id="FaX-NI-r3f"/>
                                             <constraint firstAttribute="width" constant="60" id="eNN-oF-jWi"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-uT-Vx5">
-                                        <rect key="frame" x="65" y="0.0" width="245" height="60"/>
+                                        <rect key="frame" x="65" y="0.0" width="235" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qf-uy-cpl" userLabel="Name">
-                                                <rect key="frame" x="0.0" y="0.0" width="245" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-5l-dOE">
-                                                <rect key="frame" x="0.0" y="30" width="245" height="30"/>
+                                                <rect key="frame" x="0.0" y="30" width="235" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywM-c1-aPH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="71.5" height="30"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="fIE-r0-KZf"/>
@@ -56,7 +56,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idj-Vu-zzT">
-                                                        <rect key="frame" x="127.5" y="0.0" width="117.5" height="30"/>
+                                                        <rect key="frame" x="81.5" y="0.0" width="72" height="30"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="tintColor" name="_Teal Label"/>
@@ -64,6 +64,10 @@
                                                         <connections>
                                                             <action selector="ViewMenu:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="CyT-di-qxv"/>
                                                         </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXX-sq-lsz">
+                                                        <rect key="frame" x="163.5" y="0.0" width="71.5" height="30"/>
+                                                        <state key="normal" title="Button"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -77,18 +81,13 @@
                                     </stackView>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="rH2-oy-VH4"/>
-                                    <constraint firstItem="VAA-BX-RcG" firstAttribute="centerY" secondItem="Re8-bd-84O" secondAttribute="centerY" id="utK-Np-gZZ"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="tintColor" name="_Purple Label"/>
                         <constraints>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="Re8-bd-84O" secondAttribute="trailing" constant="5" id="54Q-fw-kxI"/>
-                            <constraint firstItem="Re8-bd-84O" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="5" id="QzV-wm-fte"/>
-                            <constraint firstItem="Re8-bd-84O" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="5" id="SoV-ml-Nlm"/>
-                            <constraint firstAttribute="bottom" secondItem="Re8-bd-84O" secondAttribute="bottom" constant="5" id="aMf-tx-2ep"/>
+                            <constraint firstItem="Re8-bd-84O" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="15" id="QzV-wm-fte"/>
+                            <constraint firstItem="Re8-bd-84O" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="X0t-dg-ykI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>
