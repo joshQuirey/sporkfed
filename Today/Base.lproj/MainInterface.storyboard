@@ -13,84 +13,80 @@
             <objects>
                 <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-bd-84O">
-                                <rect key="frame" x="10" y="5" width="305" height="70"/>
+                                <rect key="frame" x="5" y="5" width="310" height="60"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxX-Dm-mai">
-                                        <rect key="frame" x="0.0" y="0.0" width="305" height="70"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-BX-RcG">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="GFo-rY-uNn"/>
+                                            <constraint firstAttribute="width" constant="60" id="eNN-oF-jWi"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-uT-Vx5">
+                                        <rect key="frame" x="65" y="0.0" width="245" height="60"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="daZ-7i-vQi">
-                                                <rect key="frame" x="0.0" y="0.0" width="305" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qf-uy-cpl" userLabel="Name">
+                                                <rect key="frame" x="0.0" y="0.0" width="245" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-5l-dOE">
+                                                <rect key="frame" x="0.0" y="30" width="245" height="30"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-BX-RcG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywM-c1-aPH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="30"/>
+                                                        <color key="backgroundColor" name="_Teal Label"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="bhT-Ej-ekp"/>
-                                                            <constraint firstAttribute="width" constant="50" id="fLo-H8-Z5y"/>
+                                                            <constraint firstAttribute="height" constant="30" id="fIE-r0-KZf"/>
                                                         </constraints>
-                                                    </imageView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-uT-Vx5">
-                                                        <rect key="frame" x="55" y="0.0" width="250" height="50"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qf-uy-cpl" userLabel="Name">
-                                                                <rect key="frame" x="0.0" y="0.0" width="250" height="25"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Emi-Q1-rQ5">
-                                                                <rect key="frame" x="0.0" y="25" width="250" height="25"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Np-mW-sLp" userLabel="Add Meal">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <state key="normal" title="Add Meal">
-                                                                            <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="AddMeal:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="doE-In-fKZ"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqt-bf-xdz">
-                                                                        <rect key="frame" x="125" y="0.0" width="125" height="25"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <state key="normal" title="View Menu">
-                                                                            <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="ViewMenu:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="ddU-x5-bq0"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="tintColor" name="_Teal Label"/>
+                                                        <state key="normal" title="Add Meal">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="AddMeal:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="ayS-gF-RP2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idj-Vu-zzT">
+                                                        <rect key="frame" x="127.5" y="0.0" width="117.5" height="30"/>
+                                                        <color key="backgroundColor" name="_Teal Label"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="tintColor" name="_Teal Label"/>
+                                                        <state key="normal" title="View Menu"/>
+                                                        <connections>
+                                                            <action selector="ViewMenu:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="CyT-di-qxv"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="daZ-7i-vQi" firstAttribute="leading" secondItem="NxX-Dm-mai" secondAttribute="leading" id="5tH-qh-JRb"/>
-                                            <constraint firstItem="daZ-7i-vQi" firstAttribute="top" secondItem="NxX-Dm-mai" secondAttribute="top" id="JTL-ch-GOP"/>
-                                            <constraint firstItem="daZ-7i-vQi" firstAttribute="leading" secondItem="NxX-Dm-mai" secondAttribute="leading" id="wcc-iy-ZnM"/>
-                                            <constraint firstAttribute="trailing" secondItem="daZ-7i-vQi" secondAttribute="trailing" id="yVH-xh-62d"/>
-                                            <constraint firstAttribute="trailing" secondItem="daZ-7i-vQi" secondAttribute="trailing" id="zrn-at-bKL"/>
+                                            <constraint firstItem="4qf-uy-cpl" firstAttribute="leading" secondItem="R8S-uT-Vx5" secondAttribute="leading" id="K0k-rc-Xpe"/>
+                                            <constraint firstAttribute="trailing" secondItem="4qf-uy-cpl" secondAttribute="trailing" id="Lbh-i0-OfX"/>
                                         </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" name="_Off-White Background"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="rH2-oy-VH4"/>
+                                    <constraint firstItem="VAA-BX-RcG" firstAttribute="centerY" secondItem="Re8-bd-84O" secondAttribute="centerY" id="utK-Np-gZZ"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="tintColor" name="_Purple Label"/>
                         <constraints>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="Re8-bd-84O" secondAttribute="trailing" constant="5" id="54Q-fw-kxI"/>
-                            <constraint firstItem="Re8-bd-84O" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="QzV-wm-fte"/>
+                            <constraint firstItem="Re8-bd-84O" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="5" id="QzV-wm-fte"/>
                             <constraint firstItem="Re8-bd-84O" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="5" id="SoV-ml-Nlm"/>
                             <constraint firstAttribute="bottom" secondItem="Re8-bd-84O" secondAttribute="bottom" constant="5" id="aMf-tx-2ep"/>
                         </constraints>
@@ -98,23 +94,25 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="80"/>
+                    <size key="freeformSize" width="320" height="70"/>
                     <connections>
+                        <outlet property="addMealButton" destination="ywM-c1-aPH" id="J5t-lQ-J6E"/>
                         <outlet property="mealImage" destination="VAA-BX-RcG" id="YkC-pt-vab"/>
                         <outlet property="mealName" destination="4qf-uy-cpl" id="Rtp-I0-9JY"/>
+                        <outlet property="viewMenuButton" destination="idj-Vu-zzT" id="HWV-WF-x5t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="138.95089285714286"/>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
     <resources>
-        <namedColor name="_Off-White Background">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="_Purple Label">
             <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="_Teal Label">
+            <color red="0.3919999897480011" green="0.82400000095367432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

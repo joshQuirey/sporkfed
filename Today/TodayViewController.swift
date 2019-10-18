@@ -16,14 +16,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let manager = CoreDataManager.init(modelName: "MealModel")
     var managedObjectContext: NSManagedObjectContext?
     
+    @IBOutlet weak var buttonToolbar: UIToolbar!
     @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var mealName: UILabel!
-    
+
+    @IBOutlet weak var addMealButton: UIButton!
     @IBAction func AddMeal(_ sender: Any) {
+    
     }
     
-    
+    @IBOutlet weak var viewMenuButton: UIButton!
     @IBAction func ViewMenu(_ sender: Any) {
+        
     }
     
     override func viewDidLoad() {
@@ -31,9 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Do any additional setup after loading the view.
         self.managedObjectContext = manager.managedObjectContext
         //self.today =
-        print("before")
-        fetchPlans()
-        print("after")
+        
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -42,7 +44,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
+        print("before")
+                fetchPlans()
         
+        viewMenuButton.layer.cornerRadius = 8
+        viewMenuButton.clipsToBounds = true
+        
+        addMealButton.layer.cornerRadius = 8
+        addMealButton.clipsToBounds = true
+                print("after")
         completionHandler(NCUpdateResult.newData)
     }
     
@@ -79,7 +89,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 //Reload Table View
                 if (today.count > 0) {
                     mealName.text = today[0].meal?.mealName
-                    mealImage.image = UIImage(data: today[0].meal!.mealImage!)
+                    if today[0].meal!.mealImage != nil {
+                        mealImage.image = UIImage(data: today[0].meal!.mealImage!)
+                        mealImage.layer.cornerRadius = 8
+                        mealImage.clipsToBounds = true
+                        mealImage.isHidden = false
+                    } else {
+                       mealImage.isHidden = true
+                    }
+                    
 //                imageButton.setBackgroundImage(UIImage(data: meal!.mealImage!), for: .normal)
                 }
             } catch {
