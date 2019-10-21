@@ -55,40 +55,34 @@ class RecipeIngredientViewController: UIViewController, UITableViewDelegate, UIT
     
     func ingredientToolBar() {
         let bar = UIToolbar()
-//        bar.backgroundColor = .red
-//        var buttons: [UIBarButtonItem] = []
-//        let measurements: [String] = ["1/8","1/4","1/3","1/2","2/3","3/4"]
-//        let measurements: [String] = ["8"]
+        var buttons: [UIBarButtonItem] = []
+        let measurements: [String] = ["1/8","1/4","1/3","1/2","2/3","3/4"]
 //        let units: [String] = ["cup","tsp"] //,"tbsp"]
         var barButtonItem: UIBarButtonItem
-
-         barButtonItem = UIBarButtonItem(title: "test", style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-        barButtonItem.tintColor = UIColor(named: "_Purple Label")
-//        var flx = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//        flx.width = 50
-        //buttons.append(flx)
         
-//        for m in measurements {
-//            barButtonItem = UIBarButtonItem(title: m, style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
-//
-//            barButtonItem.tintColor = UIColor(named: "_Purple Label")
-//            buttons.append(barButtonItem)
-//        }
-//
-//        flx = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//        flx.width = 50
-        //buttons.append(flx)
+        var flx = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        flx.width = 50
+        buttons.append(flx)
         
+        for m in measurements {
+            barButtonItem = UIBarButtonItem(title: m, style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
 
+            barButtonItem.tintColor = UIColor(named: "_Purple Label")
+            buttons.append(barButtonItem)
+        }
+
+        flx = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        flx.width = 50
+        buttons.append(flx)
+        
 //        for u in units {
 //            barButtonItem = UIBarButtonItem(title: u, style: .plain, target: self, action: #selector(keyboardBtnTapped(_ :)))
 //            barButtonItem.width = 10
 //            barButtonItem.tintColor = UIColor(named: "_Purple Label")
 //            buttons.append(barButtonItem)
 //        }
-//        bar.setItems(buttons, animated: true)
-       // bar.items = buttons
-        bar.items = [barButtonItem]
+        
+        bar.setItems(buttons, animated: true)
         bar.sizeToFit()
         _ingredient.inputAccessoryView = bar
     }
