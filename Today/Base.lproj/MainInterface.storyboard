@@ -87,12 +87,28 @@
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mN4-c0-RW7" userLabel="View Today">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
+                                <color key="backgroundColor" name="_Blue Label"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ViewToday:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="vhL-T6-2Eu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="tintColor" name="_Purple Label"/>
                         <constraints>
+                            <constraint firstItem="mN4-c0-RW7" firstAttribute="trailing" secondItem="VAA-BX-RcG" secondAttribute="trailing" id="Ask-nQ-FV9"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="mN4-c0-RW7" secondAttribute="bottom" id="BkX-4C-Llt"/>
+                            <constraint firstItem="mN4-c0-RW7" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="SDU-kR-JqD"/>
                             <constraint firstItem="Re8-bd-84O" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="20" id="Sw1-ao-zB0"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="Re8-bd-84O" secondAttribute="trailing" constant="5" id="U7q-UA-F2H"/>
                             <constraint firstItem="Re8-bd-84O" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="X0t-dg-ykI"/>
+                            <constraint firstItem="mN4-c0-RW7" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="wrn-3C-lle"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>
@@ -112,6 +128,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="_Blue Label">
+            <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="_Purple Label">
             <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

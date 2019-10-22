@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let message = url.host?.removingPercentEncoding
-
+        print(message)
         if let bundleIdentifier = Bundle.main.bundleIdentifier {
             let shortcut1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).\(message!)", localizedTitle: "", localizedSubtitle: nil, icon: nil, userInfo: nil)
 
