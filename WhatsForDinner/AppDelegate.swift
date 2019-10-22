@@ -83,6 +83,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let message = url.host?.removingPercentEncoding
+
+        if let bundleIdentifier = Bundle.main.bundleIdentifier {
+            let shortcut1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).\(message!)", localizedTitle: "", localizedSubtitle: nil, icon: nil, userInfo: nil)
+
+            if handleQuickAction(shortcutItem: shortcut1) {
+                return true
+            }
+        }
+        
+        return true
+    }
+    
     func createQuickActions() {
         if let bundleIdentifier = Bundle.main.bundleIdentifier {
            

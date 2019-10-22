@@ -383,6 +383,18 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell.mealImage.isHidden = true
         }
+        
+        if (_meal.favorite) {
+            cell.favorite.isHidden = false
+            let fav = UIImage(named: "favoritefilled")?.withRenderingMode(.alwaysTemplate)
+            cell.favorite.setImage(fav, for: .normal)
+        } else {
+            cell.favorite.isHidden = true
+//            let fav = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
+//            cell.favorite.setImage(fav, for: .normal)
+        }
+        
+        cell.favorite.tintColor = UIColor(named: "_Purple Label")!
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

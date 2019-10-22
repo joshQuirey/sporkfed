@@ -17,6 +17,7 @@ class MealTableViewCell: UITableViewCell {
     @IBOutlet weak var mealFrequency: UILabel!
     @IBOutlet weak var mealCategories: UILabel!
     @IBOutlet weak var mealImage: UIImageView!
+    @IBOutlet weak var favorite: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
