@@ -89,7 +89,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mN4-c0-RW7" userLabel="View Today">
                                 <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
-                                <color key="backgroundColor" name="_Blue Label"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,9 +128,6 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="_Blue Label">
-            <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="_Purple Label">
             <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

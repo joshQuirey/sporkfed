@@ -37,12 +37,15 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         return allMeals.count > 0
     }
 
+    var meal: Meal?
+    
     /////////////////////////////
     //Segues
     /////////////////////////////
     private enum Segue {
         static let AddMeal = "AddMeal"
         static let ViewMeal = "ViewMeal"
+//        static let ViewMealURL = "ViewMealURL"
     }
     
     /////////////////////////////
@@ -137,13 +140,31 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
             }
             
             destination.managedObjectContext = self.managedObjectContext
-            let _indexpath = tableView.indexPathForSelectedRow
-            let _meal = meals![(_indexpath?.row)!]
-            destination.meal = _meal
-            
+            if (meal != nil) {
+                destination.meal = meal
+                meal = nil
+            } else {
+                let _indexpath = tableView.indexPathForSelectedRow
+                let _meal = meals![(_indexpath?.row)!]
+                destination.meal = _meal
+            }
+//
+//        case Segue.ViewMealURL:
+//            guard let destination = segue.destination as? RecipeViewController else {
+//                    return
+//                }
+//
+//                destination.managedObjectContext = self.managedObjectContext
+//                destination.meal = meal
+//
         default:
             break
         }
+    }
+    
+    func viewMealURL(_mealName: String) {
+        fetchMeal(name: _mealName)
+        self.performSegue(withIdentifier: "ViewMeal", sender: self)
     }
     
     /////////////////////////////
@@ -259,6 +280,27 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 self.allMeals = self.meals
                 
                 tableView.reloadData()
+            } catch {
+                let fetchError = error as NSError
+                print("Unable to Execute Fetch Request")
+                print("\(fetchError), \(fetchError.localizedDescription)")
+            }
+        }
+    }
+    
+    private func fetchMeal(name: String) {
+        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+        
+        // Configure Fetch Request
+        fetchRequest.predicate = NSPredicate(format: "mealName == %@",name)
+        
+        //Sort Alphabetically
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending: true)]
+        
+        self.managedObjectContext!.performAndWait {
+            do {
+                let meals = try fetchRequest.execute()
+                meal = meals[0]
             } catch {
                 let fetchError = error as NSError
                 print("Unable to Execute Fetch Request")
