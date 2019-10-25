@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         var message = url.host?.removingPercentEncoding
 
-        if (message != "viewmenu" || message != "addmeal") {
+        if (message != "viewmenu" && message != "addmeal") {
             message = message?.replacingOccurrences(of: "_", with: " ")
             viewMeal(_meal: message!)
         } else if let bundleIdentifier = Bundle.main.bundleIdentifier {
