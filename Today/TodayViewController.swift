@@ -15,6 +15,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     var today: [PlannedDay] = []
     let manager = CoreDataManager.init(modelName: "MealModel")
     var managedObjectContext: NSManagedObjectContext?
+    //var mealObjectID = NSManagedObjectID()
     
     @IBOutlet weak var buttonToolbar: UIToolbar!
     @IBOutlet weak var mealImage: UIImageView!
@@ -28,6 +29,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var viewMenuButton: UIButton!
     @IBAction func ViewMenu(_ sender: Any) {
         self.extensionContext?.open(URL(string:"sporkfed://viewmenu")!, completionHandler: nil)
+    }
+    
+    @IBAction func ViewToday(_ sender: Any) {
+        var url = "sporkfed://\(String(describing: self.mealName.text!))"
+        url = url.replacingOccurrences(of: " ", with: "_")
+        
+        self.extensionContext?.open(URL(string: url)!, completionHandler: nil)
     }
     
     override func viewDidLoad() {
@@ -88,6 +96,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                         mealImage.layer.cornerRadius = 8
                         mealImage.clipsToBounds = true
                         mealImage.isHidden = false
+                        //mealObjectID = today[0].meal!.objectID
+                        //print(mealObjectID)
                     } else {
                        mealImage.isHidden = true
                     }

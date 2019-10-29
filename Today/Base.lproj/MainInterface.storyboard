@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Re8-bd-84O">
-                                <rect key="frame" x="20" y="5" width="295" height="70"/>
+                                <rect key="frame" x="20" y="5" width="285" height="70"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-BX-RcG">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -27,23 +27,23 @@
                                             <constraint firstAttribute="width" constant="70" id="eNN-oF-jWi"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-uT-Vx5">
-                                        <rect key="frame" x="80" y="0.0" width="215" height="70"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-uT-Vx5">
+                                        <rect key="frame" x="80" y="0.0" width="205" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qf-uy-cpl" userLabel="Name">
-                                                <rect key="frame" x="0.0" y="0.0" width="215" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="205" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-5l-dOE">
-                                                <rect key="frame" x="0.0" y="40" width="215" height="30"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-5l-dOE">
+                                                <rect key="frame" x="0.0" y="35" width="205" height="35"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywM-c1-aPH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="35"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="fIE-r0-KZf"/>
+                                                            <constraint firstAttribute="height" constant="35" id="fIE-r0-KZf"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="tintColor" name="_Teal Label"/>
@@ -57,7 +57,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idj-Vu-zzT">
-                                                        <rect key="frame" x="76" y="0.0" width="77.5" height="30"/>
+                                                        <rect key="frame" x="107.5" y="0.0" width="97.5" height="35"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="tintColor" name="_Teal Label"/>
@@ -66,13 +66,6 @@
                                                         <connections>
                                                             <action selector="ViewMenu:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="CyT-di-qxv"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXX-sq-lsz">
-                                                        <rect key="frame" x="163.5" y="0.0" width="51.5" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="71Z-v7-Q3a"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -87,12 +80,28 @@
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mN4-c0-RW7" userLabel="View Today">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ViewToday:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="vhL-T6-2Eu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="tintColor" name="_Purple Label"/>
                         <constraints>
+                            <constraint firstItem="mN4-c0-RW7" firstAttribute="trailing" secondItem="VAA-BX-RcG" secondAttribute="trailing" id="Ask-nQ-FV9"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="mN4-c0-RW7" secondAttribute="bottom" id="BkX-4C-Llt"/>
+                            <constraint firstItem="mN4-c0-RW7" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="SDU-kR-JqD"/>
                             <constraint firstItem="Re8-bd-84O" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="20" id="Sw1-ao-zB0"/>
-                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="Re8-bd-84O" secondAttribute="trailing" constant="5" id="U7q-UA-F2H"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="Re8-bd-84O" secondAttribute="trailing" constant="15" id="U7q-UA-F2H"/>
                             <constraint firstItem="Re8-bd-84O" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="X0t-dg-ykI"/>
+                            <constraint firstItem="mN4-c0-RW7" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="wrn-3C-lle"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>
