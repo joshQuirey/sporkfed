@@ -28,6 +28,7 @@
 		747E3558211CE7380065799E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManager.swift */; };
 		748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947C9211A0D73000859F1 /* PlanViewController.swift */; };
 		748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947CB211A0DF2000859F1 /* RecipeViewController.swift */; };
+		A71C3B1E2368A55300D6ECC0 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */; };
 		A728FE5722A6E2720078C666 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FE5622A6E2720078C666 /* SettingsViewController.swift */; };
 		A72EDAFC2351215500E886CE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72EDAFB2351215500E886CE /* NotificationCenter.framework */; };
 		A72EDAFF2351215500E886CE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72EDAFE2351215500E886CE /* TodayViewController.swift */; };
@@ -98,6 +99,7 @@
 		747E3557211CE7380065799E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		748947C9211A0D73000859F1 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		748947CB211A0DF2000859F1 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		A728FE5622A6E2720078C666 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A72EDAFA2351215500E886CE /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72EDAFB2351215500E886CE /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -225,6 +227,7 @@
 				747BF01D2118B6D1006EACA0 /* AppDelegate.swift */,
 				A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */,
 				747E3557211CE7380065799E /* CoreDataManager.swift */,
+				A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */,
 				A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */,
 				A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */,
 				747BF0262118B6D4006EACA0 /* Assets.xcassets */,
@@ -403,6 +406,7 @@
 				A7F27D1322F9F0C700EA2368 /* UserDefaults+Key.swift in Sources */,
 				748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */,
 				400C0F32226A5D010039625E /* CreatePlanViewController.swift in Sources */,
+				A71C3B1E2368A55300D6ECC0 /* CoreDataHelpers.swift in Sources */,
 				747BF01E2118B6D1006EACA0 /* AppDelegate.swift in Sources */,
 				4029E31921320B08003D3071 /* RecipeDirectionsViewController.swift in Sources */,
 				A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */,
