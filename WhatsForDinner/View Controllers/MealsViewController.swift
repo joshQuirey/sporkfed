@@ -21,17 +21,15 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     //Properties
     /////////////////////////////
     var managedObjectContext: NSManagedObjectContext?
-    
     private var selectedObjectID = NSManagedObjectID()
+    var meals: [Meal]?
     
     private var allMeals: [Meal]? {
         didSet {
             updateView()
         }
     }
-    
-    var meals: [Meal]?
-    
+
     private var hasMeals: Bool {
         guard let allMeals = meals else { return false }
         return allMeals.count > 0
@@ -228,105 +226,23 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     private func fetchMeals() {
         self.meals = helpers.fetchMeals(context: self.managedObjectContext!)
         self.allMeals = self.meals
-        
         tableView.reloadData()
-        
-//
-//        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-//        //Sort Alphabetically
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.mealName), ascending: true)]
-//
-//        self.managedObjectContext!.performAndWait {
-//            do {
-//                let meals = try fetchRequest.execute()
-//                self.meals = meals
-//                self.allMeals = self.meals
-//
-//                tableView.reloadData()
-//            } catch {
-//                let fetchError = error as NSError
-//                print("Unable to Execute Fetch Request")
-//                print("\(fetchError), \(fetchError.localizedDescription)")
-//            }
-//        }
     }
     
     private func fetchMealsUpNext() {
         self.meals = helpers.fetchMealsUpNext(context: self.managedObjectContext!)
         self.allMeals = self.meals
-        
         tableView.reloadData()
-//
-//        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-//        //Sort Alphabetically
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending: true)]
-//
-//        self.managedObjectContext!.performAndWait {
-//            do {
-//                let meals = try fetchRequest.execute()
-//                self.meals = meals
-//                self.allMeals = self.meals
-//
-//                tableView.reloadData()
-//            } catch {
-//                let fetchError = error as NSError
-//                print("Unable to Execute Fetch Request")
-//                print("\(fetchError), \(fetchError.localizedDescription)")
-//            }
-//        }
     }
     
     private func fetchMealsFavorites() {
         self.meals = helpers.fetchMealsFavorites(context: self.managedObjectContext!)
         self.allMeals = self.meals
-        
         tableView.reloadData()
-        
-//        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-//
-//        // Configure Fetch Request
-//        fetchRequest.predicate = NSPredicate(format: "favorite == 1")
-//
-//        //Sort Alphabetically
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending: true)]
-//
-//        self.managedObjectContext!.performAndWait {
-//            do {
-//                let meals = try fetchRequest.execute()
-//                self.meals = meals
-//                self.allMeals = self.meals
-//
-//                tableView.reloadData()
-//            } catch {
-//                let fetchError = error as NSError
-//                print("Unable to Execute Fetch Request")
-//                print("\(fetchError), \(fetchError.localizedDescription)")
-//            }
-//        }
     }
     
     private func fetchMeal(name: String) {
         meal = helpers.fetchMeal(name: name, context: self.managedObjectContext!)
-//
-//        
-//        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-//
-//        // Configure Fetch Request
-//        fetchRequest.predicate = NSPredicate(format: "mealName == %@",name)
-//
-//        //Sort Alphabetically
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending: true)]
-//
-//        self.managedObjectContext!.performAndWait {
-//            do {
-//                let meals = try fetchRequest.execute()
-//                meal = meals[0]
-//            } catch {
-//                let fetchError = error as NSError
-//                print("Unable to Execute Fetch Request")
-//                print("\(fetchError), \(fetchError.localizedDescription)")
-//            }
-//        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
