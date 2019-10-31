@@ -42,9 +42,6 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywM-c1-aPH">
                                                         <rect key="frame" x="0.0" y="0.0" width="97.5" height="23.5"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="35" id="fIE-r0-KZf"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="tintColor" name="_Teal Label"/>
                                                         <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
@@ -122,10 +119,10 @@
     </scenes>
     <resources>
         <namedColor name="_Purple Label">
-            <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.30196078431372547" green="0.27450980392156865" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="_Teal Label">
-            <color red="0.3919999897480011" green="0.82400000095367432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
