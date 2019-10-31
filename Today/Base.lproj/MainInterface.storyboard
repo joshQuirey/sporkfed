@@ -30,17 +30,17 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="R8S-uT-Vx5">
                                         <rect key="frame" x="80" y="0.0" width="205" height="70"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qf-uy-cpl" userLabel="Name">
-                                                <rect key="frame" x="0.0" y="0.0" width="205" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qf-uy-cpl" userLabel="Name">
+                                                <rect key="frame" x="0.0" y="0.0" width="205" height="41.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CAA-5l-dOE">
-                                                <rect key="frame" x="0.0" y="35" width="205" height="35"/>
+                                                <rect key="frame" x="0.0" y="46.5" width="205" height="23.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywM-c1-aPH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="23.5"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="fIE-r0-KZf"/>
@@ -57,7 +57,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idj-Vu-zzT">
-                                                        <rect key="frame" x="107.5" y="0.0" width="97.5" height="35"/>
+                                                        <rect key="frame" x="107.5" y="0.0" width="97.5" height="23.5"/>
                                                         <color key="backgroundColor" name="_Teal Label"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="tintColor" name="_Teal Label"/>
