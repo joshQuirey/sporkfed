@@ -29,8 +29,15 @@
 		748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947C9211A0D73000859F1 /* PlanViewController.swift */; };
 		748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947CB211A0DF2000859F1 /* RecipeViewController.swift */; };
 		A728FE5722A6E2720078C666 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FE5622A6E2720078C666 /* SettingsViewController.swift */; };
+		A72EDAFC2351215500E886CE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72EDAFB2351215500E886CE /* NotificationCenter.framework */; };
+		A72EDAFF2351215500E886CE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72EDAFE2351215500E886CE /* TodayViewController.swift */; };
+		A72EDB022351215500E886CE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72EDB002351215500E886CE /* MainInterface.storyboard */; };
+		A72EDB062351215500E886CE /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A72EDAFA2351215500E886CE /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A72EDB0A235127AD00E886CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0262118B6D4006EACA0 /* Assets.xcassets */; };
 		A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */; };
 		A777A59C229DB3300071326E /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A59B229DB3300071326E /* BaseTabBarController.swift */; };
+		A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
+		A7C5D50523578C860002F463 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManager.swift */; };
 		A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */; };
 		A7E1BEDB2295D174000F053E /* ReplaceMealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */; };
 		A7F27D1322F9F0C700EA2368 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */; };
@@ -44,6 +51,13 @@
 			remoteGlobalIDString = 409A3DF62320403500F5E220;
 			remoteInfo = AddMeal;
 		};
+		A72EDB042351215500E886CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 747BF0122118B6D1006EACA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A72EDAF92351215500E886CE;
+			remoteInfo = Today;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				A72EDB062351215500E886CE /* Today.appex in Embed App Extensions */,
 				409A3E012320403500F5E220 /* AddMeal.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -84,9 +99,15 @@
 		748947C9211A0D73000859F1 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		748947CB211A0DF2000859F1 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		A728FE5622A6E2720078C666 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A72EDAFA2351215500E886CE /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A72EDAFB2351215500E886CE /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		A72EDAFE2351215500E886CE /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		A72EDB012351215500E886CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		A72EDB032351215500E886CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		A777A59B229DB3300071326E /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsForDinner.entitlements; sourceTree = "<group>"; };
+		A7C5D50623578F910002F463 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceMealController.swift; sourceTree = "<group>"; };
 		A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
@@ -105,6 +126,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				406C0C09231EFCCE00586FCF /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A72EDAF72351215500E886CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A72EDAFC2351215500E886CE /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				406C0C08231EFCCE00586FCF /* CloudKit.framework */,
+				A72EDAFB2351215500E886CE /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,6 +200,7 @@
 			children = (
 				747BF01C2118B6D1006EACA0 /* WhatsForDinner */,
 				409A3DF82320403500F5E220 /* AddMeal */,
+				A72EDAFD2351215500E886CE /* Today */,
 				747BF01B2118B6D1006EACA0 /* Products */,
 				406C0C07231EFCCE00586FCF /* Frameworks */,
 			);
@@ -180,6 +211,7 @@
 			children = (
 				747BF01A2118B6D1006EACA0 /* WhatsForDinner.app */,
 				409A3DF72320403500F5E220 /* AddMeal.appex */,
+				A72EDAFA2351215500E886CE /* Today.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,16 +222,27 @@
 				A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */,
 				40929389214868EA00B16004 /* Storyboards */,
 				4029E317213209AD003D3071 /* View Controllers */,
-				A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */,
-				747E3557211CE7380065799E /* CoreDataManager.swift */,
 				747BF01D2118B6D1006EACA0 /* AppDelegate.swift */,
 				A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */,
+				747E3557211CE7380065799E /* CoreDataManager.swift */,
+				A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */,
 				A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */,
 				747BF0262118B6D4006EACA0 /* Assets.xcassets */,
 				747BF02B2118B6D4006EACA0 /* Info.plist */,
 				747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */,
 			);
 			path = WhatsForDinner;
+			sourceTree = "<group>";
+		};
+		A72EDAFD2351215500E886CE /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				A7C5D50623578F910002F463 /* Today.entitlements */,
+				A72EDAFE2351215500E886CE /* TodayViewController.swift */,
+				A72EDB002351215500E886CE /* MainInterface.storyboard */,
+				A72EDB032351215500E886CE /* Info.plist */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,11 +278,29 @@
 			);
 			dependencies = (
 				409A3E002320403500F5E220 /* PBXTargetDependency */,
+				A72EDB052351215500E886CE /* PBXTargetDependency */,
 			);
 			name = WhatsForDinner;
 			productName = WhatsForDinner;
 			productReference = 747BF01A2118B6D1006EACA0 /* WhatsForDinner.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A72EDAF92351215500E886CE /* Today */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A72EDB092351215500E886CE /* Build configuration list for PBXNativeTarget "Today" */;
+			buildPhases = (
+				A72EDAF62351215500E886CE /* Sources */,
+				A72EDAF72351215500E886CE /* Frameworks */,
+				A72EDAF82351215500E886CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Today;
+			productName = Today;
+			productReference = A72EDAFA2351215500E886CE /* Today.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -263,6 +324,9 @@
 							};
 						};
 					};
+					A72EDAF92351215500E886CE = {
+						CreatedOnToolsVersion = 11.0;
+					};
 				};
 			};
 			buildConfigurationList = 747BF0152118B6D1006EACA0 /* Build configuration list for PBXProject "WhatsForDinner" */;
@@ -280,6 +344,7 @@
 			targets = (
 				747BF0192118B6D1006EACA0 /* WhatsForDinner */,
 				409A3DF62320403500F5E220 /* AddMeal */,
+				A72EDAF92351215500E886CE /* Today */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +367,15 @@
 				747BF0272118B6D4006EACA0 /* Assets.xcassets in Resources */,
 				4092938D2148692200B16004 /* Categories.storyboard in Resources */,
 				747BF0252118B6D1006EACA0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A72EDAF82351215500E886CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A72EDB0A235127AD00E886CE /* Assets.xcassets in Resources */,
+				A72EDB022351215500E886CE /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +415,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A72EDAF62351215500E886CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7C5D50523578C860002F463 /* CoreDataManager.swift in Sources */,
+				A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */,
+				A72EDAFF2351215500E886CE /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -348,6 +432,11 @@
 			isa = PBXTargetDependency;
 			target = 409A3DF62320403500F5E220 /* AddMeal */;
 			targetProxy = 409A3DFF2320403500F5E220 /* PBXContainerItemProxy */;
+		};
+		A72EDB052351215500E886CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A72EDAF92351215500E886CE /* Today */;
+			targetProxy = A72EDB042351215500E886CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -376,6 +465,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		A72EDB002351215500E886CE /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A72EDB012351215500E886CE /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -385,7 +482,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = AddMeal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -394,7 +491,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
@@ -411,7 +508,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = AddMeal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -420,7 +517,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -552,7 +649,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhatsForDinner/WhatsForDinner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				IBSC_COMPILER_GENERATE_SOURCE = NO;
 				INFOPLIST_FILE = WhatsForDinner/Info.plist;
@@ -561,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -579,7 +676,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhatsForDinner/WhatsForDinner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				IBSC_COMPILER_GENERATE_SOURCE = NO;
 				INFOPLIST_FILE = WhatsForDinner/Info.plist;
@@ -588,10 +685,59 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A72EDB072351215500E886CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44K3F3FFJM;
+				INFOPLIST_FILE = Today/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.3.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A72EDB082351215500E886CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44K3F3FFJM;
+				INFOPLIST_FILE = Today/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.3.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -623,6 +769,15 @@
 			buildConfigurations = (
 				747BF02F2118B6D4006EACA0 /* Debug */,
 				747BF0302118B6D4006EACA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A72EDB092351215500E886CE /* Build configuration list for PBXNativeTarget "Today" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A72EDB072351215500E886CE /* Debug */,
+				A72EDB082351215500E886CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -37,12 +37,15 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         return allMeals.count > 0
     }
 
+    var meal: Meal?
+    
     /////////////////////////////
     //Segues
     /////////////////////////////
     private enum Segue {
         static let AddMeal = "AddMeal"
         static let ViewMeal = "ViewMeal"
+//        static let ViewMealURL = "ViewMealURL"
     }
     
     /////////////////////////////
@@ -87,8 +90,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     override func viewWillAppear(_ animated: Bool) {
         searchBar.delegate = self
         searchBar.layer.borderWidth = 1
-        searchBar.layer.borderColor = UIColor(named: "_Teal Background")!.cgColor
-        
+        searchBar.layer.borderColor = UIColor.systemBackground.cgColor // UIColor(named: "_Teal Background")!.cgColor
         searchBar.text = ""
         fetchMeals()
     }
@@ -138,13 +140,31 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
             }
             
             destination.managedObjectContext = self.managedObjectContext
-            let _indexpath = tableView.indexPathForSelectedRow
-            let _meal = meals![(_indexpath?.row)!]
-            destination.meal = _meal
-            
+            if (meal != nil) {
+                destination.meal = meal
+                meal = nil
+            } else {
+                let _indexpath = tableView.indexPathForSelectedRow
+                let _meal = meals![(_indexpath?.row)!]
+                destination.meal = _meal
+            }
+//
+//        case Segue.ViewMealURL:
+//            guard let destination = segue.destination as? RecipeViewController else {
+//                    return
+//                }
+//
+//                destination.managedObjectContext = self.managedObjectContext
+//                destination.meal = meal
+//
         default:
             break
         }
+    }
+    
+    func viewMealURL(_mealName: String) {
+        fetchMeal(name: _mealName)
+        self.performSegue(withIdentifier: "ViewMeal", sender: self)
     }
     
     /////////////////////////////
@@ -260,6 +280,27 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 self.allMeals = self.meals
                 
                 tableView.reloadData()
+            } catch {
+                let fetchError = error as NSError
+                print("Unable to Execute Fetch Request")
+                print("\(fetchError), \(fetchError.localizedDescription)")
+            }
+        }
+    }
+    
+    private func fetchMeal(name: String) {
+        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+        
+        // Configure Fetch Request
+        fetchRequest.predicate = NSPredicate(format: "mealName == %@",name)
+        
+        //Sort Alphabetically
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending: true)]
+        
+        self.managedObjectContext!.performAndWait {
+            do {
+                let meals = try fetchRequest.execute()
+                meal = meals[0]
             } catch {
                 let fetchError = error as NSError
                 print("Unable to Execute Fetch Request")
@@ -384,8 +425,20 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell.mealImage.isHidden = true
         }
+        
+        if (_meal.favorite) {
+            cell.favorite.isHidden = false
+            let fav = UIImage(named: "favoritefilled")?.withRenderingMode(.alwaysTemplate)
+            cell.favorite.setImage(fav, for: .normal)
+        } else {
+            cell.favorite.isHidden = true
+//            let fav = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
+//            cell.favorite.setImage(fav, for: .normal)
+        }
+        
+        cell.favorite.tintColor = UIColor(named: "_Purple Label")!
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             DispatchQueue.main.async {
@@ -422,6 +475,7 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
         alert.view.tintColor = UIColor(named: "_Purple Label")!
         self.present(alert, animated: true, completion: {})
     }
+    
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         guard let _meal = meals?[(indexPath.row)] else { fatalError("Unexpected Index Path")}

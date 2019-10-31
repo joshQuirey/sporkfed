@@ -55,6 +55,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    private func viewMeal(_meal: String) {
+        let tabBarController = window?.rootViewController as? UITabBarController
+
+        if let navController = tabBarController!.viewControllers?[1] {
+            let mealsViewController = navController.children[0] as! MealsViewController
+            mealsViewController.managedObjectContext = self.coreDataManager.managedObjectContext
+            mealsViewController.viewMealURL(_mealName: _meal)
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         createQuickActions()
         
@@ -81,6 +91,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        var message = url.host?.removingPercentEncoding
+
+        if (message != "viewmenu" && message != "addmeal") {
+            message = message?.replacingOccurrences(of: "_", with: " ")
+            viewMeal(_meal: message!)
+        } else if let bundleIdentifier = Bundle.main.bundleIdentifier {
+            let shortcut1 = UIApplicationShortcutItem(type: "\(bundleIdentifier).\(message!)", localizedTitle: "", localizedSubtitle: nil, icon: nil, userInfo: nil)
+
+            if handleQuickAction(shortcutItem: shortcut1) {
+                return true
+            }
+        }
+        
+        return true
     }
     
     func createQuickActions() {

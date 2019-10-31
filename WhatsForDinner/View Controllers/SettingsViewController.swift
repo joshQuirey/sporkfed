@@ -163,6 +163,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = UIColor(named: "_Purple to Teal")
         present(safariVC, animated: true)
     }
 }

@@ -79,6 +79,7 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
                 
                 // Update Tickets
                 self.allMeals = meals
+                
             } catch {
                 let fetchError = error as NSError
                 print("Unable to Execute Fetch Request")
@@ -90,9 +91,10 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
     private func fetchNextMeals() {
         // Create Fetch Request
         let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-        
+
         // Configure Fetch Request
-        fetchRequest.predicate = NSPredicate(format: "(ANY tags.name != %@) AND estimatedNextDate != nil", currentPlannedDay!.category!)
+//        fetchRequest.predicate = NSPredicate(format: "(ANY tags.name != %@ AND ANY tags.name == nil) AND estimatedNextDate != nil", currentPlannedDay!.category!)
+        fetchRequest.predicate = NSPredicate(format: "estimatedNextDate != nil")
         
         //fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.mealName), ascending: true)]
@@ -102,9 +104,24 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
             do {
                 // Execute Fetch Request
                 let meals = try fetchRequest.execute()
-                
+
                 // Update Tickets
-                self.allMeals?.append(contentsOf: meals)
+                if meals.count > 0 {
+//                    print("meals greater than 0")
+                    if self.allMeals?.count == 0 {
+//                        print("all meals equals 0")
+                        self.allMeals = meals
+                    } else {
+//                        print("all meals greater than 0")
+                        for meal in meals {
+                            if self.allMeals?.contains(meal) == false {
+                                self.allMeals?.append(meal)
+                            }
+                        }
+                        //self.allMeals?.append(contentsOf: meals)
+                    }
+                }
+                
             } catch {
                 let fetchError = error as NSError
                 print("Unable to Execute Fetch Request")
@@ -126,6 +143,8 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
         
         tableView.reloadData()
     }
+    
+    
     
     /////////////////////////////
     //Table Functions
