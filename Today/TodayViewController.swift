@@ -57,7 +57,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         addMealButton.layer.cornerRadius = 8
         addMealButton.clipsToBounds = true
-            
+        
         completionHandler(NCUpdateResult.newData)
     }
     
@@ -90,17 +90,24 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 
                 //Reload Table View
                 if (today.count > 0) {
-                    mealName.text = today[0].meal?.mealName
-                    if today[0].meal!.mealImage != nil {
-                        mealImage.image = UIImage(data: today[0].meal!.mealImage!)
-                        mealImage.layer.cornerRadius = 8
-                        mealImage.clipsToBounds = true
-                        mealImage.isHidden = false
-                        //mealObjectID = today[0].meal!.objectID
-                        //print(mealObjectID)
+                    if today[0].meal?.mealName! == nil {
+                        mealName.text = "No Meal Scheduled"
+                        mealImage.isHidden = true
                     } else {
-                       mealImage.isHidden = true
+                        mealName.text = today[0].meal?.mealName
+                        
+                        if today[0].meal!.mealImage != nil {
+                            mealImage.image = UIImage(data: today[0].meal!.mealImage!)
+                            mealImage.layer.cornerRadius = 8
+                            mealImage.clipsToBounds = true
+                            mealImage.isHidden = false
+                        } else {
+                           mealImage.isHidden = true
+                        }
                     }
+                } else {
+                    mealName.text = "No Meal Scheduled"
+                    mealImage.isHidden = true
                 }
             } catch {
                 let fetchError = error as NSError
@@ -109,5 +116,4 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         }
     }
-    
 }
