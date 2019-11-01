@@ -171,7 +171,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "93F49ABC-5C4C-42E1-B3EB-BBDD716124FF"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WhatsForDinner/AppDelegate.swift"
