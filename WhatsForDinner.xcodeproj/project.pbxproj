@@ -486,7 +486,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = AddMeal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -495,7 +495,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
@@ -512,7 +512,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = AddMeal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -521,7 +521,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -653,7 +653,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhatsForDinner/WhatsForDinner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				IBSC_COMPILER_GENERATE_SOURCE = NO;
 				INFOPLIST_FILE = WhatsForDinner/Info.plist;
@@ -662,7 +662,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -680,7 +680,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhatsForDinner/WhatsForDinner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				IBSC_COMPILER_GENERATE_SOURCE = NO;
 				INFOPLIST_FILE = WhatsForDinner/Info.plist;
@@ -689,7 +689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -704,7 +704,7 @@
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -712,7 +712,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
@@ -729,7 +729,7 @@
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -737,7 +737,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
