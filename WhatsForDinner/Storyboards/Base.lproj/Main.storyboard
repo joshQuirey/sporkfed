@@ -1236,9 +1236,9 @@
                         <color key="selectedImageTintColor" name="_Purple Label"/>
                     </tabBar>
                     <connections>
-                        <segue destination="TB5-L3-zGY" kind="relationship" relationship="viewControllers" id="m4A-yA-d24"/>
                         <segue destination="CUV-yD-vSI" kind="relationship" relationship="viewControllers" id="lWJ-qZ-o0P"/>
                         <segue destination="G2k-dk-ZSF" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="TB5-L3-zGY" kind="relationship" relationship="viewControllers" id="m4A-yA-d24"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1852,22 +1852,44 @@
             </objects>
             <point key="canvasLocation" x="3159" y="2399"/>
         </scene>
-        <!--Shopping List-->
+        <!--Grocery List-->
         <scene sceneID="EBB-iv-qM8">
             <objects>
                 <viewController id="Pv4-xq-kRT" customClass="ListViewController" customModule="WhatsForDinner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dDk-jn-i7z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OPR-rP-07L">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OPR-rP-07L" id="b83-1K-zCx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" id="4db-7H-wEF"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" id="BqQ-C4-wet"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" id="EuA-pT-vL1"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="bottom" secondItem="44n-6q-u6s" secondAttribute="bottom" id="eY8-Dv-wpG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="44n-6q-u6s"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Shopping List" id="86O-6i-QHf"/>
+                    <navigationItem key="navigationItem" title="Grocery List" id="86O-6i-QHf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdq-nW-GEF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="183" y="777"/>
+            <point key="canvasLocation" x="182.60869565217394" y="776.78571428571422"/>
         </scene>
         <!--Menu-->
         <scene sceneID="sA2-6Q-c77">
@@ -1889,7 +1911,7 @@
                             <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -1902,18 +1924,28 @@
             </objects>
             <point key="canvasLocation" x="1302.8985507246377" y="1074.7767857142856"/>
         </scene>
-        <!--Item-->
+        <!--Grocery-->
         <scene sceneID="lnU-Wu-CMY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TB5-L3-zGY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="D3k-mL-IU4"/>
+                    <tabBarItem key="tabBarItem" title="Grocery" image="grocery" selectedImage="grocery" id="D3k-mL-IU4">
+                        <color key="badgeColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SW5-G4-Cx1">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="SW5-G4-Cx1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="_Teal Background"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="_Teal Background to Secondary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1927,6 +1959,7 @@
     </scenes>
     <resources>
         <image name="favorite" width="24" height="24"/>
+        <image name="grocery" width="25" height="25"/>
         <image name="magicwand" width="24" height="24"/>
         <image name="meals" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
@@ -1971,7 +2004,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="_White to Purple Label">
-            <color red="0.36899998784065247" green="0.36100000143051147" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="_White to Secondary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
