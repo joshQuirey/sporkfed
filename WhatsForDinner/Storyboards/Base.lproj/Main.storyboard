@@ -1889,6 +1889,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Pv4-xq-kRT" id="awh-Qe-mYH"/>
+                                    <outlet property="delegate" destination="Pv4-xq-kRT" id="Srf-Fd-zAt"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1911,7 +1915,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emptyTableLabel" destination="38B-1g-3ib" id="LFx-dl-2KT"/>
-                        <outlet property="tableView" destination="lVg-Cs-Bl2" id="Nwb-Sh-Mfr"/>
+                        <outlet property="tableView" destination="lVg-Cs-Bl2" id="ARe-UB-LZj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdq-nW-GEF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2041,6 +2045,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cIL-TX-hOf"/>
+        <segue reference="qnc-uL-VBf"/>
     </inferredMetricsTieBreakers>
 </document>

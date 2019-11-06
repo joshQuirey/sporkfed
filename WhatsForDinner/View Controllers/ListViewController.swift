@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     /////////////////////////////
     //Outlets
     /////////////////////////////
+   
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
     
@@ -31,14 +32,19 @@ class ListViewController: UIViewController {
             updateView()
         }
     }
+
+    var numberOfMeals: Int = 0
     
     var helpers = CoreDataHelpers()
     //define List struct
     struct GroceryList {
+        var menuIndex: Int = 0
+        var ingredientIndex: Int = 0
         var plannedMenuItem: String = ""
         var ingredient: String = ""
         var isComplete: Bool = false
         var isDeleted: Bool  = false
+        
     }
     
     var Groceries: [GroceryList] = []
@@ -88,7 +94,7 @@ class ListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //fetchMenu()
+        fetchMenu()
     }
     
     
@@ -127,20 +133,27 @@ class ListViewController: UIViewController {
         
         // Execute Fetch Request
         plannedMenu = helpers.fetchPlans(context: self.managedObjectContext!)
-        
+        numberOfMeals = plannedMenu!.count
         //Reload Table View
-        if (plannedMenu!.count > 0) {
+        if (numberOfMeals > 0) {
             var groceryItem = GroceryList()
-
+            var menuIndex: Int = 0
             for _planned in plannedMenu! {
                 //Build Grocery List Array
                 
+                var ingredientIndex: Int = 0
                 for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
+                    groceryItem.menuIndex = menuIndex
+                    groceryItem.ingredientIndex = ingredientIndex
                     groceryItem.plannedMenuItem = _planned.meal!.mealName!
                     //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
                     groceryItem.ingredient = _ingredient.item!
                     Groceries.append(groceryItem)
+                    
+                    ingredientIndex += 1
                 }
+                
+                menuIndex += 1
             }
             
             print(Groceries)
@@ -149,39 +162,44 @@ class ListViewController: UIViewController {
             //custom list
         }
     }
-}
 
-extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     /////////////////////////////
     //Table Functions
     /////////////////////////////
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         //Must add 1 to account for last section of grocery list that will be ad-hoc
-        print((plannedMenu?.count)! + 1)
-        return (plannedMenu?.count)! + 1
+        print("Number of Meals \(numberOfMeals)")
+        return numberOfMeals //+ 1
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //ingredients.count
+        var count = 0
         print(section)
-        let count = plannedMenu![section].meal?.ingredients?.count
+        //print(plannedMenu![0].meal!.mealName)
+        //if (section > 0) {
+
+        count = (plannedMenu![section].meal?.ingredients!.count)!
 //        if count == 0 {
 //            count = 1
 //        }
-        
-        return count!
+        //}
+        print("Number of Rows \(count)")
+        return count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        print(section)
         guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
         return _plannedMenu.meal?.mealName
     }
         
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 10))
-
-        return headerView
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 10))
+//
+//        return headerView
+//    }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groceryCell", for: indexPath)
@@ -208,11 +226,14 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     }
         
         private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
-            // Fetch Meal
-            guard let _plannedMenu = plannedMenu?[indexPath.section] else { fatalError("Unexpected Index Path")}
-            print(indexPath.section)
-            print(indexPath)
             
+            print(indexPath.section)
+            print(indexPath.row)
+            // Fetch Meal
+           // guard let _plannedMenu = plannedMenu?[indexPath.section] else { fatalError("Unexpected Index Path")}
+            let object = Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row })
+            cell.textLabel!.text = object?.ingredient
+            //cell.textLabel!.text = "})) - Ingredient \(indexPath.row)"
             // Configure Cell
 //            var item = Groceries.first(where: _plannedMenu.meal?.mealName)
 //            cell.textLabel
