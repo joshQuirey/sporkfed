@@ -94,7 +94,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchMenu()
+//        fetchMenu()
     }
     
     
@@ -132,28 +132,36 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         plannedMenu = nil
         
         // Execute Fetch Request
-        plannedMenu = helpers.fetchPlans(context: self.managedObjectContext!)
-        numberOfMeals = plannedMenu!.count
+        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
+        //need to change planned menu to not include restaurant days or leftovers
+        for menu in fullPlannedMenu {
+            if (menu.meal != nil) {
+                plannedMenu?.append(menu)
+                numberOfMeals += 1
+            }
+        }
+        
+        
         //Reload Table View
         if (numberOfMeals > 0) {
             var groceryItem = GroceryList()
             var menuIndex: Int = 0
             for _planned in plannedMenu! {
                 //Build Grocery List Array
-                
-                var ingredientIndex: Int = 0
-                for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
-                    groceryItem.menuIndex = menuIndex
-                    groceryItem.ingredientIndex = ingredientIndex
-                    groceryItem.plannedMenuItem = _planned.meal!.mealName!
-                    //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
-                    groceryItem.ingredient = _ingredient.item!
-                    Groceries.append(groceryItem)
-                    
-                    ingredientIndex += 1
+                print(_planned.meal?.mealName)
+                if (_planned.meal?.mealName != nil) {
+                    var ingredientIndex: Int = 0
+                    for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
+                        groceryItem.menuIndex = menuIndex
+                        groceryItem.ingredientIndex = ingredientIndex
+                        groceryItem.plannedMenuItem = _planned.meal!.mealName!
+                        //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
+                        groceryItem.ingredient = _ingredient.item!
+                        Groceries.append(groceryItem)
+                        ingredientIndex += 1
+                    }
+                    menuIndex += 1
                 }
-                
-                menuIndex += 1
             }
             
             print(Groceries)
@@ -176,11 +184,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //ingredients.count
         var count = 0
+        var ingredients = plannedMenu![section].meal?.ingredients
         print(section)
         //print(plannedMenu![0].meal!.mealName)
         //if (section > 0) {
-
-        count = (plannedMenu![section].meal?.ingredients!.count)!
+        //print(ingredients)
+        if (ingredients != nil)  {
+            count = (plannedMenu![section].meal?.ingredients!.count)!
+        }
+        
 //        if count == 0 {
 //            count = 1
 //        }
@@ -190,8 +202,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print(section)
+        print("Title for header in section \(section)")
         guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
+        print("Planned Meal Name \(_plannedMenu.meal?.mealName)")
         return _plannedMenu.meal?.mealName
     }
         
@@ -205,19 +218,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "groceryCell", for: indexPath)
         
         // Configure Cell
-        if (plannedMenu!.count > 0) {
+        if (numberOfMeals > 0) {
             configure(cell, at: indexPath)
         } else {
             //create custom list
         }
-//
-//        if (cell.mealName.text == "👨‍🍳 Restaurant" || cell.mealName.text == "🍴 Leftovers") {
-//            cell.selectionStyle = UITableViewCell.SelectionStyle.none
-//            cell.isUserInteractionEnabled = false
-//        } else {
-//            cell.selectionStyle = UITableViewCell.SelectionStyle.default
-//            cell.isUserInteractionEnabled = true
-//        }
         
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
