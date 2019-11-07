@@ -129,26 +129,30 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //Core Data Functions
     /////////////////////////////
     private func fetchMenu() {
-        plannedMenu = nil
+        plannedMenu = []
+        numberOfMeals = 0
+        Groceries = []
         
         // Execute Fetch Request
         let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
         //need to change planned menu to not include restaurant days or leftovers
         for menu in fullPlannedMenu {
+            print(fullPlannedMenu)
             if (menu.meal != nil) {
+//                print(menu)
                 plannedMenu?.append(menu)
                 numberOfMeals += 1
             }
         }
         
-        
+//        print(plannedMenu)
         //Reload Table View
         if (numberOfMeals > 0) {
             var groceryItem = GroceryList()
             var menuIndex: Int = 0
             for _planned in plannedMenu! {
                 //Build Grocery List Array
-                print(_planned.meal?.mealName)
+//                print(_planned.meal?.mealName)
                 if (_planned.meal?.mealName != nil) {
                     var ingredientIndex: Int = 0
                     for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
@@ -177,21 +181,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func numberOfSections(in tableView: UITableView) -> Int {
         
         //Must add 1 to account for last section of grocery list that will be ad-hoc
-        print("Number of Meals \(numberOfMeals)")
+        print("Number of Sections \(numberOfMeals)")
         return numberOfMeals //+ 1
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //ingredients.count
         var count = 0
-        var ingredients = plannedMenu![section].meal?.ingredients
-        print(section)
-        //print(plannedMenu![0].meal!.mealName)
-        //if (section > 0) {
-        //print(ingredients)
-        if (ingredients != nil)  {
-            count = (plannedMenu![section].meal?.ingredients!.count)!
+        //let ingredients = Groceries.contains(where: { $0.menuIndex == section }
+        
+        for _ingredient in Groceries {
+            if (_ingredient.menuIndex == section) {
+                count += 1
+            }
         }
+        
+        //if (ingredients)  {
+         //   count = Groceries.sele
+        //}
         
 //        if count == 0 {
 //            count = 1
@@ -202,9 +209,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print("Title for header in section \(section)")
+//        print("Title for header in section \(section)")
         guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
-        print("Planned Meal Name \(_plannedMenu.meal?.mealName)")
+//        print("Planned Meal Name \(_plannedMenu.meal?.mealName)")
         return _plannedMenu.meal?.mealName
     }
         
@@ -232,12 +239,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
             
-            print(indexPath.section)
-            print(indexPath.row)
+//            print(indexPath.section)
+//            print(indexPath.row)
             // Fetch Meal
            // guard let _plannedMenu = plannedMenu?[indexPath.section] else { fatalError("Unexpected Index Path")}
             let object = Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row })
             cell.textLabel!.text = object?.ingredient
+            print(object?.isDeleted)
             //cell.textLabel!.text = "})) - Ingredient \(indexPath.row)"
             // Configure Cell
 //            var item = Groceries.first(where: _plannedMenu.meal?.mealName)
@@ -254,51 +262,41 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //                }
 
         }
+
+        func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let cancelAction = UIContextualAction(style: .destructive, title:  "Cancel", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+                // Fetch Ingredient
+                guard let index = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row }) else { fatalError("Unexpected Index Path") }
+                //print(_ingredient.ingredient)
+//                let index = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row })
+                
+                // Delete Day
+                //if (_ingredient != nil) {
+
+                    //var before: GroceryList = _ingredient
+                    //guard let _meal = _plannedDay.meal else { fatalError("Unexpected Index Path")}
+//                    var after: GroceryList = _ingredient
+//                    after.isDeleted = true
+                print(index)
+                self.Groceries.remove(at: index)
+//                    self.Groceries[index!] = after
+                    
+                //}
+
+                //Attempt Request for Review
+                //AppStoreReviewManager.requestReviewIfAppropriate()
+                tableView.reloadData()
+                success(true)
+            })
+
+            cancelAction.image = UIImage(systemName: "trash")
+            //completeAction.
+            cancelAction.backgroundColor = UIColor(red: 122/255, green: 00/255, blue: 38/255, alpha: 1.0)
+
+            return UISwipeActionsConfiguration(actions: [cancelAction])
+        }
 }
 
-//        func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//            let cancelAction = UIContextualAction(style: .destructive, title:  "Cancel", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//                // Fetch Day
-//                guard let _plannedDay = self.plannedDays?[indexPath.section] else { fatalError("Unexpected Index Path") }
-//
-//                // Delete Day
-//                if (_plannedDay.meal != nil) {
-//                    guard let _meal = _plannedDay.meal else { fatalError("Unexpected Index Path")}
-//                    _meal.estimatedNextDate = _meal.previousDate
-//                    _meal.nextDate = nil
-//                    _meal.previousDate = nil
-//                }
-//
-//                //Need to roll back the planned date for each of the meals coming up after the meal deleted
-//                self.managedObjectContext!.delete(_plannedDay)
-//
-//                //Update the dates for remaining planned days to be a day earlier
-//                var i = indexPath.section + 1
-//
-//                while (i < self.plannedDays!.count) {
-//                    self.plannedDays?[i].date = Calendar.current.date(byAdding: .day, value: -1, to: (self.plannedDays?[i].date)!)
-//                    self.plannedDays?[i].planEndDate = Calendar.current.date(byAdding: .day, value: -1, to: (self.plannedDays?[i].planEndDate)!)
-//
-//                    if (self.plannedDays?[i].meal != nil) {
-//                        guard let _nextMeal = self.plannedDays?[i].meal else { fatalError("Unexpected Index Path") }
-//
-//                        _nextMeal.nextDate = Calendar.current.date(byAdding: .day, value: -1, to: _nextMeal.nextDate!)
-//                    }
-//
-//                    i += 1
-//                }
-//
-//                //Attempt Request for Review
-//                AppStoreReviewManager.requestReviewIfAppropriate()
-//                success(true)
-//            })
-//
-//            cancelAction.image = UIImage(systemName: "trash")
-//            //completeAction.
-//            cancelAction.backgroundColor = UIColor(red: 122/255, green: 00/255, blue: 38/255, alpha: 1.0)
-//
-//            return UISwipeActionsConfiguration(actions: [cancelAction])
-//        }
 //
 //        func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //
