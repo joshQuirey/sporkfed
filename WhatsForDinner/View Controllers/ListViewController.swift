@@ -182,7 +182,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func refreshGroceries(_itemName: String, _menuIndex: Int, _isDeleted: Bool = false, _isComplete: Bool = false) {
-            Groceries = []
+        let previousGroceries: [GroceryList] = Groceries
+        Groceries = []
             
             //Reload Table View
             if (numberOfMeals > 0) {
@@ -192,15 +193,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     if (_planned.meal?.mealName != nil) {
                         var ingredientIndex: Int = 0
                         for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
+                            //delete item
                             if _itemName != _ingredient.item || (_menuIndex != menuIndex && _itemName == _ingredient.item) {
                                 groceryItem.menuIndex = menuIndex
                                 groceryItem.ingredientIndex = ingredientIndex
                                 groceryItem.plannedMenuItem = _planned.meal!.mealName!
                                 groceryItem.ingredient = _ingredient.item!
-                                //if in list and now marked complete
-                                if _itemName == _ingredient.item && _menuIndex == menuIndex {
-                                    groceryItem.isComplete = _isComplete
-                                }
+                                print(menuIndex)
+                                print(_ingredient.item!)
+                                guard let previousGroceryItem = previousGroceries.first(where: { $0.menuIndex == menuIndex && $0.ingredient == _ingredient.item!}) else { fatalError("Unexpected Index Path") }
+                                
+                                groceryItem.isComplete = previousGroceryItem.isComplete
+                                
                                 Groceries.append(groceryItem)
                                 ingredientIndex += 1
                             }
@@ -309,30 +313,33 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let currentCell = tableView.cellForRow(at: indexPath)
+        let currentCell = tableView.cellForRow(at: indexPath)
         // Fetch Ingredient
         guard let currentItem = self.Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
+        guard let currentIndex = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
         
-        self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: false, _isComplete: true)
-        //let len = (currentCell?.textLabel?.attributedText!.length)!
-        //let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
+        //self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: false, _isComplete: true)
+        Groceries[currentIndex].isComplete = true
+        let len = (currentCell?.textLabel?.attributedText!.length)!
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
 
-        //attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len))
-        //attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))
-//        attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))//
-       // currentCell?.textLabel?.attributedText = attributedString
+        attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len))
+        attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))
+        attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))//
+        currentCell?.textLabel?.attributedText = attributedString
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //let currentCell = tableView.cellForRow(at: indexPath)
+        let currentCell = tableView.cellForRow(at: indexPath)
         // Fetch Ingredient
         guard let currentItem = self.Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
+        guard let currentIndex = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
         
-        self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: false, _isComplete: false)
-        //let len = (currentCell?.textLabel?.attributedText!.length)!
-          //let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
-          //attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSNumber(value: NSUnderlineStyle.single.rawValue), range: NSMakeRange(0, len))
-          //attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))
-          //currentCell?.textLabel?.attributedText = attributedString
+        Groceries[currentIndex].isComplete = true
+        //self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: false, _isComplete: false)
+        let len = (currentCell?.textLabel?.attributedText!.length)!
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
+        
+        currentCell?.textLabel?.attributedText = attributedString
     }
 }
