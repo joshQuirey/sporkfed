@@ -18,7 +18,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var emptyTableLabel: UILabel!
     
     @IBAction func RefreshList(_ sender: Any) {
-        fetchMenu()
+        fetchGroceries()
     }
     
     /////////////////////////////
@@ -94,7 +94,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        fetchMenu()
+        if Groceries.count > 0 {
+            print("already exists")
+            //fetchMenu()
+        } else {
+            print(Groceries)
+            fetchGroceries()
+        }
     }
     
     
@@ -128,7 +134,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /////////////////////////////
     //Core Data Functions
     /////////////////////////////
-    private func fetchMenu() {
+    private func fetchGroceries() {
         plannedMenu = []
         numberOfMeals = 0
         Groceries = []
@@ -174,6 +180,41 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //custom list
         }
     }
+    
+    private func refreshGroceries(_itemName: String, _menuIndex: Int, _isDeleted: Bool = false, _isComplete: Bool = false) {
+            Groceries = []
+            
+            //Reload Table View
+            if (numberOfMeals > 0) {
+                var groceryItem = GroceryList()
+                var menuIndex: Int = 0
+                for _planned in plannedMenu! {
+                    if (_planned.meal?.mealName != nil) {
+                        var ingredientIndex: Int = 0
+                        for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
+                            if _itemName != _ingredient.item || (_menuIndex != menuIndex && _itemName == _ingredient.item) {
+                                groceryItem.menuIndex = menuIndex
+                                groceryItem.ingredientIndex = ingredientIndex
+                                groceryItem.plannedMenuItem = _planned.meal!.mealName!
+                                groceryItem.ingredient = _ingredient.item!
+                                //if in list and now marked complete
+                                if _itemName == _ingredient.item && _menuIndex == menuIndex {
+                                    groceryItem.isComplete = _isComplete
+                                }
+                                Groceries.append(groceryItem)
+                                ingredientIndex += 1
+                            }
+                        }
+                        menuIndex += 1
+                    }
+                }
+                
+                print(Groceries)
+                tableView.reloadData()
+            } else {
+                //custom list
+            }
+        }
 
     /////////////////////////////
     //Table Functions
@@ -186,32 +227,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //ingredients.count
         var count = 0
-        //let ingredients = Groceries.contains(where: { $0.menuIndex == section }
-        
+
         for _ingredient in Groceries {
-            if (_ingredient.menuIndex == section) {
+            if (_ingredient.menuIndex == section) { //} && _ingredient.isDeleted == false) {
                 count += 1
             }
         }
         
-        //if (ingredients)  {
-         //   count = Groceries.sele
-        //}
-        
-//        if count == 0 {
-//            count = 1
-//        }
-        //}
         print("Number of Rows \(count)")
         return count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        print("Title for header in section \(section)")
         guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
-//        print("Planned Meal Name \(_plannedMenu.meal?.mealName)")
+
         return _plannedMenu.meal?.mealName
     }
         
@@ -233,7 +263,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
-        
         return cell
     }
         
@@ -244,48 +273,31 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // Fetch Meal
            // guard let _plannedMenu = plannedMenu?[indexPath.section] else { fatalError("Unexpected Index Path")}
             let object = Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row })
-            cell.textLabel!.text = object?.ingredient
-            print(object?.isDeleted)
-            //cell.textLabel!.text = "})) - Ingredient \(indexPath.row)"
-            // Configure Cell
-//            var item = Groceries.first(where: _plannedMenu.meal?.mealName)
-//            cell.textLabel
-//
-//            if (_plannedDay.meal != nil) {
-//                if (_plannedDay.meal!.mealImage != nil) {
-//                    cell.mealImage?.image = UIImage(data: _plannedDay.meal!.mealImage!)
-//                    cell.mealImage.layer.cornerRadius = 8 //cell.mealImage.frame.height/2
-//                    cell.mealImage.clipsToBounds = true
-//                    cell.mealImage.isHidden = false
-//                } else {
-//                    cell.mealImage.isHidden = true
-//                }
-
+            
+            let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.ingredient)
+            
+            if object?.isComplete == true {
+                let len = object?.ingredient.count
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len!))
+            }
+            
+            cell.textLabel!.attributedText = attributedString
+//            cell.textLabel!.text = object?.ingredient
         }
 
         func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let cancelAction = UIContextualAction(style: .destructive, title:  "Cancel", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+                //let currentCell = tableView.cellForRow(at: indexPath)
                 // Fetch Ingredient
-                guard let index = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row }) else { fatalError("Unexpected Index Path") }
-                //print(_ingredient.ingredient)
-//                let index = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row })
+                guard let currentItem = self.Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
                 
-                // Delete Day
-                //if (_ingredient != nil) {
-
-                    //var before: GroceryList = _ingredient
-                    //guard let _meal = _plannedDay.meal else { fatalError("Unexpected Index Path")}
-//                    var after: GroceryList = _ingredient
-//                    after.isDeleted = true
-                print(index)
-                self.Groceries.remove(at: index)
-//                    self.Groceries[index!] = after
-                    
-                //}
-
+                //refresh groceries
+                self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: true)
+                
                 //Attempt Request for Review
                 //AppStoreReviewManager.requestReviewIfAppropriate()
-                tableView.reloadData()
+
                 success(true)
             })
 
@@ -295,98 +307,32 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             return UISwipeActionsConfiguration(actions: [cancelAction])
         }
-}
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let currentCell = tableView.cellForRow(at: indexPath)
+        // Fetch Ingredient
+        guard let currentItem = self.Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
+        
+        self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: false, _isComplete: true)
+        //let len = (currentCell?.textLabel?.attributedText!.length)!
+        //let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
 
-//
-//        func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//
-//    //COMPLETE
-//            let completeAction = UIContextualAction(style: .destructive, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//
-//                // Fetch Day
-//                guard let _plannedDay = self.plannedDays?[indexPath.section] else { fatalError("Unexpected Index Path")}
-//
-//                if (_plannedDay.meal != nil) {
-//                    guard let _meal = _plannedDay.meal else { fatalError("Unexpected Index Path")}
-//                    _meal.estimatedNextDate = Calendar.current.date(byAdding: .day, value: Int(_meal.frequency), to: _meal.nextDate!)
-//                    _meal.nextDate = nil
-//                    _meal.previousDate = nil
-//                }
-//
-//                _plannedDay.isCompleted = true
-//                self.managedObjectContext!.delete(_plannedDay)
-//
-//                //Attempt Request for Review
-//                AppStoreReviewManager.requestReviewIfAppropriate()
-//                success(true)
-//            })
-//
-//            completeAction.image = UIImage(systemName: "checkmark.circle")
-//            //completeAction.backgroundColor = UIColor(red: 150/255, green: 217/255, blue: 217/255, alpha: 1.0)
-//            completeAction.backgroundColor = UIColor(named: "_Teal Label")!
-//    //REPLACE
-//            let replaceAction = UIContextualAction(style: .normal, title:  "Replace", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//                self.currentIndex = indexPath.section
-//                self.performSegue(withIdentifier: "ReplacePlannedMeal", sender: tableView)
-//
-//                //Attempt Request for Review
-//                AppStoreReviewManager.requestReviewIfAppropriate()
-//                success(true)
-//            })
-//
-//            replaceAction.image = UIImage(systemName: "arrow.right.arrow.left")
-//            replaceAction.title = "Replace" //24E7
-//            //replaceAction.title = "\u{2190}\u{2192}\n Replace" //24E7
-//            //replaceAction.title = UIImage(systemname: "game controller")
-//            //replaceAction.backgroundColor = UIColor(red: 137/255, green: 186/255, blue: 217/255, alpha: 1.0)
-//            replaceAction.backgroundColor = UIColor(named: "_Blue Label")!
-//    //SHUFFLE
-//            let shuffleAction = UIContextualAction(style: .normal, title:  "Shuffle", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-//                // Fetch Day
-//                guard let _plannedDay = self.plannedDays?[indexPath.section] else { fatalError("Unexpected Index Path")}
-//
-//                //Get next meal for current planned category
-//                var next = Meal(context: self.managedObjectContext!)
-//                next = self.getNextMealforCategory(_category: _plannedDay.category!, _date: _plannedDay.date!, _nextMeal: &next)!
-//
-//                //If No Meal returned, just get the next meal regardless of category
-//                if (next.mealName == nil) {
-//                    next = self.getNextMeal(_date: _plannedDay.date!, _nextMeal: &next)
-//                }
-//
-//                //If No Meal still not found, keep the current planned meal in place
-//                if (next.mealName == nil) {
-//
-//                } else {
-//                    //Fetch Current Meal
-//                    if (_plannedDay.meal != nil) {
-//                        guard let _meal = _plannedDay.meal else { fatalError("Unexpected Index Path")}
-//
-//                        if (_meal.mealName != next.mealName) {
-//                            //delete previous meal
-//                            _meal.estimatedNextDate = _meal.previousDate
-//                            _meal.nextDate = nil
-//                            _meal.previousDate = nil
-//                            _meal.removeFromPlannedDays(_plannedDay)
-//                        }
-//                    }
-//
-//                    //add next meal
-//                    next.previousDate = next.estimatedNextDate
-//                    next.estimatedNextDate = nil
-//                    next.nextDate = _plannedDay.date
-//                    next.addToPlannedDays(_plannedDay)
-//                }
-//
-//                //Attempt Request for Review
-//                AppStoreReviewManager.requestReviewIfAppropriate()
-//                success(true)
-//            })
-//
-//            shuffleAction.image = UIImage(systemName: "shuffle")
-//            shuffleAction.title = "\u{2682}\u{2683}\nShuffle"
-//            //shuffleAction.backgroundColor = UIColor(red: 137/255, green: 186/255, blue: 217/255, alpha: 1.0)
-//            shuffleAction.backgroundColor = UIColor(named: "_Blue Label")!
-//            return UISwipeActionsConfiguration(actions: [completeAction,replaceAction,shuffleAction])
-//        }
-//
+        //attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len))
+        //attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))
+//        attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))//
+       // currentCell?.textLabel?.attributedText = attributedString
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        //let currentCell = tableView.cellForRow(at: indexPath)
+        // Fetch Ingredient
+        guard let currentItem = self.Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
+        
+        self.refreshGroceries(_itemName: currentItem.ingredient, _menuIndex: currentItem.menuIndex, _isDeleted: false, _isComplete: false)
+        //let len = (currentCell?.textLabel?.attributedText!.length)!
+          //let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
+          //attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSNumber(value: NSUnderlineStyle.single.rawValue), range: NSMakeRange(0, len))
+          //attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))
+          //currentCell?.textLabel?.attributedText = attributedString
+    }
+}
