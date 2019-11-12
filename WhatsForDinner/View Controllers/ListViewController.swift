@@ -16,9 +16,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
     @IBOutlet weak var _item: UITextField!
+//    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBAction func RefreshList(_ sender: Any) {
         fetchGroceries()
+        if AddedGroceries.count > 0 {
+            for item in AddedGroceries {
+                Groceries.append(item)
+            }
+        }
+        tableView.reloadData()
     }
     
     /////////////////////////////
@@ -34,7 +41,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     var numberOfMeals: Int = 0
-    var indexOfAddedItems: Int = 0
+    var sectionOfAddedItems: Int = 0
+    var rowMaxOfAddedItems: Int = 0
+    var addedItemsExist: Bool = false
+    
     var helpers = CoreDataHelpers()
     //define List struct
     struct GroceryList {
@@ -47,6 +57,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     var Groceries: [GroceryList] = []
+    var AddedGroceries: [GroceryList] = []
     
     private var hasMealsInList: Bool {
         guard let plannedMenu = plannedMenu else { return false }
@@ -85,6 +96,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
          // Fallback on earlier versions
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         updateView()
     }
     
@@ -95,6 +109,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             print(Groceries)
             fetchGroceries()
+            tableView.reloadData()
         }
     }
     
@@ -102,29 +117,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//            guard let identifier = segue.identifier else { return }
-//
-//         switch identifier {
-//         case Segue.CreatePlan:
-//             guard let destination = segue.destination as? CreatePlanViewController else {
-//                 return
-//             }
-//
-//             destination.managedObjectContext = self.managedObjectContext
-//
-//             //Determine Plan Starting Date
-//             var startDate = Date()
-//             if (plannedDays!.count > 0) {
-//                 startDate = (plannedDays?.last?.date)!
-//             }
-//
-//             destination.startingDatePicker.date = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
-//
-//         default:
-//             break
-//         }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    }
     
     /////////////////////////////
     //Core Data Functions
@@ -146,7 +140,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         
-        indexOfAddedItems = numberOfMeals
+        sectionOfAddedItems = numberOfMeals
 //        print(plannedMenu)
         //Reload Table View
         if (numberOfMeals > 0) {
@@ -173,57 +167,76 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //Add Additional Items
             
             print(Groceries)
-            tableView.reloadData()
+           //tableView.reloadData()
         } else {
             //custom list
         }
     }
     
-    private func refreshGroceries(_itemName: String, _menuIndex: Int, _isDeleted: Bool = false, _isComplete: Bool = false) {
-        let previousGroceries: [GroceryList] = Groceries
-        Groceries = []
-            
-            //Reload Table View
-            if (numberOfMeals > 0) {
-                var groceryItem = GroceryList()
-                var menuIndex: Int = 0
-                for _planned in plannedMenu! {
-                    if (_planned.meal?.mealName != nil) {
-                        var ingredientIndex: Int = 0
-                        for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
-                            //delete item
-                            if _itemName != _ingredient.item || (_menuIndex != menuIndex && _itemName == _ingredient.item) {
-                                groceryItem.menuIndex = menuIndex
-                                groceryItem.ingredientIndex = ingredientIndex
-                                groceryItem.plannedMenuItem = _planned.meal!.mealName!
-                                groceryItem.ingredient = _ingredient.item!
-                                print(menuIndex)
-                                print(_ingredient.item!)
-                                guard let previousGroceryItem = previousGroceries.first(where: { $0.menuIndex == menuIndex && $0.ingredient == _ingredient.item!}) else { fatalError("Unexpected Index Path") }
-                                
-                                groceryItem.isComplete = previousGroceryItem.isComplete
-                                
-                                Groceries.append(groceryItem)
-                                ingredientIndex += 1
-                            }
-                        }
-                        menuIndex += 1
-                    }
-                }
+//    private func refreshGroceries(_itemName: String, _menuIndex: Int, _isDeleted: Bool = false, _isComplete: Bool = false) {
+//        let previousGroceries: [GroceryList] = Groceries
+//        Groceries = []
+//
+//            //Reload Table View
+//            if (numberOfMeals > 0) {
+//                var groceryItem = GroceryList()
+//                var menuIndex: Int = 0
+//                for _planned in plannedMenu! {
+//                    if (_planned.meal?.mealName != nil) {
+//                        var ingredientIndex: Int = 0
+//                        for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
+//                            //delete item
+//                            if _itemName != _ingredient.item || (_menuIndex != menuIndex && _itemName == _ingredient.item) {
+//                                groceryItem.menuIndex = menuIndex
+//                                groceryItem.ingredientIndex = ingredientIndex
+//                                groceryItem.plannedMenuItem = _planned.meal!.mealName!
+//                                groceryItem.ingredient = _ingredient.item!
+//                                print(menuIndex)
+//                                print(_ingredient.item!)
+//                                guard let previousGroceryItem = previousGroceries.first(where: { $0.menuIndex == menuIndex && $0.ingredient == _ingredient.item!}) else { fatalError("Unexpected Index Path") }
+//
+//                                groceryItem.isComplete = previousGroceryItem.isComplete
+//
+//                                Groceries.append(groceryItem)
+//                                ingredientIndex += 1
+//                            }
+//                        }
+//                        menuIndex += 1
+//                    }
+//                }
+//
+//                print(Groceries)
+//                tableView.reloadData()
+//            } else {
+//                //custom list
+//            }
+//        }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 
-                print(Groceries)
-                tableView.reloadData()
-            } else {
-                //custom list
+                tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
             }
+    }
+
+    @objc func keyboardWillHide(_ notification:Notification) {
+
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+                tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (addedItemsExist) {
+            let indexPath = NSIndexPath(row: 0, section: sectionOfAddedItems)
+            tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
         }
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text != nil && textField.text != "") {
             addNewItem()
-            //ingredientTableView.isHidden = false
-            //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
-            //ingredientTableView.reloadData()
             textField.text = nil
         }
 
@@ -232,17 +245,32 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func addNewItem() {
         var groceryItem = GroceryList()
-        groceryItem.menuIndex = indexOfAddedItems
-        print(indexOfAddedItems)
+        groceryItem.menuIndex = sectionOfAddedItems
+        print(sectionOfAddedItems)
+        print(addedItemsExist)
         //Have to check to see if there are items at this index first
-        guard let itemsExist = self.Groceries.filter({ $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
+        //guard let itemsExist = self.Groceries.filter({ $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
         
+        //if addedItemsExist == true {
+            guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
+                //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
+            if lastAddedItem.menuIndex == sectionOfAddedItems {
+                //groceryItem.menuIndex = sectionOfAddedItems
+                groceryItem.ingredientIndex = lastAddedItem.ingredientIndex + 1
+            } else {
+                //groceryItem.menuIndex = sectionOfAddedItems
+                groceryItem.ingredientIndex = 0
+            }
+            
+            groceryItem.plannedMenuItem = ""
+            groceryItem.ingredient = _item.text!
+            Groceries.append(groceryItem)
+            AddedGroceries.append(groceryItem)
+            rowMaxOfAddedItems += 1
+            addedItemsExist = true
+            tableView.reloadData()
+        //}
         
-        guard let lastAddedItem = self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
-        groceryItem.ingredientIndex = lastAddedItem.ingredientIndex + 1
-        groceryItem.plannedMenuItem = ""
-        groceryItem.ingredient = _item.text!
-       Groceries.append(groceryItem)
         //guard let managedObjectContext = meal?.managedObjectContext else { return }
         
         //ingredient = Ingredient(context: managedObjectContext)
@@ -277,7 +305,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        if (indexOfAddedItems != section) {
+        if (sectionOfAddedItems != section) {
             guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
             return _plannedMenu.meal?.mealName
         } else {
