@@ -1857,11 +1857,11 @@
             <objects>
                 <viewController id="Pv4-xq-kRT" customClass="ListViewController" customModule="WhatsForDinner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dDk-jn-i7z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
+                                <rect key="frame" x="0.0" y="53" width="414" height="620"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
@@ -1894,13 +1894,27 @@
                                 <color key="textColor" name="_Purple to Teal"/>
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
+                                <rect key="frame" x="10" y="10" width="394" height="35"/>
+                                <color key="backgroundColor" name="_Off-White Background"/>
+                                <color key="tintColor" name="_Teal Label"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="jgg-Td-pKP"/>
+                                </constraints>
+                                <color key="textColor" name="_Teal Label"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="0j6-mz-OT0" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="2vP-Rc-ypb"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" id="4db-7H-wEF"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" id="BqQ-C4-wet"/>
+                            <constraint firstItem="0j6-mz-OT0" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" constant="10" id="6yw-eh-zAj"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="10" id="AfN-bT-rR4"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" id="EuA-pT-vL1"/>
+                            <constraint firstItem="44n-6q-u6s" firstAttribute="trailing" secondItem="0j6-mz-OT0" secondAttribute="trailing" constant="10" id="T5r-jv-jWW"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="bottom" secondItem="44n-6q-u6s" secondAttribute="bottom" id="eY8-Dv-wpG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="44n-6q-u6s"/>
@@ -1914,6 +1928,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="_item" destination="0j6-mz-OT0" id="Dyf-Ji-s1H"/>
                         <outlet property="emptyTableLabel" destination="38B-1g-3ib" id="LFx-dl-2KT"/>
                         <outlet property="tableView" destination="lVg-Cs-Bl2" id="ARe-UB-LZj"/>
                     </connections>
@@ -2045,6 +2060,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cIL-TX-hOf"/>
+        <segue reference="qnc-uL-VBf"/>
     </inferredMetricsTieBreakers>
 </document>
