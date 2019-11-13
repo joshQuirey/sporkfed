@@ -1860,9 +1860,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
-                                <rect key="frame" x="0.0" y="53" width="414" height="620"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
@@ -1874,12 +1875,16 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9xs-SE-ubN">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" name="_Off-White Background"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" name="_Off-White Background"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="_Off-White Background"/>
+                                        <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1894,28 +1899,36 @@
                                 <color key="textColor" name="_Purple to Teal"/>
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
-                                <rect key="frame" x="10" y="10" width="394" height="35"/>
-                                <color key="backgroundColor" name="_Off-White Background"/>
+                            <textField contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
+                                <rect key="frame" x="10" y="686" width="347" height="34"/>
                                 <color key="tintColor" name="_Teal Label"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="jgg-Td-pKP"/>
-                                </constraints>
-                                <color key="textColor" name="_Teal Label"/>
+                                <color key="textColor" name="_Default to White Label"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVg-iP-fc7">
+                                <rect key="frame" x="367" y="681" width="37" height="39"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" name="_Default to White Label"/>
+                                </state>
+                                <connections>
+                                    <action selector="Done:" destination="Pv4-xq-kRT" eventType="touchUpInside" id="oSX-IX-NNO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="0j6-mz-OT0" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="2vP-Rc-ypb"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" id="4db-7H-wEF"/>
-                            <constraint firstItem="0j6-mz-OT0" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" constant="10" id="6yw-eh-zAj"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="10" id="AfN-bT-rR4"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" id="EuA-pT-vL1"/>
-                            <constraint firstItem="44n-6q-u6s" firstAttribute="trailing" secondItem="0j6-mz-OT0" secondAttribute="trailing" constant="10" id="T5r-jv-jWW"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="bottom" secondItem="44n-6q-u6s" secondAttribute="bottom" id="eY8-Dv-wpG"/>
+                            <constraint firstItem="44n-6q-u6s" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="5" id="3S8-ab-zRj"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" id="AqP-lA-obz"/>
+                            <constraint firstItem="qVg-iP-fc7" firstAttribute="leading" secondItem="0j6-mz-OT0" secondAttribute="trailing" constant="10" id="GZ6-aR-FWV"/>
+                            <constraint firstItem="0j6-mz-OT0" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="L8C-gf-Y1M"/>
+                            <constraint firstItem="0j6-mz-OT0" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" constant="10" id="NeJ-ZN-DA8"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" id="Q0e-0u-nxi"/>
+                            <constraint firstItem="44n-6q-u6s" firstAttribute="trailing" secondItem="qVg-iP-fc7" secondAttribute="trailing" constant="10" id="QpO-hO-qaj"/>
+                            <constraint firstItem="qVg-iP-fc7" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" id="ROZ-34-JfJ"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" id="fyh-xh-erg"/>
+                            <constraint firstItem="qVg-iP-fc7" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" constant="5" id="n5V-l4-T1V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="44n-6q-u6s"/>
                     </view>
@@ -1929,6 +1942,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="_item" destination="0j6-mz-OT0" id="Dyf-Ji-s1H"/>
+                        <outlet property="bottomConstraint" destination="3S8-ab-zRj" id="PFo-N0-iNG"/>
                         <outlet property="emptyTableLabel" destination="38B-1g-3ib" id="LFx-dl-2KT"/>
                         <outlet property="tableView" destination="lVg-Cs-Bl2" id="ARe-UB-LZj"/>
                     </connections>
@@ -2060,6 +2074,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qnc-uL-VBf"/>
+        <segue reference="cIL-TX-hOf"/>
     </inferredMetricsTieBreakers>
 </document>
