@@ -66,6 +66,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     let categoryData = [String](arrayLiteral: "🎲 Chef's Choice", "👨‍🍳 Restaurant", "🍴 Leftovers", "🥡 Asian Cuisine", " 🥓 Breakfast for Dinner", "🐷 Barbecue", "🐄 Beef", "🥘 Casserole", "🛌 Comfort Food", "🐓 Chicken", "🌾 Grains", "🌮 Hispanic", "🍜 Noodles", "🍝 Pasta", "🍕 Pizza", "🐖 Pork", "🌡 Pressure Cooker", "🥩 On The Grill", "🍯 Other", "🐇 Quick", "🥗 Salad", "🥪 Sandwich", "🍤 Seafood", "⏲ Slow Cooker", "🥣 Soups Up", "🥕 Vegetarian")
 
+    var helpers = CoreDataHelpers()
+    
     /////////////////////////////
     //View Life Cycle
     /////////////////////////////
@@ -76,7 +78,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         startingDate.delegate = self
         
         //determine max days that can be planned
-        let numberAvailable = getNumberAvailableMeals()
+        let numberAvailable = helpers.getNumberAvailableMeals(context: self.managedObjectContext!)
+
         if (numberAvailable! < numberDaysToPlan) {
             numberDaysToPlan = numberAvailable!
         }
@@ -120,31 +123,6 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
             
             counter = counter + 1
         }
-    }
-    
-    func getNumberAvailableMeals() -> Int? {
-        var count = 0
-        // Create Fetch Request
-        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-        
-        // Configure Fetch Request
-        fetchRequest.predicate = NSPredicate(format: "estimatedNextDate != nil")
-
-        // Perform Fetch Request
-        self.managedObjectContext!.performAndWait {
-            do {
-                // Execute Fetch Request
-                let meals = try fetchRequest.execute()
-                count = meals.count
-               
-            } catch {
-                let fetchError = error as NSError
-                print("Unable to Execute Fetch Request")
-                print("\(fetchError), \(fetchError.localizedDescription)")
-            }
-        }
-        
-        return count
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -346,55 +324,23 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func getNextMealforCategory(_plannedCategory: String, _plannedDate: Date, _plannedMeal: inout Meal) -> Meal? {
-        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
-
-        //Fetch Meals using Category
-        fetchRequest.predicate = NSPredicate(format: "(ANY tags.name == %@) AND estimatedNextDate != nil", _plannedCategory)
+        //Execute Fetch Request
+        let meals = helpers.getNextMealforCategory(context: self.managedObjectContext!, _plannedCategory: _plannedCategory)
         
-        //Sort by estimated next date
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending:true)]
-        
-        //Perform Fetch Request
-        self.managedObjectContext?.performAndWait {
-            do {
-                //Execute Fetch Request
-                let meals = try fetchRequest.execute()
-                //Search for Meal
-                if (meals.count > 0) {
-                    _plannedMeal = FindMeal(_meals: meals, _plannedDate: _plannedDate, _plannedMeal: &_plannedMeal)
-                }
-            } catch {
-                let fetchError = error as NSError
-                print("Unable to Execute Fetch Request")
-                print("\(fetchError), \(fetchError.localizedDescription)")
-            }
+        //Search for Meal
+        if (meals.count > 0) {
+            _plannedMeal = FindMeal(_meals: meals, _plannedDate: _plannedDate, _plannedMeal: &_plannedMeal)
         }
         
         return _plannedMeal
     }
     
     func getNextMeal(_plannedDate: Date, _plannedMeal: inout Meal) -> Meal {
-        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+        let meals = helpers.getNextMeals(context: self.managedObjectContext!)
         
-        //Fetch Meals using Category
-        fetchRequest.predicate = NSPredicate(format: "estimatedNextDate != nil")
-        
-        //Sort by estimated next date
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending:true)]
-        
-        //Perform Fetch Request
-        self.managedObjectContext?.performAndWait {
-            do {
-                //Execute Fetch Request
-                let meals = try fetchRequest.execute()
-                //Search for Meal
-                _plannedMeal = FindMeal(_meals: meals, _plannedDate: _plannedDate, _plannedMeal: &_plannedMeal)
-                
-            } catch {
-                let fetchError = error as NSError
-                print("Unable to Execute Fetch Request")
-                print("\(fetchError), \(fetchError.localizedDescription)")
-            }
+        //Search for Meal
+        if (meals.count > 0) {
+            _plannedMeal = FindMeal(_meals: meals, _plannedDate: _plannedDate, _plannedMeal: &_plannedMeal)
         }
 
         return _plannedMeal

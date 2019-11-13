@@ -34,6 +34,8 @@ class PlanViewController: UIViewController {
         }
     }
     
+    var helpers = CoreDataHelpers()
+    
     private var hasPlans: Bool {
         guard let plannedDays = plannedDays else { return false }
         return plannedDays.count > 0
@@ -229,30 +231,14 @@ class PlanViewController: UIViewController {
     }
     
     private func fetchPlans() {
-        // Create Fetch Request
         plannedDays = nil
-        let fetchRequest: NSFetchRequest<PlannedDay> = PlannedDay.fetchRequest()
         
-        // Configure Fetch Request
-        fetchRequest.predicate = NSPredicate(format: "isCompleted == nil")
+        // Execute Fetch Request
+        plannedDays = helpers.fetchPlans(context: self.managedObjectContext!)
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(PlannedDay.date), ascending: true)]
-        
-        // Perform Fetch Request
-        self.managedObjectContext!.performAndWait {
-            do {
-                // Execute Fetch Request
-                plannedDays = try fetchRequest.execute()
-                
-                //Reload Table View
-                if (plannedDays!.count > 0) {
-                    tableView.reloadData()
-                }
-            } catch {
-                let fetchError = error as NSError
-                print("Unable to Execute Fetch Request")
-                print("\(fetchError), \(fetchError.localizedDescription)")
-            }
+        //Reload Table View
+        if (plannedDays!.count > 0) {
+            tableView.reloadData()
         }
     }
 }

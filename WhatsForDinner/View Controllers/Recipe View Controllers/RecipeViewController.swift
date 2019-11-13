@@ -27,7 +27,6 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var favButton: UIButton!
-    //@IBOutlet weak var mealURL: UITextField!
     @IBOutlet weak var mealURL: UITextView!
     
     @IBAction func favorite(_ sender: UIButton) {
@@ -41,7 +40,6 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
             sender.setImage(fav, for: .normal)
         }
         
-        //sender.tintColor = UIColor(red: 77/255, green: 72/255, blue: 147/255, alpha: 1.0)
         sender.tintColor = UIColor(named: "_Purple Label")!
         isFavorite = !isFavorite
     }
