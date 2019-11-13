@@ -126,7 +126,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
             let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
             if endFrameY >= UIScreen.main.bounds.size.height {
-                self.bottomConstraint?.constant = 5.0
+                self.bottomConstraint?.constant = 10.0
             } else {
                 if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                     print(keyboardSize.height)
@@ -134,7 +134,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let keyboardHeight: CGFloat = (endFrame?.size.height)! - 60
                     self.bottomConstraint?.constant = keyboardHeight
                 } else {
-                    self.bottomConstraint?.constant = 5.0
+                    self.bottomConstraint?.constant = 10.0
                 }
             }
                 
@@ -472,6 +472,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))
         attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor.systemRed, range: NSMakeRange(0, len))//
         currentCell?.textLabel?.attributedText = attributedString
+        
+         let selectionFeedback = UIImpactFeedbackGenerator(style: .medium)
+        selectionFeedback.prepare()
+        selectionFeedback.impactOccurred()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -483,6 +487,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
         currentCell?.textLabel?.attributedText = attributedString
+        
+        let selectionFeedback = UIImpactFeedbackGenerator(style: .medium)
+        selectionFeedback.prepare()
+        selectionFeedback.impactOccurred()
     }
 }
 

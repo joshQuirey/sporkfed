@@ -1861,8 +1861,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
+                                <color key="backgroundColor" name="_Off-White Background"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
@@ -1900,26 +1900,30 @@
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
                             <textField contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
-                                <rect key="frame" x="10" y="686" width="347" height="34"/>
+                                <rect key="frame" x="10" y="680" width="341" height="35"/>
                                 <color key="tintColor" name="_Teal Label"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="pI2-Ih-UW0"/>
+                                </constraints>
                                 <color key="textColor" name="_Default to White Label"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVg-iP-fc7">
-                                <rect key="frame" x="367" y="681" width="37" height="39"/>
+                                <rect key="frame" x="361" y="675" width="43" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" name="_Default to White Label"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="Done:" destination="Pv4-xq-kRT" eventType="touchUpInside" id="oSX-IX-NNO"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="_Teal Background to Tertiary"/>
                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="44n-6q-u6s" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="5" id="3S8-ab-zRj"/>
+                            <constraint firstItem="44n-6q-u6s" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="10" id="3S8-ab-zRj"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" id="AqP-lA-obz"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="leading" secondItem="0j6-mz-OT0" secondAttribute="trailing" constant="10" id="GZ6-aR-FWV"/>
                             <constraint firstItem="0j6-mz-OT0" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="L8C-gf-Y1M"/>
@@ -2055,6 +2059,9 @@
             <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="_Teal Background to Secondary">
+            <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="_Teal Background to Tertiary">
             <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="_Teal Label">
