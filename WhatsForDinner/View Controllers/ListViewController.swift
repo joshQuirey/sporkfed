@@ -21,7 +21,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func RefreshList(_ sender: Any) {
         fetchGroceries()
         if AddedGroceries.count > 0 {
-            for item in AddedGroceries {
+            for var item in AddedGroceries {
+                print(item)
+                if numberOfMeals == 0 {
+                    item.menuIndex = 0
+                } else {
+                    //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
+                   //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
+                    item.menuIndex = numberOfMeals
+                }
+                print(item)
                 Groceries.append(item)
             }
         }
@@ -170,6 +179,20 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             print(Groceries)
             fetchGroceries()
+//            if AddedGroceries.count > 0 {
+//                for var item in AddedGroceries {
+//                    print(item)
+//                    if numberOfMeals == 0 {
+//                        item.menuIndex = 0
+//                    } else {
+//                        //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
+//                       //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
+//                        item.menuIndex = numberOfMeals
+//                    }
+//                    print(item)
+//                    Groceries.append(item)
+//                }
+//            }
             tableView.reloadData()
         }
     }
