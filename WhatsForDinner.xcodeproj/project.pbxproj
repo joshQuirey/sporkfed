@@ -482,7 +482,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = AddMeal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -508,7 +508,7 @@
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = AddMeal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -649,7 +649,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhatsForDinner/WhatsForDinner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				IBSC_COMPILER_GENERATE_SOURCE = NO;
 				INFOPLIST_FILE = WhatsForDinner/Info.plist;
@@ -676,7 +676,7 @@
 				CODE_SIGN_ENTITLEMENTS = WhatsForDinner/WhatsForDinner.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				IBSC_COMPILER_GENERATE_SOURCE = NO;
 				INFOPLIST_FILE = WhatsForDinner/Info.plist;
@@ -700,7 +700,7 @@
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -725,7 +725,7 @@
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
