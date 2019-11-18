@@ -64,7 +64,7 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     var numberDaysToPlan = 7
     
-    let categoryData = [String](arrayLiteral: "🎲 Chef's Choice", "👨‍🍳 Restaurant", "🍴 Leftovers", "🥡 Asian Cuisine", " 🥓 Breakfast for Dinner", "🐷 Barbecue", "🐄 Beef", "🥘 Casserole", "🛌 Comfort Food", "🐓 Chicken", "🌾 Grains", "🌮 Hispanic", "🍜 Noodles", "🍝 Pasta", "🍕 Pizza", "🐖 Pork", "🌡 Pressure Cooker", "🥩 On The Grill", "🍯 Other", "🐇 Quick", "🥗 Salad", "🥪 Sandwich", "🍤 Seafood", "⏲ Slow Cooker", "🥣 Soups Up", "🥕 Vegetarian")
+    let categoryData = [String](arrayLiteral: "🎲 Chef's Choice", "👨‍🍳 Restaurant", "🍴 Leftovers", "🥡 Asian Cuisine", " 🥓 Breakfast for Dinner", "🐷 Barbecue", "🐄 Beef", "🥘 Casserole", "🛌 Comfort Food", "🐓 Chicken", "🍛 Curry", "🌾 Grains", "🌮 Hispanic", "🍜 Noodles", "🍝 Pasta", "🍕 Pizza", "🐖 Pork", "🌡 Pressure Cooker", "🥩 On The Grill", "🍯 Other", "🐇 Quick", "🥗 Salad", "🥪 Sandwich", "🍤 Seafood", "⏲ Slow Cooker", "🥣 Soups Up", "🥢 Stir-Fry", "🥕 Vegetarian")
 
     /////////////////////////////
     //View Life Cycle
