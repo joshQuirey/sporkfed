@@ -20,21 +20,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func RefreshList(_ sender: Any) {
         fetchGroceries()
-        if AddedGroceries.count > 0 {
-            for var item in AddedGroceries {
-                print(item)
-                if numberOfMeals == 0 {
-                    item.menuIndex = 0
-                } else {
-                    //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
-                   //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
-                    item.menuIndex = numberOfMeals
-                }
-                print(item)
-                Groceries.append(item)
-            }
-        }
-        tableView.reloadData()
+//        if AddedGroceries.count > 0 {
+//            for var item in AddedGroceries {
+//                print(item)
+//                if numberOfMeals == 0 {
+//                    item.mealIndex = 0
+//                } else {
+//                    //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
+//                   //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
+//                    item.mealIndex = numberOfMeals
+//                }
+//                print(item)
+//                Groceries.append(item)
+//            }
+//        }
+        //tableView.reloadData()
     }
     
     @IBAction func Done(_ sender: Any) {
@@ -62,14 +62,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var helpers = CoreDataHelpers()
     //define List struct
-    struct GroceryList {
-        var menuIndex: Int = 0
-        var ingredientIndex: Int = 0
-        var plannedMenuItem: String = ""
-        var ingredient: String = ""
-        var isComplete: Bool = false
-        var isDeleted: Bool  = false
-    }
+//    struct GroceryList {
+//        var menuIndex: Int = 0
+//        var ingredientIndex: Int = 0
+//        var plannedMenuItem: String = ""
+//        var ingredient: String = ""
+//        var isComplete: Bool = false
+//        var isDeleted: Bool  = false
+//    }
     
     var Groceries: [GroceryList] = []
     var AddedGroceries: [GroceryList] = []
@@ -119,7 +119,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                object: nil)
         
         updateView()
-
+        setupNotificationHandling()
     }
     
     
@@ -173,28 +173,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     override func viewWillAppear(_ animated: Bool) {
-        if Groceries.count > 0 {
-            print("already exists")
-            //fetchMenu()
-        } else {
-            print(Groceries)
-            fetchGroceries()
-//            if AddedGroceries.count > 0 {
-//                for var item in AddedGroceries {
-//                    print(item)
-//                    if numberOfMeals == 0 {
-//                        item.menuIndex = 0
-//                    } else {
-//                        //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
-//                       //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
-//                        item.menuIndex = numberOfMeals
-//                    }
-//                    print(item)
-//                    Groceries.append(item)
-//                }
-//            }
-            tableView.reloadData()
-        }
+//        if Groceries.count > 0 {
+//            print("already exists")
+//            //fetchMenu()
+//        } else {
+//            print(Groceries)
+//            fetchGroceries()
+//            tableView.reloadData()
+//        }
     }
     
     
@@ -207,6 +193,63 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /////////////////////////////
     //Core Data Functions
     /////////////////////////////
+    private func setupNotificationHandling() {
+         let notificationCenter = NotificationCenter.default
+         notificationCenter.addObserver(self,
+                                        selector: #selector(managedObjectContextObjectsDidChange(_:)),
+                                        name: Notification.Name.NSManagedObjectContextObjectsDidChange,
+                                        object: self.managedObjectContext)
+     }
+    
+    @objc private func managedObjectContextObjectsDidChange(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+        
+        var groceryListDidChange = false
+        
+        if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject> {
+            print("Context Inserts Exist Grocery")
+            for insert in inserts {
+                if let item = insert as? GroceryList {
+                    Groceries.append(item)
+                    if item.mealIndex == sectionOfAddedItems {
+                        AddedGroceries.append(item)
+                    }
+                    //self.allMeals = meals
+                    groceryListDidChange = true
+                }
+            }
+        }
+        
+        if let updates = userInfo[NSUpdatedObjectsKey] as? Set<NSManagedObject> {
+            print("Context Updates Exist Grocery")
+            for update in updates {
+                if update is GroceryList {
+                    groceryListDidChange = true
+                }
+            }
+        }
+        
+        if let deletes = userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject> {
+            print("Context Deletes Exist Grocery")
+            for delete in deletes {
+                if let item = delete as? GroceryList {
+                    if let index = Groceries.firstIndex(of: item) {
+                        Groceries.remove(at: index)
+                        //self.allMeals = meals
+                        groceryListDidChange = true
+                    }
+                }
+            }
+        }
+        
+        if groceryListDidChange {
+            //meals!.sorted(by: { $0.mealName > $1.mealName })
+            tableView.reloadData()
+            //updateView()
+            groceryListDidChange = false
+        }
+    }
+    
     private func fetchGroceries() {
         plannedMenu = []
         numberOfMeals = 0
@@ -229,22 +272,25 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Reload Table View
         if (numberOfMeals > 0) {
             var groceryItem = GroceryList()
-            var menuIndex: Int = 0
+            var mealIndex: Int = 0
             for _planned in plannedMenu! {
                 //Build Grocery List Array
 //                print(_planned.meal?.mealName)
                 if (_planned.meal?.mealName != nil) {
-                    var ingredientIndex: Int = 0
+                    var itemIndex: Int = 0
                     for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
-                        groceryItem.menuIndex = menuIndex
-                        groceryItem.ingredientIndex = ingredientIndex
-                        groceryItem.plannedMenuItem = _planned.meal!.mealName!
+                        groceryItem = GroceryList(context: managedObjectContext!)
+                        groceryItem.mealIndex = Int16(mealIndex)
+                        groceryItem.itemIndex = Int16(itemIndex)
+                        groceryItem.mealName = _planned.meal!.mealName!
                         //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
-                        groceryItem.ingredient = _ingredient.item!
-                        Groceries.append(groceryItem)
-                        ingredientIndex += 1
+                        groceryItem.itemName = _ingredient.item!
+                        groceryItem.isComplete = false
+                        
+                        //Groceries.append(groceryItem)
+                        itemIndex += 1
                     }
-                    menuIndex += 1
+                    mealIndex += 1
                 }
             }
             
@@ -258,8 +304,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func addNewItem() {
-        var groceryItem = GroceryList()
-        groceryItem.menuIndex = sectionOfAddedItems
+        var groceryItem = GroceryList(context: managedObjectContext!)
+        groceryItem.mealIndex = Int16(sectionOfAddedItems)
         print(sectionOfAddedItems)
         print(addedItemsExist)
         //Have to check to see if there are items at this index first
@@ -269,21 +315,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if self.Groceries.count > 0 {
             guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
                //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
-            if lastAddedItem.menuIndex == sectionOfAddedItems {
+            if lastAddedItem.mealIndex == sectionOfAddedItems {
                 //groceryItem.menuIndex = sectionOfAddedItems
-                groceryItem.ingredientIndex = lastAddedItem.ingredientIndex + 1
+                groceryItem.itemIndex = lastAddedItem.itemIndex + 1
             } else {
                 //groceryItem.menuIndex = sectionOfAddedItems
-                groceryItem.ingredientIndex = 0
+                groceryItem.itemIndex = 0
             }
         } else {
-            groceryItem.ingredientIndex = 0
+            groceryItem.itemIndex = 0
         }
             
-            groceryItem.plannedMenuItem = ""
-            groceryItem.ingredient = _item.text!
-            Groceries.append(groceryItem)
-            AddedGroceries.append(groceryItem)
+            groceryItem.mealName = ""
+            groceryItem.itemName = _item.text!
+            //Groceries.append(groceryItem)
+            //AddedGroceries.append(groceryItem)
             rowMaxOfAddedItems += 1
             addedItemsExist = true
             tableView.reloadData()
@@ -305,7 +351,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var count = 0
 
         for _ingredient in Groceries {
-            if (_ingredient.menuIndex == section) { //} && _ingredient.isDeleted == false) {
+            if (_ingredient.mealIndex == section) { //} && _ingredient.isDeleted == false) {
                 count += 1
             }
         }
@@ -331,12 +377,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Configure Cell
 //        if (numberOfMeals > 0) {
-            let object = Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row })
+            let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
             
-            let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.ingredient)
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
             
             if object?.isComplete == true {
-                let len = object?.ingredient.count
+                let len = object?.itemName?.count
                 attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
                 attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple Label")!, range: NSMakeRange(0, len!))
             }
@@ -357,7 +403,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let currentCell = tableView.cellForRow(at: indexPath)
         // Fetch Ingredient
         //guard let currentItem = self.Groceries.first(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
-        guard let currentIndex = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
+        guard let currentIndex = self.Groceries.firstIndex(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
         
         isComplete = self.Groceries[currentIndex].isComplete
         
@@ -394,22 +440,25 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let cancelAction = UIContextualAction(style: .destructive, title:  "Cancel", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             // Fetch Ingredient Index
-            guard let currentIndex = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
+            guard let currentItem = self.Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row}) else { fatalError("Unexpected Index Path") }
             
             //remove item
-            self.Groceries.remove(at: currentIndex)
+            currentItem.managedObjectContext?.delete(currentItem)
+            //self.Groceries.remove(at: currentIndex)
             //update ingredient index
-            let menuItems = self.Groceries.filter({ $0.menuIndex == indexPath.section })
+            let menuItems = self.Groceries.filter({ $0.mealIndex == indexPath.section })
+            
             for item in menuItems {
-                if item.ingredientIndex > indexPath.row {
-                    guard let itemIndex = self.Groceries.firstIndex(where: { $0.menuIndex == indexPath.section && $0.ingredientIndex == item.ingredientIndex}) else { fatalError("Unexpected Index Path") }
-                    self.Groceries[itemIndex].ingredientIndex -= 1
+                if item.itemIndex > indexPath.row {
+                    guard let item = self.Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == item.itemIndex}) else { fatalError("Unexpected Index Path") }
+                    item.itemIndex -= 1
+                    //self.Groceries[itemIndex].ingredientIndex -= 1
                 }
             }
             
             //Attempt Request for Review
             //AppStoreReviewManager.requestReviewIfAppropriate()
-            tableView.reloadData()
+            //tableView.reloadData()
             success(true)
         })
 
