@@ -18,25 +18,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var _item: UITextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    @IBAction func RefreshList(_ sender: Any) {
-        fetchGroceries()
-//        if AddedGroceries.count > 0 {
-//            for var item in AddedGroceries {
-//                print(item)
-//                if numberOfMeals == 0 {
-//                    item.mealIndex = 0
-//                } else {
-//                    //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
-//                   //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
-//                    item.mealIndex = numberOfMeals
-//                }
-//                print(item)
-//                Groceries.append(item)
-//            }
-//        }
-        //tableView.reloadData()
-    }
-    
     @IBAction func Done(_ sender: Any) {
         //dismiss Keyboard
         _item.resignFirstResponder()
@@ -173,6 +154,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     override func viewWillAppear(_ animated: Bool) {
+        fetchGroceries()
 //        if Groceries.count > 0 {
 //            print("already exists")
 //            //fetchMenu()
@@ -250,7 +232,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    private func fetchGroceries() {
+    func fetchGroceries() {
+        //populate groceries
+        Groceries = []
+        Groceries = helpers.fetchGroceries(context: managedObjectContext!)
+        print(Groceries)
+        tableView.reloadData()
+        //reload
+    }
+    
+        @IBAction func RefreshList(_ sender: Any) {
         plannedMenu = []
         numberOfMeals = 0
         Groceries = []
@@ -301,6 +292,23 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             //custom list
         }
+            
+                    
+            //        if AddedGroceries.count > 0 {
+            //            for var item in AddedGroceries {
+            //                print(item)
+            //                if numberOfMeals == 0 {
+            //                    item.mealIndex = 0
+            //                } else {
+            //                    //guard let lastAddedItem = self.Groceries.last else { fatalError("Unexpected Result")}
+            //                   //self.Groceries.last(where: { $0.menuIndex == indexOfAddedItems }) else { fatalError("Unexpected Index Path")}
+            //                    item.mealIndex = numberOfMeals
+            //                }
+            //                print(item)
+            //                Groceries.append(item)
+            //            }
+            //        }
+                    //tableView.reloadData()
     }
 
     func addNewItem() {
@@ -378,7 +386,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Configure Cell
 //        if (numberOfMeals > 0) {
             let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
-            
+        print(object?.mealName)
+        print(object?.itemName)
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
             
             if object?.isComplete == true {

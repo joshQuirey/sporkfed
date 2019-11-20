@@ -205,4 +205,29 @@ class CoreDataHelpers {
         return meal
     }
 
+    /////////////////////////////
+    //Fetch Groceries
+    /////////////////////////////
+    func fetchGroceries(context: NSManagedObjectContext) -> [GroceryList] {
+        var groceries: [GroceryList] = []
+        
+        let fetchRequest: NSFetchRequest<GroceryList> = GroceryList.fetchRequest()
+        //Sort Alphabetically
+        var byMealIndex = NSSortDescriptor(key: #keyPath(GroceryList.mealIndex), ascending: true)
+        //fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(GroceryList.mealIndex), ascending: true)]
+        var byItemIndex = NSSortDescriptor(key: #keyPath(GroceryList.itemIndex), ascending: true)
+        fetchRequest.sortDescriptors = [byMealIndex,byItemIndex]
+        
+        context.performAndWait {
+            do {
+                groceries = try fetchRequest.execute()
+            } catch {
+                let fetchError = error as NSError
+                print("Unable to Execute Fetch Request")
+                print("\(fetchError), \(fetchError.localizedDescription)")
+            }
+        }
+        
+        return groceries
+    }
 }
