@@ -235,21 +235,42 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func fetchGroceries() {
         //populate groceries
         Groceries = []
+
+//        print(Groceries)
+        numberOfMeals = 0
+        
+        // Execute Fetch Request
+//        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
+//        //need to change planned menu to not include restaurant days or leftovers
+//        for menu in fullPlannedMenu {
+//            print(fullPlannedMenu)
+//            if (menu.meal != nil) {
+//                plannedMenu?.append(menu)
+//                numberOfMeals += 1
+//            }
+//        }
+//
         Groceries = helpers.fetchGroceries(context: managedObjectContext!)
-        print(Groceries)
-        //tableView.reloadData()
-        //reload
+        var prevMeal: String = ""
+
+        for item in Groceries {
+            if prevMeal == "" {
+                prevMeal = item.mealName!
+                numberOfMeals += 1
+            } else if prevMeal != item.mealName {
+                numberOfMeals += 1
+            }
+
+            prevMeal = item.mealName!
+        }
+        print(numberOfMeals)
+        sectionOfAddedItems = numberOfMeals
     }
     
     @IBAction func RefreshList(_ sender: Any) {
         //delete existing
         helpers.deleteGroceries(context: self.managedObjectContext!)
-         do {
-                   try self.managedObjectContext!.save()
-               } catch {
-                   fatalError("Failure to save context: \(error)")
-               }
-        
+
         plannedMenu = []
         numberOfMeals = 0
         Groceries = []
@@ -260,7 +281,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for menu in fullPlannedMenu {
             print(fullPlannedMenu)
             if (menu.meal != nil) {
-//                print(menu)
                 plannedMenu?.append(menu)
                 numberOfMeals += 1
             }
@@ -381,8 +401,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
         tableView.sectionIndexColor = UIColor(named: "_Teal Label")
         if (sectionOfAddedItems != section) {
-            guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
-            return _plannedMenu.meal?.mealName
+            //guard let _plannedMenu = plannedMenu?[section] else { fatalError("Unexpected Index Path")}
+            let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
+            return _plannedMenu?.mealName
         } else {
             return "Additional Items"
         }
@@ -393,11 +414,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Configure Cell
 //        if (numberOfMeals > 0) {
+        //print("dklfsdfjsdklfsdjfjsdfkldjfklsdjfkldjfklsdjflsdjflsd")
         //print(Groceries)
+        //print("dklfsdfjsdklfsdjfjsdfkldjfklsdjfkldjfklsdjflsdjflsd")
             let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
         //print(object)
-        print(object?.mealName)
-        print(object?.itemName)
+        //print(object?.mealName)
+        //print(object?.itemName)
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
             
             if object?.isComplete == true {

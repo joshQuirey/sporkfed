@@ -232,16 +232,32 @@ class CoreDataHelpers {
     }
     
     func deleteGroceries(context: NSManagedObjectContext) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GroceryList")
-        
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
-            try context.execute(batchDeleteRequest)
+            let currentList = fetchGroceries(context: context)
+            for item in currentList {
+                context.delete(item)
+            }
+            
+            try context.save()
         } catch {
             let fetchError = error as NSError
             print("Unable to Execute Fetch Request")
             print("\(fetchError), \(fetchError.localizedDescription)")
         }
+        
+        
+        
+        //let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GroceryList")
+        
+        //let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        //do {
+          //  try context.execute(batchDeleteRequest)
+          //  try context.save()
+            
+        //} catch {
+          
+        //}
     }
 }
