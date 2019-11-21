@@ -353,8 +353,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -369,8 +369,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -385,8 +385,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -401,8 +401,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -417,8 +417,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -433,8 +433,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -449,9 +449,9 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "addNewItem()"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "RefreshList(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -465,8 +465,8 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "516"
-            endingLineNumber = "516"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
             landmarkName = "scrollToBottomRow()"
             landmarkType = "7">
          </BreakpointContent>
@@ -481,9 +481,9 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
-            landmarkName = "indexPathIsValid(_:)"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "scrollToBottomRow()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -497,9 +497,9 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "addNewItem()"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "RefreshList(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -513,9 +513,9 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "tableView(_:titleForHeaderInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -529,9 +529,9 @@
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -586,63 +586,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "21FA13D7-F5A7-4DB1-BE32-9C85EA5382E7"
-            shouldBeEnabled = "Yes"
+            uuid = "5F86E2B2-1683-45A3-8C0F-6CD45E4C27E2"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "21FA13D7-F5A7-4DB1-BE32-9C85EA5382E7 - ae240402e8650fec"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WhatsForDinner.ListViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "WhatsForDinner"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshquirey/Documents/Personal/sporkfed/WhatsForDinner/View%20Controllers/ListViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "388"
-                  endingLineNumber = "388"
-                  offsetFromSymbolStart = "392">
-               </Location>
-               <Location
-                  uuid = "21FA13D7-F5A7-4DB1-BE32-9C85EA5382E7 - 77d93c8211862b17"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WhatsForDinner.GroceryList) -&gt; Swift.Bool in WhatsForDinner.ListViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "WhatsForDinner"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshquirey/Documents/Personal/sporkfed/WhatsForDinner/View%20Controllers/ListViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "388"
-                  endingLineNumber = "388"
-                  offsetFromSymbolStart = "124">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0F4FBB2B-65F1-42D7-897E-2BE0C3F2FCBC"
+            uuid = "50B23EB0-2385-4E57-ABD4-FD4027DAEE40"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "managedObjectContextObjectsDidChange(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "208CB446-DBC3-4040-9C7D-C6E66295BE3E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "fetchGroceries()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "682E83A1-79F0-435C-8329-8FDEF4827E63"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "managedObjectContextObjectsDidChange(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF0E2C05-C290-4519-BA64-DD901400BF8D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "fetchGroceries()"
             landmarkType = "7">
          </BreakpointContent>

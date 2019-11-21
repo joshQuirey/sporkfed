@@ -237,11 +237,19 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Groceries = []
         Groceries = helpers.fetchGroceries(context: managedObjectContext!)
         print(Groceries)
-        tableView.reloadData()
+        //tableView.reloadData()
         //reload
     }
     
-        @IBAction func RefreshList(_ sender: Any) {
+    @IBAction func RefreshList(_ sender: Any) {
+        //delete existing
+        helpers.deleteGroceries(context: self.managedObjectContext!)
+         do {
+                   try self.managedObjectContext!.save()
+               } catch {
+                   fatalError("Failure to save context: \(error)")
+               }
+        
         plannedMenu = []
         numberOfMeals = 0
         Groceries = []
@@ -385,7 +393,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Configure Cell
 //        if (numberOfMeals > 0) {
+        //print(Groceries)
             let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
+        //print(object)
         print(object?.mealName)
         print(object?.itemName)
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
