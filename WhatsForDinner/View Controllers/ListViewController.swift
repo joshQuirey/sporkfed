@@ -221,6 +221,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func deleteGroceries() {
+        helpers.deleteGroceries(context: self.managedObjectContext!)
+    }
+    
     func fetchGroceries() {
         //populate groceries
         Groceries = []
@@ -245,59 +249,106 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sectionOfAddedItems = numberOfMeals
     }
     
-    @IBAction func RefreshList(_ sender: Any) {
+    func refreshList() {
         //delete existing
-        helpers.deleteGroceries(context: self.managedObjectContext!)
+                helpers.deleteGroceries(context: self.managedObjectContext!)
 
-        plannedMenu = []
-        numberOfMeals = 0
-        Groceries = []
-        
-        // Execute Fetch Request
-        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
-        //need to change planned menu to not include restaurant days or leftovers
-        for menu in fullPlannedMenu {
-            print(fullPlannedMenu)
-            if (menu.meal != nil) {
-                plannedMenu?.append(menu)
-                numberOfMeals += 1
-            }
-        }
-        
-        sectionOfAddedItems = numberOfMeals
-//        print(plannedMenu)
-        //Reload Table View
-        if (numberOfMeals > 0) {
-            var groceryItem = GroceryList()
-            var mealIndex: Int = 0
-            for _planned in plannedMenu! {
-                //Build Grocery List Array
-//                print(_planned.meal?.mealName)
-                if (_planned.meal?.mealName != nil) {
-                    var itemIndex: Int = 0
-                    for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
-                        groceryItem = GroceryList(context: managedObjectContext!)
-                        groceryItem.mealIndex = Int16(mealIndex)
-                        groceryItem.itemIndex = Int16(itemIndex)
-                        groceryItem.mealName = _planned.meal!.mealName!
-                        //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
-                        groceryItem.itemName = _ingredient.item!
-                        groceryItem.isComplete = false
-                        
-                        //Groceries.append(groceryItem)
-                        itemIndex += 1
+                plannedMenu = []
+                numberOfMeals = 0
+                Groceries = []
+                
+                // Execute Fetch Request
+                let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
+                //need to change planned menu to not include restaurant days or leftovers
+                for menu in fullPlannedMenu {
+                    print(fullPlannedMenu)
+                    if (menu.meal != nil) {
+                        plannedMenu?.append(menu)
+                        numberOfMeals += 1
                     }
-                    mealIndex += 1
                 }
+                
+                sectionOfAddedItems = numberOfMeals
+        //        print(plannedMenu)
+                //Reload Table View
+                if (numberOfMeals > 0) {
+                    var groceryItem = GroceryList()
+                    var mealIndex: Int = 0
+                    for _planned in plannedMenu! {
+                        //Build Grocery List Array
+        //                print(_planned.meal?.mealName)
+                        if (_planned.meal?.mealName != nil) {
+                            var itemIndex: Int = 0
+                            for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
+                                groceryItem = GroceryList(context: managedObjectContext!)
+                                groceryItem.mealIndex = Int16(mealIndex)
+                                groceryItem.itemIndex = Int16(itemIndex)
+                                groceryItem.mealName = _planned.meal!.mealName!
+                                //ingredients = meal?.ingredients?.allObjects as? [Ingredient]
+                                groceryItem.itemName = _ingredient.item!
+                                groceryItem.isComplete = false
+                                
+                                //Groceries.append(groceryItem)
+                                itemIndex += 1
+                            }
+                            mealIndex += 1
+                        }
+                    }
+                    
+                    //Add Additional Items
+                    print(Groceries)
+                   //tableView.reloadData()
+                } else {
+                    //custom list
+                }
+    }
+    
+    func uncrossGroceries() {
+        for item in Groceries {
+            if item.isComplete == true {
+                item.isComplete = false
             }
-            
-            //Add Additional Items
-            print(Groceries)
-           //tableView.reloadData()
-        } else {
-            //custom list
         }
     }
+    
+    @IBAction func elipsesButton(_ sender: Any) {
+  
+            let alert = UIAlertController(title: "List Options", message:nil, preferredStyle: .actionSheet)
+            
+            let syncImage = UIImage(systemName: "arrow.counterclockwise")
+            let syncAction = UIAlertAction(title: "Sync Menu", style: .default , handler:{ (UIAlertAction)in
+                DispatchQueue.main.async {
+                    self.refreshList()
+                }
+            })
+            syncAction.setValue(syncImage, forKey: "image")
+            alert.addAction(syncAction)
+            
+            let deleteImage = UIImage(systemName: "trash")
+            let deleteAction = UIAlertAction(title: "Delete All Items", style: .default , handler:{ (UIAlertAction)in
+                DispatchQueue.main.async {
+                    self.deleteGroceries()
+                }
+            })
+            deleteAction.setValue(deleteImage, forKey: "image")
+            alert.addAction(deleteAction)
+            
+        let uncrossImage = UIImage(systemName: "strikethrough")
+            let uncrossAction = UIAlertAction(title: "Uncross All Items", style: .default , handler:{ (UIAlertAction)in
+                DispatchQueue.main.async {
+                    self.uncrossGroceries()
+                }
+            })
+            uncrossAction.setValue(uncrossImage, forKey: "image")
+            alert.addAction(uncrossAction)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+            }))
+            
+            //alert.view.tintColor = UIColor(red: 77/255, green: 72/255, blue: 147/255, alpha: 1.0)
+            alert.view.tintColor = UIColor(named: "_Purple Label")!
+            self.present(alert, animated: true, completion: nil)
+        }
 
     func addNewItem() {
         let groceryItem = GroceryList(context: managedObjectContext!)
@@ -371,7 +422,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return "Additional Items"
         }
     }
-        
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groceryCell", for: indexPath)
         
@@ -422,8 +481,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.Groceries[currentIndex].isComplete = true
                 let len = (currentCell?.textLabel?.attributedText!.length)!
                 let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: (currentCell?.textLabel!.text)!)
-                attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len))
-                attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple Label")!, range: NSMakeRange(0, len))
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 5, range: NSMakeRange(0, len))
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple Label"), range: NSMakeRange(0, len))
         
                 currentCell?.textLabel?.attributedText = attributedString
             }
