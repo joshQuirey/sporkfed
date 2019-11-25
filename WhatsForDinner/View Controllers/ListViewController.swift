@@ -193,8 +193,20 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func fetchGroceries() {
-        Groceries = []
+        plannedMenu = []
         numberOfMeals = 0
+        Groceries = []
+               
+        // Execute Fetch Request
+        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
+        //need to change planned menu to not include restaurant days or leftovers
+        for menu in fullPlannedMenu {
+           if (menu.meal != nil) {
+               plannedMenu?.append(menu)
+                numberOfMeals += 1
+           }
+        }
+        
         Groceries = helpers.fetchGroceries(context: managedObjectContext!)
         var prevMeal: String = ""
 
@@ -202,10 +214,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if item.mealName != "" {
                 if prevMeal == "" {
                     prevMeal = item.mealName!
-                    numberOfMeals += 1
-                } else if prevMeal != item.mealName {
-                    numberOfMeals += 1
-                }
+                    //numberOfMeals += 1
+                } //else if prevMeal != item.mealName {
+                   // numberOfMeals += 1
+                //}
             }
 
             prevMeal = item.mealName!
@@ -241,11 +253,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for _planned in plannedMenu! {
                 if (_planned.meal?.mealName != nil) {
                     var itemIndex: Int = 0
+                   
                     for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
                         groceryItem = GroceryList(context: managedObjectContext!)
+                        groceryItem.mealName = _planned.meal!.mealName!
                         groceryItem.mealIndex = Int16(mealIndex)
                         groceryItem.itemIndex = Int16(itemIndex)
-                        groceryItem.mealName = _planned.meal!.mealName!
                         groceryItem.itemName = _ingredient.item!
                         groceryItem.isComplete = false
 
@@ -343,8 +356,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var count = 0
 
         for _ingredient in Groceries {
+            print("Ingredient \(_ingredient)")
             if (_ingredient.mealIndex == section) {
-                count += 1
+                    count += 1
             }
         }
         
@@ -373,10 +387,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         label.font = .systemFont(ofSize: 24)
         label.textColor = .systemGray
         view.layer.cornerRadius = 8
-
+        
         if (sectionOfAddedItems != section && sectionOfAddedItems != 0) {
-            let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
-            label.text = _plannedMenu?.mealName
+            //let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
+            //print(_plannedMenu)
+            //print(plannedMenu![section].meal?.mealName)
+            //let _plannedMenu = plannedMenu.first(where: { $0.meal.mealName ==  })
+
+            label.text = plannedMenu![section].meal?.mealName//_plannedMenu?.mealName
         } else {
             label.text = "Additional Items"
         }
@@ -391,7 +409,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 55
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -399,7 +417,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Configure Cell
         let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
-
+        
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
             
         if object?.isComplete == true {
