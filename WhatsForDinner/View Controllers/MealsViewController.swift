@@ -294,7 +294,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         }))
         
         //alert.view.tintColor = UIColor(red: 77/255, green: 72/255, blue: 147/255, alpha: 1.0)
-        alert.view.tintColor = UIColor(named: "_Purple Label")!
+        alert.view.tintColor = UIColor(named: "_Purple to Teal")!
         self.present(alert, animated: true, completion: nil)
     }
 }
@@ -372,7 +372,7 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
 //            cell.favorite.setImage(fav, for: .normal)
         }
         
-        cell.favorite.tintColor = UIColor(named: "_Purple Label")!
+        cell.favorite.tintColor = UIColor(named: "_Purple to Teal")!
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -408,7 +408,7 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
         }))
     
         //alert.view.tintColor = UIColor(red: 77/255, green: 72/255, blue: 147/255, alpha: 1.0)
-        alert.view.tintColor = UIColor(named: "_Purple Label")!
+        alert.view.tintColor = UIColor(named: "_Purple to Teal")!
         self.present(alert, animated: true, completion: {})
     }
     

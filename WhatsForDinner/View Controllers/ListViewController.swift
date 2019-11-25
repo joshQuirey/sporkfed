@@ -303,7 +303,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
         }))
 
-        alert.view.tintColor = UIColor(named: "_Purple Label")!
+        alert.view.tintColor = UIColor(named: "_Purple to Teal")!
         self.present(alert, animated: true, completion: nil)
         }
 
@@ -405,7 +405,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if object?.isComplete == true {
             let len = object?.itemName?.count
             attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
-            attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple Label")!, range: NSMakeRange(0, len!))
+            attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple to Teal")!, range: NSMakeRange(0, len!))
         }
             
         cell.textLabel!.attributedText = attributedString

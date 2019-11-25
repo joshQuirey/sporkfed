@@ -87,10 +87,10 @@
                                                         <constraint firstAttribute="height" constant="20" id="qjn-R4-JxK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="tintColor" name="_Purple Label"/>
+                                                    <color key="tintColor" name="_Purple to Teal"/>
                                                     <state key="normal" image="favorite">
-                                                        <color key="titleColor" name="_Purple Label"/>
-                                                        <color key="titleShadowColor" name="_Purple Label"/>
+                                                        <color key="titleColor" name="_Purple to Teal"/>
+                                                        <color key="titleShadowColor" name="_Purple to Teal"/>
                                                     </state>
                                                 </button>
                                             </subviews>
@@ -1228,7 +1228,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" name="_Purple Label"/>
+                        <color key="selectedImageTintColor" name="_Purple to Teal"/>
                     </tabBar>
                     <connections>
                         <segue destination="CUV-yD-vSI" kind="relationship" relationship="viewControllers" id="lWJ-qZ-o0P"/>
@@ -1857,7 +1857,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
-                                <rect key="frame" x="10" y="0.0" width="394" height="670"/>
+                                <rect key="frame" x="10" y="10" width="394" height="660"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" rowHeight="43.5" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
@@ -1889,7 +1889,7 @@
                             </tableView>
                             <textField contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
                                 <rect key="frame" x="10" y="680" width="341" height="35"/>
-                                <color key="tintColor" name="_Teal Label"/>
+                                <color key="tintColor" name="_Purple to Teal"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="pI2-Ih-UW0"/>
                                 </constraints>
@@ -1901,7 +1901,7 @@
                                 <rect key="frame" x="361" y="675" width="43" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" name="_Purple Label"/>
+                                    <color key="titleColor" name="_Purple to Teal"/>
                                 </state>
                                 <connections>
                                     <action selector="Done:" destination="Pv4-xq-kRT" eventType="touchUpInside" id="oSX-IX-NNO"/>
@@ -1919,7 +1919,7 @@
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="Q0e-0u-nxi"/>
                             <constraint firstItem="44n-6q-u6s" firstAttribute="trailing" secondItem="qVg-iP-fc7" secondAttribute="trailing" constant="10" id="QpO-hO-qaj"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" id="ROZ-34-JfJ"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" id="fyh-xh-erg"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" constant="10" id="fyh-xh-erg"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" constant="5" id="n5V-l4-T1V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="44n-6q-u6s"/>
