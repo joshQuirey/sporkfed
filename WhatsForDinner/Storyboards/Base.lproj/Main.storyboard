@@ -87,10 +87,10 @@
                                                         <constraint firstAttribute="height" constant="20" id="qjn-R4-JxK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="tintColor" name="_Purple Label"/>
+                                                    <color key="tintColor" name="_Purple to Teal"/>
                                                     <state key="normal" image="favorite">
-                                                        <color key="titleColor" name="_Purple Label"/>
-                                                        <color key="titleShadowColor" name="_Purple Label"/>
+                                                        <color key="titleColor" name="_Purple to Teal"/>
+                                                        <color key="titleShadowColor" name="_Purple to Teal"/>
                                                     </state>
                                                 </button>
                                             </subviews>
@@ -878,12 +878,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Menu" id="y6O-4l-wd0">
-                        <barButtonItem key="leftBarButtonItem" image="settings" id="lZQ-e2-eeU">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="eLS-Ot-O2Z" kind="showDetail" id="z5v-Tf-A6K"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" id="R1F-LB-zsI"/>
                         <barButtonItem key="rightBarButtonItem" image="magicwand" style="done" id="Njr-3d-Hv3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -1108,11 +1103,11 @@
             <objects>
                 <viewController id="eLS-Ot-O2Z" customClass="SettingsViewController" customModule="WhatsForDinner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="tlv-wc-ah5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="j4y-Z7-K55">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="340"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -1147,21 +1142,21 @@
                                 </connections>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sporkfed_whitelogo" translatesAutoresizingMaskIntoConstraints="NO" id="oDJ-pV-xNP">
-                                <rect key="frame" x="0.0" y="683.5" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="688.5" width="414" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GKM-C6-2eF"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Meals. Your Choices. Your Plan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQn-sg-pDN">
-                                <rect key="frame" x="83.5" y="726.5" width="247" height="18"/>
+                                <rect key="frame" x="83.5" y="731.5" width="247" height="18"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3ow-lh-QAG">
-                                <rect key="frame" x="0.0" y="754.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="759.5" width="414" height="43.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.4.0(0)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERI-Xg-jWz" userLabel="Version">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.4.0(1)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERI-Xg-jWz" userLabel="Version">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1182,7 +1177,7 @@
                                 </subviews>
                             </stackView>
                             <imageView hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sporkfedsymbolwhite" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-Pb-eaW">
-                                <rect key="frame" x="144.5" y="568.5" width="125" height="125"/>
+                                <rect key="frame" x="144.5" y="573.5" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="4xa-Qk-0dg"/>
                                     <constraint firstAttribute="width" secondItem="Mby-Pb-eaW" secondAttribute="height" multiplier="1:1" id="L2d-TI-4tN"/>
@@ -1220,7 +1215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abc-Cb-Mje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="1894"/>
+            <point key="canvasLocation" x="3895.652173913044" y="-8.0357142857142847"/>
         </scene>
         <!--Base Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1233,12 +1228,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" name="_Purple Label"/>
+                        <color key="selectedImageTintColor" name="_Purple to Teal"/>
                     </tabBar>
                     <connections>
                         <segue destination="CUV-yD-vSI" kind="relationship" relationship="viewControllers" id="lWJ-qZ-o0P"/>
                         <segue destination="G2k-dk-ZSF" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="TB5-L3-zGY" kind="relationship" relationship="viewControllers" id="m4A-yA-d24"/>
+                        <segue destination="xoX-Ju-T2R" kind="relationship" relationship="viewControllers" id="lO0-xj-43e"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1860,30 +1856,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
-                                <color key="backgroundColor" name="_Off-White Background"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
+                                <rect key="frame" x="10" y="10" width="394" height="660"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" rowHeight="43.5" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
+                                        <rect key="frame" x="0.0" y="28" width="394" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OPR-rP-07L" id="b83-1K-zCx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9xs-SE-ubN">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="354" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="backgroundColor" name="_Off-White Background"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" name="_Off-White Background"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" name="_Off-White Background"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </prototypes>
@@ -1892,16 +1887,9 @@
                                     <outlet property="delegate" destination="Pv4-xq-kRT" id="Srf-Fd-zAt"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once you have your Menu Set, your Grocery List will appear." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="38B-1g-3ib" userLabel="Empty List Label">
-                                <rect key="frame" x="20" y="348" width="374" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" name="_Purple to Teal"/>
-                                <color key="highlightedColor" name="_Purple to Teal"/>
-                            </label>
                             <textField contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
                                 <rect key="frame" x="10" y="680" width="341" height="35"/>
-                                <color key="tintColor" name="_Teal Label"/>
+                                <color key="tintColor" name="_Purple to Teal"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="pI2-Ih-UW0"/>
                                 </constraints>
@@ -1913,41 +1901,40 @@
                                 <rect key="frame" x="361" y="675" width="43" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="_Purple to Teal"/>
                                 </state>
                                 <connections>
                                     <action selector="Done:" destination="Pv4-xq-kRT" eventType="touchUpInside" id="oSX-IX-NNO"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="_Teal Background to Tertiary"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="44n-6q-u6s" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="10" id="3S8-ab-zRj"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" id="AqP-lA-obz"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" constant="-10" id="AqP-lA-obz"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="leading" secondItem="0j6-mz-OT0" secondAttribute="trailing" constant="10" id="GZ6-aR-FWV"/>
                             <constraint firstItem="0j6-mz-OT0" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="L8C-gf-Y1M"/>
                             <constraint firstItem="0j6-mz-OT0" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" constant="10" id="NeJ-ZN-DA8"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" id="Q0e-0u-nxi"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="Q0e-0u-nxi"/>
                             <constraint firstItem="44n-6q-u6s" firstAttribute="trailing" secondItem="qVg-iP-fc7" secondAttribute="trailing" constant="10" id="QpO-hO-qaj"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" id="ROZ-34-JfJ"/>
-                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" id="fyh-xh-erg"/>
+                            <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" constant="10" id="fyh-xh-erg"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" constant="5" id="n5V-l4-T1V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="44n-6q-u6s"/>
                     </view>
                     <navigationItem key="navigationItem" title="Grocery List" id="86O-6i-QHf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="BNM-d6-O73">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="ellipsis.circle" catalog="system" id="BNM-d6-O73">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="RefreshList:" destination="Pv4-xq-kRT" id="v70-WZ-cuA"/>
+                                <action selector="elipsesButton:" destination="Pv4-xq-kRT" id="QPc-76-CuI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="_item" destination="0j6-mz-OT0" id="Dyf-Ji-s1H"/>
                         <outlet property="bottomConstraint" destination="3S8-ab-zRj" id="PFo-N0-iNG"/>
-                        <outlet property="emptyTableLabel" destination="38B-1g-3ib" id="LFx-dl-2KT"/>
                         <outlet property="tableView" destination="lVg-Cs-Bl2" id="ARe-UB-LZj"/>
                     </connections>
                 </viewController>
@@ -1976,7 +1963,7 @@
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1993,7 +1980,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TB5-L3-zGY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Grocery" image="grocery" selectedImage="grocery" id="D3k-mL-IU4">
-                        <color key="badgeColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="SW5-G4-Cx1">
@@ -2004,11 +1991,11 @@
                         <color key="barTintColor" name="_Teal Background to Secondary"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textShadowColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2020,8 +2007,31 @@
             </objects>
             <point key="canvasLocation" x="-677" y="777"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="dpg-M4-R6y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xoX-Ju-T2R" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="8eo-5J-obR">
+                        <color key="badgeColor" name="_Purple Label"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="YvH-Ma-Bux">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eLS-Ot-O2Z" kind="relationship" relationship="rootViewController" id="SVb-hR-Gds"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7dP-6A-eF5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2985.507246376812" y="-8.0357142857142847"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="ellipsis.circle" catalog="system" width="64" height="60"/>
         <image name="favorite" width="24" height="24"/>
         <image name="grocery" width="25" height="25"/>
         <image name="magicwand" width="24" height="24"/>
@@ -2061,9 +2071,6 @@
         <namedColor name="_Teal Background to Secondary">
             <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="_Teal Background to Tertiary">
-            <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="_Teal Label">
             <color red="0.58039215686274515" green="0.85098039215686272" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2081,6 +2088,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cIL-TX-hOf"/>
+        <segue reference="qnc-uL-VBf"/>
     </inferredMetricsTieBreakers>
 </document>

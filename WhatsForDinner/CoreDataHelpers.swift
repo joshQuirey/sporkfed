@@ -205,4 +205,59 @@ class CoreDataHelpers {
         return meal
     }
 
+    /////////////////////////////
+    //Fetch Groceries
+    /////////////////////////////
+    func fetchGroceries(context: NSManagedObjectContext) -> [GroceryList] {
+        var groceries: [GroceryList] = []
+        
+        let fetchRequest: NSFetchRequest<GroceryList> = GroceryList.fetchRequest()
+        //Sort Alphabetically
+        var byMealIndex = NSSortDescriptor(key: #keyPath(GroceryList.mealIndex), ascending: true)
+        //fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(GroceryList.mealIndex), ascending: true)]
+        var byItemIndex = NSSortDescriptor(key: #keyPath(GroceryList.itemIndex), ascending: true)
+        fetchRequest.sortDescriptors = [byMealIndex,byItemIndex]
+        
+        context.performAndWait {
+            do {
+                groceries = try fetchRequest.execute()
+            } catch {
+                let fetchError = error as NSError
+                print("Unable to Execute Fetch Request")
+                print("\(fetchError), \(fetchError.localizedDescription)")
+            }
+        }
+        
+        return groceries
+    }
+    
+    func deleteGroceries(context: NSManagedObjectContext) {
+        
+        do {
+            let currentList = fetchGroceries(context: context)
+            for item in currentList {
+                context.delete(item)
+            }
+            
+            try context.save()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Execute Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        
+        
+        
+        //let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GroceryList")
+        
+        //let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        //do {
+          //  try context.execute(batchDeleteRequest)
+          //  try context.save()
+            
+        //} catch {
+          
+        //}
+    }
 }
