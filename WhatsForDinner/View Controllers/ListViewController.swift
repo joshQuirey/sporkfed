@@ -352,25 +352,27 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //tableView.sectionIndexBackgroundColor = UIColor(named: "_Teal Label")
         //tableView.sectionIndexColor = UIColor(named: "_Teal Label")
 
-        if (sectionOfAddedItems != section && sectionOfAddedItems != 0) {
-            let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
-            return _plannedMenu?.mealName
-        } else {
-            return "Additional Items"
-        }
-    }
+//        if (sectionOfAddedItems != section && sectionOfAddedItems != 0) {
+//            let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
+//            return _plannedMenu?.mealName
+//        } else {
+//            return "Additional Items"
+//        }
+    //}
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         //let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40))
         let view = UIView(frame: CGRect.zero)
-        view.backgroundColor = UIColor(named: "_Teal Label")
+        view.backgroundColor = UIColor(named: "_Off-White Background to Tertiary")
         let label = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 30))
         //let label = UILabel(frame: CGRect.zero)
-        label.textColor = .black
+        label.font = .systemFont(ofSize: 24)
+        label.textColor = .systemGray
+        view.layer.cornerRadius = 8
 
         if (sectionOfAddedItems != section && sectionOfAddedItems != 0) {
             let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
@@ -487,7 +489,6 @@ extension UITableView {
             var section = max(self.numberOfSections - 1, 0)
             var row = max(self.numberOfRows(inSection: section) - 1, 0)
             var indexPath = IndexPath(row: row, section: section)
-            
             // Ensure the index path is valid, otherwise use the section above (sections can
             // contain 0 rows which leads to an invalid index path)
             while !self.indexPathIsValid(indexPath) {
