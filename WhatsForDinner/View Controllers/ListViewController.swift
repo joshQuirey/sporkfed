@@ -487,12 +487,18 @@ extension UITableView {
             var indexPath = IndexPath(row: row, section: section)
             // Ensure the index path is valid, otherwise use the section above (sections can
             // contain 0 rows which leads to an invalid index path)
-            while !self.indexPathIsValid(indexPath) {
+            if !self.indexPathIsValid(indexPath) {
                 section = max(section, 0)
                 row = max(self.numberOfRows(inSection: section) - 1, 0)
                 indexPath = IndexPath(row: row, section: section)
-                //print("section2 - \(section)")
-                //print("row2 - \(row)")
+            }
+            
+            while !self.indexPathIsValid(indexPath) {
+                section = max(section-1, 0)
+                row = max(self.numberOfRows(inSection: section) - 1, 0)
+                indexPath = IndexPath(row: row, section: section)
+                print("section2 - \(section)")
+                print("row2 - \(row)")
                 // If we're down to the last section, attempt to use the first row
                 if indexPath.section == 0 {
                     indexPath = IndexPath(row: 0, section: 0)
