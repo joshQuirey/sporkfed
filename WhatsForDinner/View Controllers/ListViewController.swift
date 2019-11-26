@@ -103,8 +103,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.bottomConstraint?.constant = 10.0
             } else {
                 if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                    //print(keyboardSize.height)
-                    //print(endFrame?.size.height)
                     let keyboardHeight: CGFloat = (endFrame?.size.height)! - 60
                     self.bottomConstraint?.constant = keyboardHeight
                 } else {
@@ -112,7 +110,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
                 
-            self.tableView.scrollToBottomRow()
+            self.tableView.scrollToBottomRow(section: sectionOfAddedItems)
             UIView.animate(withDuration: duration,
                            delay: TimeInterval(0),
                            options: animationCurve,
@@ -132,7 +130,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text != nil && textField.text != "") {
             addNewItem()
-            tableView.scrollToBottomRow()
+            tableView.scrollToBottomRow(section: sectionOfAddedItems)
             textField.text = nil
         }
 
@@ -152,6 +150,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             for insert in inserts {
                 if let item = insert as? GroceryList {
                     Groceries.append(item)
+
                     if item.mealIndex == sectionOfAddedItems {
                         AddedGroceries.append(item)
                     }
@@ -215,9 +214,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if prevMeal == "" {
                     prevMeal = item.mealName!
                     //numberOfMeals += 1
-                } //else if prevMeal != item.mealName {
-                   // numberOfMeals += 1
-                //}
+                }
             }
 
             prevMeal = item.mealName!
@@ -238,7 +235,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
         //need to change planned menu to not include restaurant days or leftovers
         for menu in fullPlannedMenu {
-            print(fullPlannedMenu)
             if (menu.meal != nil) {
                 plannedMenu?.append(menu)
                 numberOfMeals += 1
@@ -339,7 +335,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         groceryItem.mealName = ""
         groceryItem.itemName = _item.text!
         groceryItem.isComplete = false
-
+        
         rowMaxOfAddedItems += 1
         addedItemsExist = true
     }
@@ -356,7 +352,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var count = 0
 
         for _ingredient in Groceries {
-            print("Ingredient \(_ingredient)")
             if (_ingredient.mealIndex == section) {
                     count += 1
             }
@@ -366,34 +361,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return count
     }
     
-    //func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //tableView.sectionIndexBackgroundColor = UIColor(named: "_Teal Label")
-        //tableView.sectionIndexColor = UIColor(named: "_Teal Label")
-
-//        if (sectionOfAddedItems != section && sectionOfAddedItems != 0) {
-//            let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
-//            return _plannedMenu?.mealName
-//        } else {
-//            return "Additional Items"
-//        }
-    //}
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 40))
         let view = UIView(frame: CGRect.zero)
         view.backgroundColor = UIColor(named: "_Off-White Background to Tertiary")
-        let label = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.frame.size.width, height: 30))
-        //let label = UILabel(frame: CGRect.zero)
-        label.font = .systemFont(ofSize: 24)
+        let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.size.width, height: 35))
+        label.font = .systemFont(ofSize: 20)
         label.textColor = .systemGray
         view.layer.cornerRadius = 8
         
         if (sectionOfAddedItems != section && sectionOfAddedItems != 0) {
-            //let _plannedMenu = Groceries.first(where: { $0.mealIndex == section })
-            //print(_plannedMenu)
-            //print(plannedMenu![section].meal?.mealName)
-            //let _plannedMenu = plannedMenu.first(where: { $0.meal.mealName ==  })
-
             label.text = plannedMenu![section].meal?.mealName//_plannedMenu?.mealName
         } else {
             label.text = "Additional Items"
@@ -405,11 +381,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 35
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 45
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -499,21 +475,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
 extension UITableView {
-    func scrollToBottomRow() {
+    func scrollToBottomRow(section: Int) {
         DispatchQueue.main.async {
             guard self.numberOfSections > 0 else { return }
-            
+            //print("number of sections - \(self.numberOfSections)")
             // Make an attempt to use the bottom-most section with at least one row
             var section = max(self.numberOfSections - 1, 0)
-            var row = max(self.numberOfRows(inSection: section) - 1, 0)
+            var row = max(self.numberOfRows(inSection: section), 0)
+            //print("section - \(section)")
+            //print("row - \(row)")
             var indexPath = IndexPath(row: row, section: section)
             // Ensure the index path is valid, otherwise use the section above (sections can
             // contain 0 rows which leads to an invalid index path)
             while !self.indexPathIsValid(indexPath) {
-                section = max(section - 1, 0)
+                section = max(section, 0)
                 row = max(self.numberOfRows(inSection: section) - 1, 0)
                 indexPath = IndexPath(row: row, section: section)
-                
+                //print("section2 - \(section)")
+                //print("row2 - \(row)")
                 // If we're down to the last section, attempt to use the first row
                 if indexPath.section == 0 {
                     indexPath = IndexPath(row: 0, section: 0)
