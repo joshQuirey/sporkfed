@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case ViewMenu = "viewmenu"
         case ViewMeals = "viewmeals"
         case AddMeal = "addmeal"
+        //Add ViewList
         
         init?(fullIdentifier: String) {
             guard let shortcutIdentifier = fullIdentifier.components(separatedBy: ".").last else { return nil }

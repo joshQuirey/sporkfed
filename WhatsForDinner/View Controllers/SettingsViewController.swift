@@ -121,7 +121,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             if (indexPath.row == 0) {
                 sendFeedbackEmail()
             } else {
-                SKStoreReviewController.requestReview()
+                guard let writeReviewURL = URL(string:"https://apps.apple.com/us/app/spork-fed/id1467002477?action=write-review")
+                    else { fatalError("Expected a valid URL") }
+                UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+                //SKStoreReviewController.requestReview()
             }
             break
         default:

@@ -35,6 +35,8 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
         case NextCategory = 0, Next
     }
     
+    var helpers = CoreDataHelpers()
+    
     /////////////////////////////
     //View Life Cycle
     /////////////////////////////
@@ -62,72 +64,100 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
 
     // MARK: - Table view data source
     private func fetchNextMealsforCategory() {
-        // Create Fetch Request
-        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+        // Execute Fetch Request
+        let meals = helpers.getNextMealforCategory(context: self.managedObjectContext!, _plannedCategory: currentPlannedDay!.category!)
+       
+       // Update Tickets
+       self.allMeals = meals
+        ////SORTING IS BY ESTIMATED NEXT DATE INSTEAD OF MEAL NAME
         
-        // Configure Fetch Request
-        fetchRequest.predicate = NSPredicate(format: "(ANY tags.name == %@) AND estimatedNextDate != nil", currentPlannedDay!.category!)
-        
-        //fetchRequest.predicate = predicate
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.mealName), ascending: true)]
-        
-        // Perform Fetch Request
-        managedObjectContext!.performAndWait {
-            do {
-                // Execute Fetch Request
-                let meals = try fetchRequest.execute()
-                
-                // Update Tickets
-                self.allMeals = meals
-                
-            } catch {
-                let fetchError = error as NSError
-                print("Unable to Execute Fetch Request")
-                print("\(fetchError), \(fetchError.localizedDescription)")
-            }
-        }
+//        // Create Fetch Request
+//        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+//
+//        // Configure Fetch Request
+//        fetchRequest.predicate = NSPredicate(format: "(ANY tags.name == %@) AND estimatedNextDate != nil", currentPlannedDay!.category!)
+//
+//        //fetchRequest.predicate = predicate
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.mealName), ascending: true)]
+//
+//        // Perform Fetch Request
+//        managedObjectContext!.performAndWait {
+//            do {
+//                // Execute Fetch Request
+//                let meals = try fetchRequest.execute()
+//
+//                // Update Tickets
+//                self.allMeals = meals
+//
+//            } catch {
+//                let fetchError = error as NSError
+//                print("Unable to Execute Fetch Request")
+//                print("\(fetchError), \(fetchError.localizedDescription)")
+//            }
+//        }
     }
     
     private func fetchNextMeals() {
+        // Execute Fetch Request
+        let meals = helpers.getNextMeals(context: self.managedObjectContext!)
+        
+        // Update Tickets
+        if meals.count > 0 {
+        //print("meals greater than 0")
+            if self.allMeals?.count == 0 {
+        //print("all meals equals 0")
+                self.allMeals = meals
+            } else {
+        //print("all meals greater than 0")
+                for meal in meals {
+                    if self.allMeals?.contains(meal) == false {
+                        self.allMeals?.append(meal)
+                    }
+                }
+                            //self.allMeals?.append(contentsOf: meals)
+            }
+        }                        
+         ////SORTING IS BY ESTIMATED NEXT DATE INSTEAD OF MEAL NAME
+        
         // Create Fetch Request
-        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+//        let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
 
         // Configure Fetch Request
 //        fetchRequest.predicate = NSPredicate(format: "(ANY tags.name != %@ AND ANY tags.name == nil) AND estimatedNextDate != nil", currentPlannedDay!.category!)
-        fetchRequest.predicate = NSPredicate(format: "estimatedNextDate != nil")
+//        fetchRequest.predicate = NSPredicate(format: "estimatedNextDate != nil")
         
         //fetchRequest.predicate = predicate
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.mealName), ascending: true)]
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.mealName), ascending: true)]
         
         // Perform Fetch Request
-        managedObjectContext!.performAndWait {
-            do {
-                // Execute Fetch Request
-                let meals = try fetchRequest.execute()
-
-                // Update Tickets
-                if meals.count > 0 {
-//                    print("meals greater than 0")
-                    if self.allMeals?.count == 0 {
-//                        print("all meals equals 0")
-                        self.allMeals = meals
-                    } else {
-//                        print("all meals greater than 0")
-                        for meal in meals {
-                            if self.allMeals?.contains(meal) == false {
-                                self.allMeals?.append(meal)
-                            }
-                        }
-                        //self.allMeals?.append(contentsOf: meals)
-                    }
-                }
-                
-            } catch {
-                let fetchError = error as NSError
-                print("Unable to Execute Fetch Request")
-                print("\(fetchError), \(fetchError.localizedDescription)")
-            }
-        }
+//        managedObjectContext!.performAndWait {
+//            do {
+//                // Execute Fetch Request
+//                let meals = try fetchRequest.execute()
+//
+//                // Update Tickets
+//                if meals.count > 0 {
+////                    print("meals greater than 0")
+//                    if self.allMeals?.count == 0 {
+////                        print("all meals equals 0")
+//                        self.allMeals = meals
+//                    } else {
+////                        print("all meals greater than 0")
+//                        for meal in meals {
+//                            if self.allMeals?.contains(meal) == false {
+//                                self.allMeals?.append(meal)
+//                            }
+//                        }
+//                        //self.allMeals?.append(contentsOf: meals)
+//                    }
+//                }
+//
+//            } catch {
+//                let fetchError = error as NSError
+//                print("Unable to Execute Fetch Request")
+//                print("\(fetchError), \(fetchError.localizedDescription)")
+//            }
+//        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
