@@ -246,18 +246,5 @@ class CoreDataHelpers {
             print("\(fetchError), \(fetchError.localizedDescription)")
         }
         
-        
-        
-        //let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "GroceryList")
-        
-        //let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        //do {
-          //  try context.execute(batchDeleteRequest)
-          //  try context.save()
-            
-        //} catch {
-          
-        //}
     }
 }

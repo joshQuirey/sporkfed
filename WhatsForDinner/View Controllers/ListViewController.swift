@@ -175,6 +175,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let item = delete as? GroceryList {
                     if let index = Groceries.firstIndex(of: item) {
                         Groceries.remove(at: index)
+                        //print Added Groceries
+                        if (Groceries.count == 0) {
+                            numberOfMeals = 0
+                            sectionOfAddedItems = 0
+                        }
                         groceryListDidChange = true
                     }
                 }
@@ -189,6 +194,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func deleteGroceries() {
         helpers.deleteGroceries(context: self.managedObjectContext!)
+        //fetchGroceries()
     }
     
     func fetchGroceries() {
@@ -226,7 +232,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func refreshList() {
         helpers.deleteGroceries(context: self.managedObjectContext!)
-
+        
         plannedMenu = []
         numberOfMeals = 0
         Groceries = []
@@ -246,9 +252,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (numberOfMeals > 0) {
             var groceryItem = GroceryList()
             var mealIndex: Int = 0
+            var itemIndex: Int = 0
             for _planned in plannedMenu! {
                 if (_planned.meal?.mealName != nil) {
-                    var itemIndex: Int = 0
+                    itemIndex = 0
                    
                     for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
                         groceryItem = GroceryList(context: managedObjectContext!)
@@ -263,6 +270,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     mealIndex += 1
                 }
             }
+            
+            //mealIndex += 1
+//            itemIndex = 0
+//            for _added in AddedGroceries {
+//                _added.mealIndex = Int16(mealIndex)
+//                _added.itemIndex = Int16(itemIndex)
+//                Groceries.append(_added)
+//                itemIndex += 1
+//            }
+            
         } else {
             //custom list
         }
