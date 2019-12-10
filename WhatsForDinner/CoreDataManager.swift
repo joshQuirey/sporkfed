@@ -11,21 +11,7 @@ import Foundation
 import UIKit
 
 open class CoreDataManager {
-    //static let manager = CoreDataManager()
     private let modelName: String
-    //private init() { self.modelName = "MealModel" }
-    
-    
-//    class var sharedInstance : CoreDataManager {
-//        struct Static {
-//            static var onceToken: dispatch_once_t = 0
-//            static var instance: CoreDataManager? = nil
-//        }
-//        dispatch_once(&Static.onceToken) {
-//            Static.instance = CoreDataManager()
-//        }
-//        return Static.instance!
-//    }
     
     init(modelName: String) {
         self.modelName = modelName
@@ -33,12 +19,7 @@ open class CoreDataManager {
         setupNotificationHandling()
     }
     
-    func addMeal(withName name: String, atURL url: String) {
-      //  let meal = Meal(context: managedObjectContext)
-      //  meal.mealName = name
-      //  meal.mealDesc = url
-      //  saveChanges()
-      }
+    func addMeal(withName name: String, atURL url: String) {}
     
     private func setupNotificationHandling() {
         let notificationCenter = NotificationCenter.default
@@ -195,7 +176,7 @@ open class CoreDataManager {
     }
     
     private lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MealModel")
+        let container = NSPersistentCloudKitContainer(name: "MealModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
