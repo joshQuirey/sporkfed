@@ -33,8 +33,8 @@
             filePath = "WhatsForDinner/View Controllers/Recipe View Controllers/RecipeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "populateMeal(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -49,10 +49,10 @@
             filePath = "WhatsForDinner/View Controllers/Recipe View Controllers/RecipeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "RecipeViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -179,8 +179,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "application(_:open:options:)"
-            landmarkType = "7">
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -195,8 +195,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "229"
             endingLineNumber = "229"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "fetchMeals()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

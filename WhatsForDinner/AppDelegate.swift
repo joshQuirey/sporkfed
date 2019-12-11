@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -68,6 +68,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         createQuickActions()
+        
+        
+        FirebaseApp.configure()
+        //let authUI = FUIAuth.defaultAuthUI()
+        //authUI.delegate = self
+        //let authViewController = authUI.authViewController()
+        
+        
+        //let db = Firestore.firestore()
         
         return true
     }

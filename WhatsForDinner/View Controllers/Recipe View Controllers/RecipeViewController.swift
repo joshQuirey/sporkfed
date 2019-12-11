@@ -11,8 +11,12 @@ import CoreData
 import AVFoundation
 import Photos
 import SafariServices
+//import Firebase
 
 class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+    
+//    var db: Firestore!
+    
     /////////////////////////////
     //Outlets
     /////////////////////////////
@@ -99,6 +103,12 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         categories.textContainer.lineBreakMode = .byWordWrapping
         
         mealURL.delegate = self
+        
+//        let settings = FirestoreSettings()
+//        Firestore.firestore().settings = settings
+//
+//        db = Firestore.firestore()
+//
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -313,6 +323,21 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         populateMeal(meal!)
+        
+        // Add a new document with a generated ID
+//        var ref: DocumentReference? = nil
+//        ref = db.collection("users").addDocument(data: [
+//            "first": "Ada",
+//            "last": "Lovelace",
+//            "born": 1815
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     

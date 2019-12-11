@@ -10,12 +10,14 @@ import UIKit
 import StoreKit
 import MessageUI
 import SafariServices
+import Firebase
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     /////////////////////////////
     //Outlets
     /////////////////////////////
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var successLabel: UILabel!
     
     /////////////////////////////
     //View Life Cycle
@@ -169,4 +171,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         safariVC.preferredControlTintColor = UIColor(named: "_Purple to Teal")
         present(safariVC, animated: true)
     }
+    
+    
+    @IBAction func loginTapped(_ sender: Any) {
+       // let authUI = Auth.auth().signIn(withEmail: <#T##String#>, link: <#T##String#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
+        
+    }
+    
+    
 }

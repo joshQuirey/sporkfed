@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		409A3E012320403500F5E220 /* AddMeal.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 409A3DF72320403500F5E220 /* AddMeal.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		409A3E052320412F00F5E220 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
 		40C7F14E232199E0002B2859 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManager.swift */; };
+		5406235020BEF3D639D7E1AA /* Pods_Today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE419F26F1CD6E9FDAAF0574 /* Pods_Today.framework */; };
 		747BF01E2118B6D1006EACA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747BF01D2118B6D1006EACA0 /* AppDelegate.swift */; };
 		747BF0202118B6D1006EACA0 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747BF01F2118B6D1006EACA0 /* MealsViewController.swift */; };
 		747BF0252118B6D1006EACA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0232118B6D1006EACA0 /* Main.storyboard */; };
@@ -28,6 +29,9 @@
 		747E3558211CE7380065799E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManager.swift */; };
 		748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947C9211A0D73000859F1 /* PlanViewController.swift */; };
 		748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947CB211A0DF2000859F1 /* RecipeViewController.swift */; };
+		91FFD3BF5DB0BC5FA1812D29 /* Pods_AddMeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */; };
+		92D91BBF7AF99B05F6EA8C56 /* Pods_WhatsForDinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6511BE16A9FDF2B32B3841 /* Pods_WhatsForDinner.framework */; };
+		A715826123A1A48C002D9D59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715826023A1A48C002D9D59 /* LoginViewController.swift */; };
 		A71C3B1E2368A55300D6ECC0 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */; };
 		A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F1D0F236CD5DF00796F5E /* ListViewController.swift */; };
 		A728FE5722A6E2720078C666 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FE5622A6E2720078C666 /* SettingsViewController.swift */; };
@@ -38,6 +42,9 @@
 		A72EDB0A235127AD00E886CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0262118B6D4006EACA0 /* Assets.xcassets */; };
 		A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */; };
 		A777A59C229DB3300071326E /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A59B229DB3300071326E /* BaseTabBarController.swift */; };
+		A78BB80223A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
+		A78BB80323A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
+		A78BB80423A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
 		A7C5D50523578C860002F463 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManager.swift */; };
 		A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */; };
@@ -78,6 +85,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0CD469243D7A899C6ECB6D25 /* Pods-WhatsForDinner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsForDinner.debug.xcconfig"; path = "Target Support Files/Pods-WhatsForDinner/Pods-WhatsForDinner.debug.xcconfig"; sourceTree = "<group>"; };
+		2F6511BE16A9FDF2B32B3841 /* Pods_WhatsForDinner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsForDinner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FB880DDE72BC5927C8FEEF0 /* Pods-Today.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.debug.xcconfig"; path = "Target Support Files/Pods-Today/Pods-Today.debug.xcconfig"; sourceTree = "<group>"; };
 		400C0F31226A5D010039625E /* CreatePlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlanViewController.swift; sourceTree = "<group>"; };
 		4029E3142132096F003D3071 /* RecipeIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientViewController.swift; sourceTree = "<group>"; };
 		4029E31821320B08003D3071 /* RecipeDirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDirectionsViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +110,10 @@
 		747E3557211CE7380065799E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		748947C9211A0D73000859F1 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		748947CB211A0DF2000859F1 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		9057967602AC40E9A40BF1F7 /* Pods-AddMeal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.debug.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.debug.xcconfig"; sourceTree = "<group>"; };
+		90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddMeal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A37E699BF08FFE13363D43F0 /* Pods-AddMeal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.release.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.release.xcconfig"; sourceTree = "<group>"; };
+		A715826023A1A48C002D9D59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		A71F1D0F236CD5DF00796F5E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A728FE5622A6E2720078C666 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -110,11 +124,15 @@
 		A72EDB032351215500E886CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		A777A59B229DB3300071326E /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		A78BB80123A1596E003A0027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsForDinner.entitlements; sourceTree = "<group>"; };
 		A7C5D50623578F910002F463 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceMealController.swift; sourceTree = "<group>"; };
 		A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
+		E8EB64FE31726B1E81E42C4F /* Pods-WhatsForDinner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsForDinner.release.xcconfig"; path = "Target Support Files/Pods-WhatsForDinner/Pods-WhatsForDinner.release.xcconfig"; sourceTree = "<group>"; };
+		ED77DA8D28B4C921D09F81C8 /* Pods-Today.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.release.xcconfig"; path = "Target Support Files/Pods-Today/Pods-Today.release.xcconfig"; sourceTree = "<group>"; };
+		EE419F26F1CD6E9FDAAF0574 /* Pods_Today.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Today.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91FFD3BF5DB0BC5FA1812D29 /* Pods_AddMeal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				406C0C09231EFCCE00586FCF /* CloudKit.framework in Frameworks */,
+				92D91BBF7AF99B05F6EA8C56 /* Pods_WhatsForDinner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A72EDAFC2351215500E886CE /* NotificationCenter.framework in Frameworks */,
+				5406235020BEF3D639D7E1AA /* Pods_Today.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +187,7 @@
 				A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */,
 				A777A59B229DB3300071326E /* BaseTabBarController.swift */,
 				A728FE5622A6E2720078C666 /* SettingsViewController.swift */,
+				A715826023A1A48C002D9D59 /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -175,6 +197,9 @@
 			children = (
 				406C0C08231EFCCE00586FCF /* CloudKit.framework */,
 				A72EDAFB2351215500E886CE /* NotificationCenter.framework */,
+				90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */,
+				EE419F26F1CD6E9FDAAF0574 /* Pods_Today.framework */,
+				2F6511BE16A9FDF2B32B3841 /* Pods_WhatsForDinner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,6 +225,19 @@
 			path = AddMeal;
 			sourceTree = "<group>";
 		};
+		639B1397981A307E29443E5B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9057967602AC40E9A40BF1F7 /* Pods-AddMeal.debug.xcconfig */,
+				A37E699BF08FFE13363D43F0 /* Pods-AddMeal.release.xcconfig */,
+				2FB880DDE72BC5927C8FEEF0 /* Pods-Today.debug.xcconfig */,
+				ED77DA8D28B4C921D09F81C8 /* Pods-Today.release.xcconfig */,
+				0CD469243D7A899C6ECB6D25 /* Pods-WhatsForDinner.debug.xcconfig */,
+				E8EB64FE31726B1E81E42C4F /* Pods-WhatsForDinner.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		747BF0112118B6D1006EACA0 = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +246,7 @@
 				A72EDAFD2351215500E886CE /* Today */,
 				747BF01B2118B6D1006EACA0 /* Products */,
 				406C0C07231EFCCE00586FCF /* Frameworks */,
+				639B1397981A307E29443E5B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,6 +274,7 @@
 				A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */,
 				747BF0262118B6D4006EACA0 /* Assets.xcassets */,
 				747BF02B2118B6D4006EACA0 /* Info.plist */,
+				A78BB80123A1596E003A0027 /* GoogleService-Info.plist */,
 				747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */,
 			);
 			path = WhatsForDinner;
@@ -258,6 +298,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 409A3E022320403500F5E220 /* Build configuration list for PBXNativeTarget "AddMeal" */;
 			buildPhases = (
+				C4060A1DC6C53121493DA006 /* [CP] Check Pods Manifest.lock */,
 				409A3DF32320403500F5E220 /* Sources */,
 				409A3DF42320403500F5E220 /* Frameworks */,
 				409A3DF52320403500F5E220 /* Resources */,
@@ -275,10 +316,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 747BF02E2118B6D4006EACA0 /* Build configuration list for PBXNativeTarget "WhatsForDinner" */;
 			buildPhases = (
+				35DCA4348DA4B40B5CB35ACA /* [CP] Check Pods Manifest.lock */,
 				747BF0162118B6D1006EACA0 /* Sources */,
 				747BF0172118B6D1006EACA0 /* Frameworks */,
 				747BF0182118B6D1006EACA0 /* Resources */,
 				406C0C06231ED92000586FCF /* Embed App Extensions */,
+				A415D6584547DD0863D1F036 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,6 +338,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A72EDB092351215500E886CE /* Build configuration list for PBXNativeTarget "Today" */;
 			buildPhases = (
+				DACE658042F34FE8A66D195C /* [CP] Check Pods Manifest.lock */,
 				A72EDAF62351215500E886CE /* Sources */,
 				A72EDAF72351215500E886CE /* Frameworks */,
 				A72EDAF82351215500E886CE /* Resources */,
@@ -362,6 +406,7 @@
 			files = (
 				4052B84A2326BE5900DF59C2 /* Assets.xcassets in Resources */,
 				409A3DFD2320403500F5E220 /* MainInterface.storyboard in Resources */,
+				A78BB80323A1596E003A0027 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +416,7 @@
 			files = (
 				747BF02A2118B6D4006EACA0 /* LaunchScreen.storyboard in Resources */,
 				747BF0272118B6D4006EACA0 /* Assets.xcassets in Resources */,
+				A78BB80223A1596E003A0027 /* GoogleService-Info.plist in Resources */,
 				4092938D2148692200B16004 /* Categories.storyboard in Resources */,
 				747BF0252118B6D1006EACA0 /* Main.storyboard in Resources */,
 			);
@@ -382,10 +428,97 @@
 			files = (
 				A72EDB0A235127AD00E886CE /* Assets.xcassets in Resources */,
 				A72EDB022351215500E886CE /* MainInterface.storyboard in Resources */,
+				A78BB80423A1596E003A0027 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35DCA4348DA4B40B5CB35ACA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WhatsForDinner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A415D6584547DD0863D1F036 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsForDinner/Pods-WhatsForDinner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsForDinner/Pods-WhatsForDinner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhatsForDinner/Pods-WhatsForDinner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4060A1DC6C53121493DA006 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AddMeal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DACE658042F34FE8A66D195C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Today-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		409A3DF32320403500F5E220 /* Sources */ = {
@@ -406,6 +539,7 @@
 				A777A59C229DB3300071326E /* BaseTabBarController.swift in Sources */,
 				4092938F21486A5600B16004 /* CategoriesViewController.swift in Sources */,
 				4029E3152132096F003D3071 /* RecipeIngredientViewController.swift in Sources */,
+				A715826123A1A48C002D9D59 /* LoginViewController.swift in Sources */,
 				A7F27D1322F9F0C700EA2368 /* UserDefaults+Key.swift in Sources */,
 				748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */,
 				400C0F32226A5D010039625E /* CreatePlanViewController.swift in Sources */,
@@ -486,6 +620,7 @@
 /* Begin XCBuildConfiguration section */
 		409A3E032320403500F5E220 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9057967602AC40E9A40BF1F7 /* Pods-AddMeal.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -512,6 +647,7 @@
 		};
 		409A3E042320403500F5E220 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A37E699BF08FFE13363D43F0 /* Pods-AddMeal.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AddMeal/AddMeal.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -651,6 +787,7 @@
 		};
 		747BF02F2118B6D4006EACA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CD469243D7A899C6ECB6D25 /* Pods-WhatsForDinner.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -678,6 +815,7 @@
 		};
 		747BF0302118B6D4006EACA0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8EB64FE31726B1E81E42C4F /* Pods-WhatsForDinner.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -704,11 +842,12 @@
 		};
 		A72EDB072351215500E886CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FB880DDE72BC5927C8FEEF0 /* Pods-Today.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -716,7 +855,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
@@ -729,11 +868,12 @@
 		};
 		A72EDB082351215500E886CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED77DA8D28B4C921D09F81C8 /* Pods-Today.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Today/Today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 44K3F3FFJM;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -741,7 +881,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
