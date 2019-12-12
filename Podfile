@@ -22,7 +22,10 @@ target 'WhatsForDinner' do
   use_frameworks!
 
   # Pods for WhatsForDinner
+
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
 
 end

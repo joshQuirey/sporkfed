@@ -11,6 +11,7 @@ import StoreKit
 import MessageUI
 import SafariServices
 import Firebase
+import FirebaseAuth
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     /////////////////////////////
@@ -18,6 +19,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     /////////////////////////////
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var successLabel: UILabel!
+    @IBOutlet weak var login: UIButton!
+    @IBOutlet weak var signUp: UIButton!
+    @IBOutlet weak var logOut: UIButton!
     
     /////////////////////////////
     //View Life Cycle
@@ -38,6 +42,31 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationController?.navigationBar.standardAppearance = appearance
         } else {
             // Fallback on earlier versions
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        checkIfUserLoggedIn()
+    }
+    
+    func checkIfUserLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            //user is signed in
+            let user  = Auth.auth().currentUser
+            successLabel.text = user?.email
+
+            login.isHidden = true
+            signUp.isHidden = true
+            successLabel.isHidden = false
+            logOut.isHidden = false
+        } else {
+            //No user is signed in
+            successLabel.text = "no user"
+            login.isHidden = false
+            signUp.isHidden = false
+            successLabel.isHidden = true
+            logOut.isHidden = true
         }
     }
     
@@ -173,8 +202,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    @IBAction func loginTapped(_ sender: Any) {
-       // let authUI = Auth.auth().signIn(withEmail: <#T##String#>, link: <#T##String#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
+    @IBAction func logoutTapped(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            checkIfUserLoggedIn()
+        } catch {
+            
+        }
         
     }
     
