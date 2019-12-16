@@ -6,8 +6,13 @@
 //  Copyright © 2018 jquirey. All rights reserved.
 //
 
+//App ID Test ca-app-pub-3940256099942544/2934735716
+//App ID ca-app-pub-2588193466211052~2675729023
+//App Unit ID ca-app-pub-2588193466211052/5624012915
+
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBarDelegate {
     ////////////////////////////
@@ -16,6 +21,8 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     
     /////////////////////////////
     //Properties
@@ -84,6 +91,12 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         }
         
         tableView.keyboardDismissMode = .onDrag
+        
+        //AdMob
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -456,5 +469,15 @@ extension MealsViewController: NSFetchedResultsControllerDelegate {
         @unknown default:
             break
         }
+    }
+}
+
+extension MealsViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
     }
 }

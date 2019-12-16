@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="10" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pjl-Ga-bM0">
-                                <rect key="frame" x="10" y="50" width="394" height="675"/>
+                                <rect key="frame" x="10" y="50" width="394" height="617"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -163,6 +163,14 @@
                                 <color key="textColor" name="_Purple to Teal"/>
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PI-D2-3rW" customClass="GADBannerView">
+                                <rect key="frame" x="47" y="675" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fTX-nF-hbK"/>
+                                    <constraint firstAttribute="width" constant="320" id="ytR-Xa-Eh7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -175,13 +183,15 @@
                             <constraint firstItem="Pjl-Ga-bM0" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="10" id="KWb-1m-VM4"/>
                             <constraint firstItem="Pjl-Ga-bM0" firstAttribute="top" secondItem="Ksr-Vo-AvU" secondAttribute="bottom" id="Knb-4e-q29"/>
                             <constraint firstItem="Ksr-Vo-AvU" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="Lyz-On-Dnk"/>
+                            <constraint firstItem="7PI-D2-3rW" firstAttribute="top" secondItem="Pjl-Ga-bM0" secondAttribute="bottom" constant="8" id="Nor-vB-cCu"/>
                             <constraint firstItem="Ksr-Vo-AvU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="VaQ-ZJ-bSq"/>
+                            <constraint firstItem="7PI-D2-3rW" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cE6-gV-Uxq"/>
                             <constraint firstItem="Pjl-Ga-bM0" firstAttribute="top" secondItem="Ksr-Vo-AvU" secondAttribute="bottom" id="cNf-SO-Huf"/>
                             <constraint firstItem="9k2-WJ-RZu" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="k0m-8I-8Ak"/>
-                            <constraint firstItem="Pjl-Ga-bM0" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="nw2-ZP-pKM"/>
                             <constraint firstItem="9k2-WJ-RZu" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="p8U-e9-kAy"/>
                             <constraint firstItem="Ksr-Vo-AvU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="sqO-JS-mAF"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Pjl-Ga-bM0" secondAttribute="trailing" constant="10" id="uZF-NS-0lD"/>
+                            <constraint firstItem="7PI-D2-3rW" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="y9O-9k-Fzb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
@@ -195,6 +205,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="EmptyTableLabel" destination="9k2-WJ-RZu" id="U4l-aM-GcU"/>
+                        <outlet property="bannerView" destination="7PI-D2-3rW" id="DQq-Qe-RyX"/>
                         <outlet property="emptyTableLabel" destination="9k2-WJ-RZu" id="Mqh-uS-gwE"/>
                         <outlet property="searchBar" destination="goC-Ye-WWY" id="7c0-A6-fVE"/>
                         <outlet property="tableView" destination="Pjl-Ga-bM0" id="TpF-px-5d9"/>
@@ -202,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4489.855072463768" y="789.50892857142856"/>
+            <point key="canvasLocation" x="4488.4057971014499" y="789.50892857142856"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="UIK-vq-SSn">

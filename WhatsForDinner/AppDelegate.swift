@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 import Firebase
+import GoogleMobileAds
+
+//App ID Test ca-app-pub-3940256099942544/2934735716
+//App ID ca-app-pub-2588193466211052~2675729023
+//App Unit ID ca-app-pub-2588193466211052/5624012915
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -77,6 +82,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         //let db = Firestore.firestore()
+
+        //AdMob
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
+        
+        //GADMobileAds.configure(withApplicationID: "ca-app-pub-2588193466211052~2675729023") // "test ca-app-pub-3940256099942544/2934735716") //ca-app-pub-2588193466211052~2675729023")
         
         return true
     }
