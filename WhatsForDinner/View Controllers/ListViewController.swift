@@ -52,7 +52,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         title = "Grocery List"
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = tabBar.coreDataManager.managedObjectContext
+        managedObjectContext = CoreDataManager.context //tabBar.coreDataManager.managedObjectContext
 
         tableView.tableFooterView = UIView()
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")

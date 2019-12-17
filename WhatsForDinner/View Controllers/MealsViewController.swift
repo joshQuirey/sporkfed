@@ -62,7 +62,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 
         title = "Meals"
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = tabBar.coreDataManager.managedObjectContext
+        managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.managedObjectContext
 
         fetchMeals()
         updateView()

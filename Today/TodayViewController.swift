@@ -13,7 +13,7 @@ import CoreData
 class TodayViewController: UIViewController, NCWidgetProviding {
 
     var today: [PlannedDay] = []
-    let manager = CoreDataManager.init(modelName: "MealModel")
+    let manager = CoreDataManager.init() //(modelName: "MealModel")
     var managedObjectContext: NSManagedObjectContext?
     //var mealObjectID = NSManagedObjectID()
     
@@ -41,7 +41,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.managedObjectContext = manager.managedObjectContext
+        self.managedObjectContext = CoreDataManager.context // manager.managedObjectContext
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {

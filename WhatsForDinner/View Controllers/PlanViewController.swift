@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreData
-
+import GoogleMobileAds
+//App UNIT ID ca-app-pub-2588193466211052/5013638826
+//App ID Test ca-app-pub-3940256099942544/2934735716
 
 struct MyVariables {
     static var test = "strings"
@@ -21,6 +23,7 @@ class PlanViewController: UIViewController {
     /////////////////////////////
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     /////////////////////////////
     //Properties
@@ -61,7 +64,7 @@ class PlanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = tabBar.coreDataManager.managedObjectContext
+        managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.context
         
         let logo = UIImageView()
         logo.image = UIImage(named: "sporkfed_whitelogo")
@@ -91,6 +94,12 @@ class PlanViewController: UIViewController {
             self.navigationItem.rightBarButtonItem?.title = "Plan"
             emptyTableLabel.text = "Once you have your Meals Saved, Select Plan to Get Started!"
         }
+        
+        //AdMob
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -224,9 +233,9 @@ class PlanViewController: UIViewController {
     
     @objc private func savePlans(_ notification: Notification) {
         do {
-            try self.managedObjectContext!.save()
+            try CoreDataManager.context.save()    //self.managedObjectContext!.save()
         } catch {
-            fatalError("Failure to save context: \(error)")
+            fatalError("Failure to save context: \(error.localizedDescription)")
         }
     }
     
@@ -528,5 +537,15 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return _nextMeal
+    }
+}
+
+extension PlanViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
     }
 }

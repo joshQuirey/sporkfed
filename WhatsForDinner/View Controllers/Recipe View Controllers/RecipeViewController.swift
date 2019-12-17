@@ -118,7 +118,7 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         if (meal == nil) {
             if (managedObjectContext == nil) {
-                managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).coreDataManager.managedObjectContext
+                managedObjectContext = CoreDataManager.context // (UIApplication.shared.delegate as! AppDelegate).coreDataManager.managedObjectContext
             }
             
             meal = Meal(context: managedObjectContext!)

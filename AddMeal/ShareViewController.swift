@@ -18,7 +18,7 @@ class ShareViewController: SLComposeServiceViewController {
 //    private var selectedImage: UIImage?
     
     var selectedMeal: Meal!
-    let manager = CoreDataManager.init(modelName: "MealModel")
+    let manager = CoreDataManager.init()
     var managedObjectContext: NSManagedObjectContext?
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class ShareViewController: SLComposeServiceViewController {
 //            }
 //        }
         
-        self.managedObjectContext = manager.managedObjectContext
+        self.managedObjectContext = CoreDataManager.context // manager.managedObjectContext
         self.selectedMeal = Meal(context: self.managedObjectContext!)
     }
     

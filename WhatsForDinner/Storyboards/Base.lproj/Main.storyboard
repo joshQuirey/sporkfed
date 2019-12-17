@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="10" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pjl-Ga-bM0">
-                                <rect key="frame" x="10" y="50" width="394" height="617"/>
+                                <rect key="frame" x="10" y="50" width="394" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -163,12 +163,13 @@
                                 <color key="textColor" name="_Purple to Teal"/>
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PI-D2-3rW" customClass="GADBannerView">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PI-D2-3rW" customClass="GADBannerView">
                                 <rect key="frame" x="47" y="675" width="320" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="fTX-nF-hbK"/>
-                                    <constraint firstAttribute="width" constant="320" id="ytR-Xa-Eh7"/>
+                                    <constraint firstAttribute="width" constant="320" id="5bo-ng-aKU"/>
+                                    <constraint firstAttribute="height" constant="50" id="Pkg-ID-vmO"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -183,15 +184,15 @@
                             <constraint firstItem="Pjl-Ga-bM0" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="10" id="KWb-1m-VM4"/>
                             <constraint firstItem="Pjl-Ga-bM0" firstAttribute="top" secondItem="Ksr-Vo-AvU" secondAttribute="bottom" id="Knb-4e-q29"/>
                             <constraint firstItem="Ksr-Vo-AvU" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="Lyz-On-Dnk"/>
-                            <constraint firstItem="7PI-D2-3rW" firstAttribute="top" secondItem="Pjl-Ga-bM0" secondAttribute="bottom" constant="8" id="Nor-vB-cCu"/>
                             <constraint firstItem="Ksr-Vo-AvU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="VaQ-ZJ-bSq"/>
-                            <constraint firstItem="7PI-D2-3rW" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="cE6-gV-Uxq"/>
                             <constraint firstItem="Pjl-Ga-bM0" firstAttribute="top" secondItem="Ksr-Vo-AvU" secondAttribute="bottom" id="cNf-SO-Huf"/>
                             <constraint firstItem="9k2-WJ-RZu" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="k0m-8I-8Ak"/>
                             <constraint firstItem="9k2-WJ-RZu" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="p8U-e9-kAy"/>
+                            <constraint firstItem="7PI-D2-3rW" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="q9Z-KY-So8"/>
+                            <constraint firstItem="7PI-D2-3rW" firstAttribute="top" secondItem="Pjl-Ga-bM0" secondAttribute="bottom" id="rsl-C3-U84"/>
                             <constraint firstItem="Ksr-Vo-AvU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="sqO-JS-mAF"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Pjl-Ga-bM0" secondAttribute="trailing" constant="10" id="uZF-NS-0lD"/>
-                            <constraint firstItem="7PI-D2-3rW" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="y9O-9k-Fzb"/>
+                            <constraint firstItem="7PI-D2-3rW" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="whY-WI-55k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
@@ -674,7 +675,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="10" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t1B-tt-7xy">
-                                <rect key="frame" x="10" y="0.0" width="394" height="725"/>
+                                <rect key="frame" x="10" y="0.0" width="394" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -872,6 +873,14 @@
                                 <color key="textColor" name="_Purple to Teal"/>
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-mP-FcR" customClass="GADBannerView">
+                                <rect key="frame" x="47" y="675" width="320" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="72f-Mx-uNZ"/>
+                                    <constraint firstAttribute="width" constant="320" id="w3j-ER-BCl"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -879,11 +888,13 @@
                             <constraint firstItem="t1B-tt-7xy" firstAttribute="top" secondItem="kOs-uJ-OSa" secondAttribute="top" id="3XG-xn-V0j"/>
                             <constraint firstItem="kOs-uJ-OSa" firstAttribute="trailing" secondItem="VNH-by-DnR" secondAttribute="trailing" constant="40" id="4Kz-yU-5p3"/>
                             <constraint firstItem="VNH-by-DnR" firstAttribute="centerX" secondItem="nzt-gb-HeH" secondAttribute="centerX" id="80P-Kn-HPL"/>
+                            <constraint firstItem="wCg-mP-FcR" firstAttribute="top" secondItem="t1B-tt-7xy" secondAttribute="bottom" id="9vh-lH-CWJ"/>
                             <constraint firstItem="t1B-tt-7xy" firstAttribute="trailing" secondItem="kOs-uJ-OSa" secondAttribute="trailing" constant="-10" id="JKG-Ih-VvM"/>
                             <constraint firstItem="t1B-tt-7xy" firstAttribute="leading" secondItem="kOs-uJ-OSa" secondAttribute="leading" constant="10" id="Jur-s9-fmU"/>
                             <constraint firstItem="VNH-by-DnR" firstAttribute="centerY" secondItem="nzt-gb-HeH" secondAttribute="centerY" id="cqU-ae-imL"/>
-                            <constraint firstItem="t1B-tt-7xy" firstAttribute="bottom" secondItem="kOs-uJ-OSa" secondAttribute="bottom" id="dJa-lc-6vv"/>
                             <constraint firstItem="VNH-by-DnR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kOs-uJ-OSa" secondAttribute="leading" constant="40" id="qKU-Gg-mAa"/>
+                            <constraint firstItem="wCg-mP-FcR" firstAttribute="bottom" secondItem="kOs-uJ-OSa" secondAttribute="bottom" id="vJK-se-pdV"/>
+                            <constraint firstItem="wCg-mP-FcR" firstAttribute="centerX" secondItem="nzt-gb-HeH" secondAttribute="centerX" id="y3p-hQ-Txd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kOs-uJ-OSa"/>
                     </view>
@@ -898,6 +909,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="wCg-mP-FcR" id="bBK-Vf-C4X"/>
                         <outlet property="emptyTableLabel" destination="VNH-by-DnR" id="TGl-4e-MUJ"/>
                         <outlet property="tableView" destination="t1B-tt-7xy" id="viB-4P-yse"/>
                     </connections>
@@ -2321,6 +2333,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qnc-uL-VBf"/>
+        <segue reference="cIL-TX-hOf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    public let coreDataManager = CoreDataManager(modelName:"MealModel")
+    public let coreDataManager = CoreDataManager() //(modelName:"MealModel")
     
     enum QuickAction: String {
         case ViewMenu = "viewmenu"
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let navController = tabBarController!.viewControllers?[1] {
             let mealsViewController = navController.children[0] as! MealsViewController
-            mealsViewController.managedObjectContext = self.coreDataManager.managedObjectContext
+            mealsViewController.managedObjectContext = CoreDataManager.context
             mealsViewController.viewMealURL(_mealName: _meal)
         }
     }
