@@ -52,7 +52,7 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     /////////////////////////////
     //Properties
     /////////////////////////////
-    var managedObjectContext: NSManagedObjectContext?
+    //var managedObjectContext: NSManagedObjectContext?
     var weekPlan = [PlannedDay?]()
     let picker1 = UIPickerView()
     let picker2 = UIPickerView()
@@ -78,7 +78,7 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         startingDate.delegate = self
         
         //determine max days that can be planned
-        let numberAvailable = helpers.getNumberAvailableMeals(context: self.managedObjectContext!)
+        let numberAvailable = helpers.getNumberAvailableMeals(context: CoreDataManager.context) // self.managedObjectContext!)
 
         if (numberAvailable! < numberDaysToPlan) {
             numberDaysToPlan = numberAvailable!
@@ -145,8 +145,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBAction func create(_ sender: Any) {
         //Day1
         if (!childView1.isHidden) {
-            var plannedMeal = Meal(context: self.managedObjectContext!)
-            let day1Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal = Meal(context: CoreDataManager.context) // self.managedObjectContext!)
+            let day1Plan = PlannedDay(context: CoreDataManager.context) // self.managedObjectContext!)
             day1Plan.planStartDate = dateDay1
             day1Plan.date = dateDay1
             day1Plan.planEndDate = dateDay7
@@ -170,8 +170,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         //Day2
         if (!childView2.isHidden) {
-            var plannedMeal2 = Meal(context: self.managedObjectContext!)
-            let day2Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal2 = Meal(context: CoreDataManager.context) // self.managedObjectContext!)
+            let day2Plan = PlannedDay(context: CoreDataManager.context) // self.managedObjectContext!)
             day2Plan.planStartDate = dateDay1
             day2Plan.date = dateDay2
             day2Plan.planEndDate = dateDay7
@@ -195,8 +195,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         //Day3
         if (!childView3.isHidden) {
-            var plannedMeal3 = Meal(context: self.managedObjectContext!)
-            let day3Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal3 = Meal(context: CoreDataManager.context) // self.managedObjectContext!)
+            let day3Plan = PlannedDay(context: CoreDataManager.context) // self.managedObjectContext!)
             day3Plan.planStartDate = dateDay1
             day3Plan.date = dateDay3
             day3Plan.planEndDate = dateDay7
@@ -220,8 +220,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         //Day4
         if (!childView4.isHidden) {
-            var plannedMeal4 = Meal(context: self.managedObjectContext!)
-            let day4Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal4 = Meal(context: CoreDataManager.context) // self.managedObjectContext!)
+            let day4Plan = PlannedDay(context: CoreDataManager.context) //self.managedObjectContext!)
             day4Plan.planStartDate = dateDay1
             day4Plan.date = dateDay4
             day4Plan.planEndDate = dateDay7
@@ -245,8 +245,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
         //Day5
         if (!childView5.isHidden) {
-            var plannedMeal5 = Meal(context: self.managedObjectContext!)
-            let day5Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal5 = Meal(context: CoreDataManager.context) //self.managedObjectContext!)
+            let day5Plan = PlannedDay(context: CoreDataManager.context) //self.managedObjectContext!)
             day5Plan.planStartDate = dateDay1
             day5Plan.date = dateDay5
             day5Plan.planEndDate = dateDay7
@@ -270,8 +270,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         //Day6
         if (!childView6.isHidden) {
-            var plannedMeal6 = Meal(context: self.managedObjectContext!)
-            let day6Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal6 = Meal(context: CoreDataManager.context) //self.managedObjectContext!)
+            let day6Plan = PlannedDay(context: CoreDataManager.context) //self.managedObjectContext!)
             day6Plan.planStartDate = dateDay1
             day6Plan.date = dateDay6
             day6Plan.planEndDate = dateDay7
@@ -295,8 +295,8 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         //Day7
         if (!childView7.isHidden) {
-            var plannedMeal7 = Meal(context: self.managedObjectContext!)
-            let day7Plan = PlannedDay(context: self.managedObjectContext!)
+            var plannedMeal7 = Meal(context: CoreDataManager.context) //self.managedObjectContext!)
+            let day7Plan = PlannedDay(context: CoreDataManager.context) //self.managedObjectContext!)
             day7Plan.planStartDate = dateDay1
             day7Plan.date = dateDay7
             day7Plan.planEndDate = dateDay7
@@ -325,7 +325,7 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func getNextMealforCategory(_plannedCategory: String, _plannedDate: Date, _plannedMeal: inout Meal) -> Meal? {
         //Execute Fetch Request
-        let meals = helpers.getNextMealforCategory(context: self.managedObjectContext!, _plannedCategory: _plannedCategory)
+        let meals = helpers.getNextMealforCategory(context: CoreDataManager.context, _plannedCategory: _plannedCategory)
         
         //Search for Meal
         if (meals.count > 0) {
@@ -336,7 +336,7 @@ class CreatePlanViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func getNextMeal(_plannedDate: Date, _plannedMeal: inout Meal) -> Meal {
-        let meals = helpers.getNextMeals(context: self.managedObjectContext!)
+        let meals = helpers.getNextMeals(context: CoreDataManager.context) //self.managedObjectContext!)
         
         //Search for Meal
         if (meals.count > 0) {

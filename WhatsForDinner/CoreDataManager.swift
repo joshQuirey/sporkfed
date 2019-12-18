@@ -17,15 +17,16 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
     
-    static var persistentContainer: NSPersistentCloudKitContainer = {
+    static var persistentContainer: NSPersistentContainer = {
         
-        let container = NSPersistentCloudKitContainer(name: "MealModel")
+        //let container = NSPersistentCloudKitContainer(name: "MealModel")
+        let container = NSPersistentContainer(name: "MealModel")
         
-        do {
-            try container.initializeCloudKitSchema()
-        } catch {
-            
-        }
+//        do {
+//            try container.initializeCloudKitSchema()
+//        } catch {
+//
+//        }
         
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

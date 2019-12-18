@@ -24,7 +24,7 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
     /////////////////////////////
     //Properties
     /////////////////////////////
-    var managedObjectContext: NSManagedObjectContext?
+    //var managedObjectContext: NSManagedObjectContext?
     private var nextMealsforCategory: [Meal]?
     private var nextMeals: [Meal]?
     private var allMeals: [Meal]?
@@ -65,7 +65,7 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Table view data source
     private func fetchNextMealsforCategory() {
         // Execute Fetch Request
-        let meals = helpers.getNextMealforCategory(context: self.managedObjectContext!, _plannedCategory: currentPlannedDay!.category!)
+        let meals = helpers.getNextMealforCategory(context: CoreDataManager.context, _plannedCategory: currentPlannedDay!.category!)
        
        // Update Tickets
        self.allMeals = meals
@@ -99,7 +99,7 @@ class ReplaceMealController: UIViewController, UITableViewDataSource, UITableVie
     
     private func fetchNextMeals() {
         // Execute Fetch Request
-        let meals = helpers.getNextMeals(context: self.managedObjectContext!)
+        let meals = helpers.getNextMeals(context: CoreDataManager.context)
         
         // Update Tickets
         if meals.count > 0 {

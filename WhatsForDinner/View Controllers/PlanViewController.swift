@@ -28,7 +28,7 @@ class PlanViewController: UIViewController {
     /////////////////////////////
     //Properties
     /////////////////////////////
-    var managedObjectContext: NSManagedObjectContext?
+    //var managedObjectContext: NSManagedObjectContext?
     private var currentIndex: Int?
     
     var plannedDays: [PlannedDay]? {
@@ -64,7 +64,7 @@ class PlanViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.context
+        //managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.context
         
         let logo = UIImageView()
         logo.image = UIImage(named: "sporkfed_whitelogo")
@@ -111,7 +111,7 @@ class PlanViewController: UIViewController {
         notificationCenter.addObserver(self,
                                        selector: #selector(managedObjectContextObjectsDidChange(_:)),
                                        name: Notification.Name.NSManagedObjectContextObjectsDidChange,
-                                       object: self.managedObjectContext)
+                                       object: CoreDataManager.context)
         
         notificationCenter.addObserver(self,
                                        selector: #selector(savePlans(_:)),
@@ -137,7 +137,7 @@ class PlanViewController: UIViewController {
                 return
             }
 
-            destination.managedObjectContext = self.managedObjectContext
+            //destination.managedObjectContext = self.managedObjectContext
             
             //Determine Plan Starting Date
             var startDate = Date()
@@ -152,7 +152,7 @@ class PlanViewController: UIViewController {
                 return
             }
             
-            destination.managedObjectContext = self.managedObjectContext
+            //destination.managedObjectContext = self.managedObjectContext
             let _indexpath = tableView.indexPathForSelectedRow
             let _meal = plannedDays![(_indexpath!.section)].meal
             destination.meal = _meal
@@ -162,7 +162,7 @@ class PlanViewController: UIViewController {
                 return
             }
             
-            destination.managedObjectContext = self.managedObjectContext
+            //destination.managedObjectContext = self.managedObjectContext
             destination.currentPlannedDay = plannedDays![(self.currentIndex!)]
             
         default:
@@ -188,7 +188,8 @@ class PlanViewController: UIViewController {
                 
                 if let plannedMeal = insert as? Meal {
                     if (plannedMeal.mealName == nil) {
-                        self.managedObjectContext!.delete(plannedMeal)
+                        CoreDataManager.context.delete(plannedMeal)
+//                        self.managedObjectContext!.delete(plannedMeal)
                     }
                 }
             }
@@ -243,7 +244,7 @@ class PlanViewController: UIViewController {
         plannedDays = nil
         
         // Execute Fetch Request
-        plannedDays = helpers.fetchPlans(context: self.managedObjectContext!)
+        plannedDays = helpers.fetchPlans(context: CoreDataManager.context)  //self.managedObjectContext!)
         
         //Reload Table View
         if (plannedDays!.count > 0) {
@@ -360,7 +361,8 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
             //Need to roll back the planned date for each of the meals coming up after the meal deleted
-            self.managedObjectContext!.delete(_plannedDay)
+            CoreDataManager.context.delete(_plannedDay)
+//            self.managedObjectContext!.delete(_plannedDay)
             
             //Update the dates for remaining planned days to be a day earlier
             var i = indexPath.section + 1
@@ -406,7 +408,8 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
             _plannedDay.isCompleted = true
-            self.managedObjectContext!.delete(_plannedDay)
+            CoreDataManager.context.delete(_plannedDay)
+//            self.managedObjectContext!.delete(_plannedDay)
             
             //Attempt Request for Review
             AppStoreReviewManager.requestReviewIfAppropriate()
@@ -438,7 +441,7 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
             guard let _plannedDay = self.plannedDays?[indexPath.section] else { fatalError("Unexpected Index Path")}
  
             //Get next meal for current planned category
-            var next = Meal(context: self.managedObjectContext!)
+            var next = Meal(context: CoreDataManager.context) // self.managedObjectContext!)
             next = self.getNextMealforCategory(_category: _plannedDay.category!, _date: _plannedDay.date!, _nextMeal: &next)!
             
             //If No Meal returned, just get the next meal regardless of category
@@ -493,7 +496,8 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending:true)]
         
         //Perform Fetch Request
-        self.managedObjectContext!.performAndWait {
+        CoreDataManager.context.performAndWait {
+//        self.managedObjectContext!.performAndWait {
             do {
                 //Execute Fetch Request
                 let meals = try fetchRequest.execute()
@@ -521,7 +525,8 @@ extension PlanViewController: UITableViewDataSource, UITableViewDelegate {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Meal.estimatedNextDate), ascending:true)]
         
         //Perform Fetch Request
-        self.managedObjectContext!.performAndWait {
+        CoreDataManager.context.performAndWait {
+//        self.managedObjectContext!.performAndWait {
             do {
                 //Execute Fetch Request
                 let meals = try fetchRequest.execute()

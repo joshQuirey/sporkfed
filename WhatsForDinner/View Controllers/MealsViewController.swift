@@ -27,7 +27,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     /////////////////////////////
     //Properties
     /////////////////////////////
-    var managedObjectContext: NSManagedObjectContext?
+    //var managedObjectContext: NSManagedObjectContext?
     private var selectedObjectID = NSManagedObjectID()
     var meals: [Meal]?
     
@@ -62,7 +62,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 
         title = "Meals"
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.managedObjectContext
+        //managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.managedObjectContext
 
         fetchMeals()
         updateView()
@@ -121,7 +121,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         notificationCenter.addObserver(self,
                                        selector: #selector(managedObjectContextObjectsDidChange(_:)),
                                        name: Notification.Name.NSManagedObjectContextObjectsDidChange,
-                                       object: self.managedObjectContext)
+                                       object: CoreDataManager.context) // self.managedObjectContext)
         
         notificationCenter.addObserver(self,
                                        selector: #selector(saveMeals(_:)),
@@ -144,14 +144,14 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 return
             }
             
-            destination.managedObjectContext = self.managedObjectContext
+//            destination.managedObjectContext =  self.managedObjectContext
 
         case Segue.ViewMeal:
             guard let destination = segue.destination as? RecipeViewController else {
                 return
             }
             
-            destination.managedObjectContext = self.managedObjectContext
+//            destination.managedObjectContext = self.managedObjectContext
             if (meal != nil) {
                 destination.meal = meal
                 meal = nil
@@ -230,32 +230,32 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
 
     @objc private func saveMeals(_ notification: Notification) {
         do {
-            try self.managedObjectContext!.save()
+            try CoreDataManager.context.save() // self.managedObjectContext!.save()
         } catch {
             fatalError("Failure to save context: \(error)")
         }
     }
 
     private func fetchMeals() {
-        self.meals = helpers.fetchMeals(context: self.managedObjectContext!)
+        self.meals = helpers.fetchMeals(context: CoreDataManager.context) // self.managedObjectContext!)
         self.allMeals = self.meals
         tableView.reloadData()
     }
     
     private func fetchMealsUpNext() {
-        self.meals = helpers.fetchMealsUpNext(context: self.managedObjectContext!)
+        self.meals = helpers.fetchMealsUpNext(context: CoreDataManager.context) // self.managedObjectContext!)
         self.allMeals = self.meals
         tableView.reloadData()
     }
     
     private func fetchMealsFavorites() {
-        self.meals = helpers.fetchMealsFavorites(context: self.managedObjectContext!)
+        self.meals = helpers.fetchMealsFavorites(context: CoreDataManager.context) // self.managedObjectContext!)
         self.allMeals = self.meals
         tableView.reloadData()
     }
     
     private func fetchMeal(name: String) {
-        meal = helpers.fetchMeal(name: name, context: self.managedObjectContext!)
+        meal = helpers.fetchMeal(name: name, context: CoreDataManager.context) // self.managedObjectContext!)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

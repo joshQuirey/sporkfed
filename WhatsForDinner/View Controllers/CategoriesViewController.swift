@@ -91,9 +91,9 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let managedObjectContext = meal?.managedObjectContext else { return }
+        //guard let managedObjectContext = meal?.managedObjectContext else { return }
 
-        tag = Tag(context: managedObjectContext)
+        tag = Tag(context: CoreDataManager.context) // managedObjectContext)
         tag?.name = categoryData[indexPath.row]
         
         meal?.addToTags(tag!)
@@ -101,9 +101,9 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard let managedObjectContext = meal?.managedObjectContext else { return }
+//        guard let managedObjectContext = meal?.managedObjectContext else { return }
         
-        tag = Tag(context: managedObjectContext)
+        tag = Tag(context: CoreDataManager.context) // managedObjectContext)
         tag?.name = categoryData[indexPath.row]
         
         for tag in (meal?.tags)! {

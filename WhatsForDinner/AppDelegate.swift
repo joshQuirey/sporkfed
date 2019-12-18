@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let navController = tabBarController!.viewControllers?[1] {
             let mealsViewController = navController.children[0] as! MealsViewController
-            mealsViewController.managedObjectContext = CoreDataManager.context
+//            mealsViewController.managedObjectContext = CoreDataManager.context
             mealsViewController.viewMealURL(_mealName: _meal)
         }
     }
