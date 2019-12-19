@@ -88,7 +88,11 @@ class SignUpViewController: UIViewController {
                     }
                     
                     //Transition back to Settings view successfully
-                    self.dismiss(animated: true, completion: nil)
+                    let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                    
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+//                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }

@@ -42,6 +42,7 @@
 		A72EDB0A235127AD00E886CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0262118B6D4006EACA0 /* Assets.xcassets */; };
 		A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */; };
 		A777A59C229DB3300071326E /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A59B229DB3300071326E /* BaseTabBarController.swift */; };
+		A77906A523AC1B04005D0BCD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77906A423AC1B04005D0BCD /* MenuViewController.swift */; };
 		A78BB80223A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A78BB80323A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A78BB80423A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
@@ -128,6 +129,7 @@
 		A72EDB032351215500E886CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		A777A59B229DB3300071326E /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		A77906A423AC1B04005D0BCD /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A78BB80123A1596E003A0027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsForDinner.entitlements; sourceTree = "<group>"; };
 		A7C163AF23A2B07400BB7AED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -184,17 +186,18 @@
 		4029E317213209AD003D3071 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A71F1D0F236CD5DF00796F5E /* ListViewController.swift */,
+				A77906A423AC1B04005D0BCD /* MenuViewController.swift */,
+				A715826023A1A48C002D9D59 /* SignUpViewController.swift */,
+				A7C163AF23A2B07400BB7AED /* LoginViewController.swift */,
 				748947C9211A0D73000859F1 /* PlanViewController.swift */,
 				747BF01F2118B6D1006EACA0 /* MealsViewController.swift */,
+				A71F1D0F236CD5DF00796F5E /* ListViewController.swift */,
+				A728FE5622A6E2720078C666 /* SettingsViewController.swift */,
 				4029E3162132097E003D3071 /* Recipe View Controllers */,
 				4092938E21486A5600B16004 /* CategoriesViewController.swift */,
 				400C0F31226A5D010039625E /* CreatePlanViewController.swift */,
 				A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */,
 				A777A59B229DB3300071326E /* BaseTabBarController.swift */,
-				A728FE5622A6E2720078C666 /* SettingsViewController.swift */,
-				A715826023A1A48C002D9D59 /* SignUpViewController.swift */,
-				A7C163AF23A2B07400BB7AED /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				A7E2FD2B23A8362E00C2AF49 /* CoreDataManager.swift in Sources */,
 				A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */,
 				A728FE5722A6E2720078C666 /* SettingsViewController.swift in Sources */,
+				A77906A523AC1B04005D0BCD /* MenuViewController.swift in Sources */,
 				A7E1BEDB2295D174000F053E /* ReplaceMealController.swift in Sources */,
 				747BF0202118B6D1006EACA0 /* MealsViewController.swift in Sources */,
 				A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */,

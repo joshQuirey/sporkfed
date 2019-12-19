@@ -64,7 +64,11 @@ class LoginViewController: UIViewController {
                     self.showError(err!.localizedDescription)
 
                 } else {
-                    self.dismiss(animated: true, completion: nil)
+//                    self.dismiss(animated: true, completion: nil)
+                    let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                    
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
                 }
                 
                 
