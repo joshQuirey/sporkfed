@@ -14,19 +14,11 @@
             symbolName = "*0x10bf3f0f5">
             <Locations>
                <Location
-                  uuid = "D9182C3C-138A-49DF-95DE-1AB9F73081B1 - 5144de85447124e8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "firebase::firestore::nanopb::Message&lt;firebase::firestore::_firestore_client_TargetGlobal&gt;::TryParse(firebase::firestore::nanopb::Reader*)"
-                  moduleName = "WhatsForDinner"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshquirey/Documents/Personal/sporkfed/Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/nanopb/message.h"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "69">
+                  offsetFromSymbolStart = "0">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -210,22 +202,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EF502ABB-4DA3-4929-90A7-AE9278BA4529"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WhatsForDinner/View Controllers/PlanViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "savePlans(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9F1EF3F1-6153-42CD-A51C-C47EE5CD6B75"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -283,8 +259,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
             endingLineNumber = "263"
-            landmarkName = "PlanViewController"
-            landmarkType = "21">
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -315,8 +291,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "264"
             endingLineNumber = "264"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
+            landmarkName = "PlanViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

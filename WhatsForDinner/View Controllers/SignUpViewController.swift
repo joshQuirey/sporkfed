@@ -96,8 +96,6 @@ class SignUpViewController: UIViewController {
                 }
             }
         }
-        
-        //transition back to settings
     }
     
     /*
@@ -109,5 +107,12 @@ class SignUpViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    @IBAction func cancelTapped(_ sender: Any) {
+//         let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController
+//        self.present(menuViewController!, animated: true, completion: nil)
+    }
+    
 
 }

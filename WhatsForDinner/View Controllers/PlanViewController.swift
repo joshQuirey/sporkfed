@@ -234,9 +234,10 @@ class PlanViewController: UIViewController {
     
     @objc private func savePlans(_ notification: Notification) {
         do {
+            print(CoreDataManager.context)
             try CoreDataManager.context.save()    //self.managedObjectContext!.save()
         } catch {
-            fatalError("Failure to save context: \(error.localizedDescription)")
+            //fatalError("Failure to save context: \(error.localizedDescription)")
         }
     }
     
