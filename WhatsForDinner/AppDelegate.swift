@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import GoogleMobileAds
+import Purchases
 
 //App ID Test ca-app-pub-3940256099942544/2934735716
 //App ID ca-app-pub-2588193466211052~2675729023
@@ -79,14 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let authUI = FUIAuth.defaultAuthUI()
         //authUI.delegate = self
         //let authViewController = authUI.authViewController()
-        
-        
         //let db = Firestore.firestore()
 
+        //RevenueCat
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "NkyrrVYiZIixFALRIHCJhnzWbCHJAUTq")
+        
         //AdMob
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-
-        
         //GADMobileAds.configure(withApplicationID: "ca-app-pub-2588193466211052~2675729023") // "test ca-app-pub-3940256099942544/2934735716") //ca-app-pub-2588193466211052~2675729023")
         
         return true

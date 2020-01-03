@@ -28,5 +28,6 @@ target 'WhatsForDinner' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'Firebase/AdMob'
+  pod 'Purchases', '3.0.0'
 
 end

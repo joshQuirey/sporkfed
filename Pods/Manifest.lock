@@ -278,6 +278,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - Purchases (3.0.0)
 
 DEPENDENCIES:
   - Firebase/AdMob
@@ -285,6 +286,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - Purchases (= 3.0.0)
 
 SPEC REPOS:
   trunk:
@@ -309,6 +311,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - Purchases
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -332,7 +335,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  Purchases: e22cbc4cd3bccdb482b5cc9a9a2a2008887d0ba4
 
-PODFILE CHECKSUM: e1e751dbe1eb8637bde1b182f49892713ed2acf9
+PODFILE CHECKSUM: fe43eeb776c6ae220fd3df4f6de7421d86504d5a
 
 COCOAPODS: 1.8.4
