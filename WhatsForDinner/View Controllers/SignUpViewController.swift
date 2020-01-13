@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import Purchases
 
 class SignUpViewController: UIViewController {
 
@@ -56,7 +57,25 @@ class SignUpViewController: UIViewController {
         error.alpha = 1
     }
     
-    @IBAction func signUpTapped(_ sender: Any) {
+    @IBAction func signUpPro(_ sender: Any) {
+        Purchases.shared.offerings { (offerings, error)  in
+        
+            if (offerings != nil) {
+                //Make Purchase
+                print(offerings)
+                //Create User
+                //self.signUp()
+            }
+        }
+        
+    }
+    
+    @IBAction func signUpFree(_ sender: Any) {
+        //Create User
+        //signUp()
+    }
+    
+    func signUp() {
         
         //Validate fields
         let _error = validateFields()

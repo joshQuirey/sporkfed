@@ -14,11 +14,9 @@
             symbolName = "*0x10bf3f0f5">
             <Locations>
                <Location
-                  uuid = "D9182C3C-138A-49DF-95DE-1AB9F73081B1 - 465daa0c5ac53a9c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  moduleName = "WhatsForDinner"
                   usesParentBreakpointCondition = "Yes"
                   offsetFromSymbolStart = "0">
                </Location>
