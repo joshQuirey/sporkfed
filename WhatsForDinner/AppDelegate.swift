@@ -20,6 +20,7 @@ import Purchases
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static var hideAds: Bool = false
 
     public let coreDataManager = CoreDataManager() //(modelName:"MealModel")
     

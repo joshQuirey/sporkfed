@@ -96,10 +96,12 @@ class PlanViewController: UIViewController {
         }
         
         //AdMob
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        if (AppDelegate.hideAds == false) {
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

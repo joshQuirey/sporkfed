@@ -10,26 +10,66 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import Purchases
+import GoogleMobileAds
 
 class SignUpViewController: UIViewController {
-
-    @IBOutlet weak var firstName: UITextField!
-    @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var signUpLogin: UIButton!
-    @IBOutlet weak var error: UILabel!
+    private var offeringId : String?
+    private var offering: Purchases.Offering?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setUpElements()
+      //  setUpElements()
+        offeringId = nil
+        loadOfferings()
         
     }
     
-    func setUpElements() {
-        error.alpha = 0
+    //func setUpElements() {
+        //error.alpha = 0
+    //}
+    
+    private func loadOfferings() {
+                
+        Purchases.shared.offerings { (offerings, error) in
+            
+            if error != nil {
+                self.showAlert(title: "Error", message: "Unable to fetch offerings.") { (action) in
+                    self.close()
+                }
+            }
+            print(offerings?.current)
+            
+            //if let offeringId = self.offeringId {
+               // self.offering = offerings?.offering(identifier: offeringId)
+            //} else {
+                self.offering = offerings?.current
+            //}
+            
+            if self.offering == nil {
+                self.showAlert(title: "Error", message: "No offerings found.") { (action) in
+                    self.close()
+                }
+            }
+            
+//            self.offeringLoadingIndicator.stopAnimating()
+//            self.offeringCollectionView.reloadData()
+//            self.buyButton.isEnabled = true
+        }
+    }
+    
+    private func showAlert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func close() {
+        dismiss(animated: true, completion: nil)
     }
     
     func validateFields() -> String? {
@@ -53,26 +93,53 @@ class SignUpViewController: UIViewController {
     }
     
     func showError(_ message:String) {
-        error.text = message
-        error.alpha = 1
+        //error.text = message
+        //error.alpha = 1
     }
     
     @IBAction func signUpPro(_ sender: Any) {
-        Purchases.shared.offerings { (offerings, error)  in
+        guard let package = offering?.availablePackages[0] else {
+            print("No available package")
+            return
+        }
         
-            if (offerings != nil) {
-                //Make Purchase
-                print(offerings)
-                //Create User
-                //self.signUp()
+        Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
+            print("1")
+            print(transaction)
+            print("2")
+            print(purchaserInfo)
+            print("3")
+            print(error)
+            print("4")
+            print(userCancelled)
+            
+            
+            
+            
+            if purchaserInfo?.entitlements.active.first != nil {
+                AppDelegate.hideAds = true
             }
         }
+        
+//        Purchases.shared.offerings { (offerings, error)  in
+//
+//            if (offerings != nil) {
+//                //Make Purchase
+//                print(offerings)
+//                print(AppDelegate.hideAds)
+//                AppDelegate.hideAds = true
+//                //Create User
+//                self.signUp()
+//            }
+//        }
+        
+        
         
     }
     
     @IBAction func signUpFree(_ sender: Any) {
         //Create User
-        //signUp()
+        signUp()
     }
     
     func signUp() {
@@ -83,8 +150,9 @@ class SignUpViewController: UIViewController {
             showError(_error!)
         } else {
             //clean up data
-            let _firstName = firstName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let _lastName = lastName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            //let _firstName = firstName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            //let _lastName = lastName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
             let _email = email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let _password = password.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
@@ -98,14 +166,14 @@ class SignUpViewController: UIViewController {
                 } else {
                     //user created successfully
                     //store first and last name
-                    let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstName":_firstName,"lastName":_lastName,"uid":result!.user.uid]) { (error) in
-                        
-                        if error != nil {
-                            self.showError(error!.localizedDescription)
-                        }
-                    }
-                    
+//                    let db = Firestore.firestore()
+//                    db.collection("users").addDocument(data: ["firstName":_firstName,"lastName":_lastName,"uid":result!.user.uid]) { (error) in
+//
+//                        if error != nil {
+//                            self.showError(error!.localizedDescription)
+//                        }
+//                    }
+//
                     //Transition back to Settings view successfully
                     let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
                     
