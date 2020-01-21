@@ -86,9 +86,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //RevenueCat
         Purchases.debugLogsEnabled = true
         Purchases.configure(withAPIKey: "NkyrrVYiZIixFALRIHCJhnzWbCHJAUTq")
+        Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+            if purchaserInfo?.entitlements.active.first != nil {
+                AppDelegate.hideAds = true
+            } else {
+                AppDelegate.hideAds = false
+            }
+        }
         
         //AdMob
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
         //GADMobileAds.configure(withApplicationID: "ca-app-pub-2588193466211052~2675729023") // "test ca-app-pub-3940256099942544/2934735716") //ca-app-pub-2588193466211052~2675729023")
         
         return true

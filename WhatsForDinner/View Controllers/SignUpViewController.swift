@@ -118,6 +118,14 @@ class SignUpViewController: UIViewController {
             
             if purchaserInfo?.entitlements.active.first != nil {
                 AppDelegate.hideAds = true
+                
+            
+                self.present("LoginViewController", animated: true, completion: nil)
+                //Transition back to Settings view successfully
+                //let homeViewController = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as? BaseTabBarController
+                
+                //self.view.window?.rootViewController = homeViewController
+                //self.view.window?.makeKeyAndVisible()
             }
         }
         

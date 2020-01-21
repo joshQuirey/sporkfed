@@ -78,9 +78,9 @@
             filePath = "WhatsForDinner/View Controllers/SettingsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "logoutTapped(_:)"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "showSafariVC(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,8 +94,8 @@
             filePath = "WhatsForDinner/View Controllers/SettingsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -224,7 +224,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
             endingLineNumber = "149"
-            landmarkName = "signUp()"
+            landmarkName = "signUpFree(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

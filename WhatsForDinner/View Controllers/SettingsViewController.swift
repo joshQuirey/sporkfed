@@ -12,6 +12,7 @@ import MessageUI
 import SafariServices
 import Firebase
 import FirebaseAuth
+import Purchases
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     /////////////////////////////
@@ -22,6 +23,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var logOut: UIButton!
+    
     
     /////////////////////////////
     //View Life Cycle
@@ -48,6 +50,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool)
     {
         checkIfUserLoggedIn()
+        checkIfUserSubscribed()
     }
     
     func checkIfUserLoggedIn() {
@@ -56,17 +59,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let user  = Auth.auth().currentUser
             successLabel.text = user?.email
 
-            login.isHidden = true
-            signUp.isHidden = true
+            //login.isHidden = true
+            //signUp.isHidden = true
             successLabel.isHidden = false
             logOut.isHidden = false
         } else {
             //No user is signed in
             successLabel.text = "no user"
-            login.isHidden = false
-            signUp.isHidden = false
+            //login.isHidden = false
+            //signUp.isHidden = false
             successLabel.isHidden = true
             logOut.isHidden = true
+        }
+    }
+    
+    func checkIfUserSubscribed() {
+        Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+            if purchaserInfo?.entitlements.active.first != nil {
+                self.successLabel.text! += " sub"
+            }
         }
     }
     
@@ -78,15 +89,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //Table Functions
     /////////////////////////////
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
             case 0:
-                return 1
-            case 1:
                 return 2
+            case 1:
+                return 1
             case 2:
+                return 2
+            case 3:
                 return 2
             default:
                 return 1
@@ -100,10 +113,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
         case 0:
-            return "Help"
+            return "Account"
         case 1:
-            return "Social"
+            return "Help"
         case 2:
+            return "Social"
+        case 3:
             return "Feedback"
         default:
             return ""
@@ -115,15 +130,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch(indexPath.section) {
         case 0:
-            cell.textLabel!.text = "🌐 Visit Our Website"
+            if (indexPath.row == 0) {
+                if Auth.auth().currentUser != nil {
+                    cell.textLabel!.text = "😀 Account \(Auth.auth().currentUser!.email!)"
+                } else {
+                    cell.textLabel!.text = "😀 Account Settings"
+                }
+            } else {
+                cell.textLabel!.text = "💯 Spork Fed Premium"
+            }
             break
         case 1:
+            cell.textLabel!.text = "🌐 Visit Our Website"
+            break
+        case 2:
             if (indexPath.row == 0) {
                 cell.textLabel!.text = "🐦 Tweet @SporkFedApp"
             } else {
                 cell.textLabel!.text = "📷 Follow on Instagram"
             }
-        case 2:
+        case 3:
             if (indexPath.row == 0) {
                 cell.textLabel!.text = "✉️ Send Email"
             } else {
@@ -139,16 +165,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.section) {
         case 0:
-            showSafariVC(for: "https://sporkfed.app")
+             if (indexPath.row == 0) {
+                showSafariVC(for: "https://sporkfed.app")
+             } else {
+                showSafariVC(for: "https://sporkfed.app")
+             }
             break
         case 1:
+            showSafariVC(for: "https://sporkfed.app")
+            break
+        case 2:
             if (indexPath.row == 0) {
                 showSafariVC(for: "https://twitter.com/sporkfedapp")
             } else {
-               showSafariVC(for: "https://instagram.com/getsporkfed")
+               showSafariVC(for: "https://instagram.com/sporkfedapp")
             }
             break
-        case 2:
+        case 3:
             if (indexPath.row == 0) {
                 sendFeedbackEmail()
             } else {
@@ -206,6 +239,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         do {
             try Auth.auth().signOut()
             checkIfUserLoggedIn()
+            tableView.reloadData()
         } catch {
             
         }
