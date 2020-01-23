@@ -120,7 +120,7 @@ class SignUpViewController: UIViewController {
                 AppDelegate.hideAds = true
                 
             
-                self.present("LoginViewController", animated: true, completion: nil)
+                //self.present("LoginViewController", animated: true, completion: nil)
                 //Transition back to Settings view successfully
                 //let homeViewController = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as? BaseTabBarController
                 

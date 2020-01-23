@@ -31,6 +31,7 @@
 		748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947CB211A0DF2000859F1 /* RecipeViewController.swift */; };
 		91FFD3BF5DB0BC5FA1812D29 /* Pods_AddMeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */; };
 		92D91BBF7AF99B05F6EA8C56 /* Pods_WhatsForDinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6511BE16A9FDF2B32B3841 /* Pods_WhatsForDinner.framework */; };
+		A702B3C423DA3E1D00D4551C /* LoginCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A702B3C323DA3E1D00D4551C /* LoginCreateViewController.swift */; };
 		A715826123A1A48C002D9D59 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715826023A1A48C002D9D59 /* SignUpViewController.swift */; };
 		A71C3B1E2368A55300D6ECC0 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */; };
 		A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F1D0F236CD5DF00796F5E /* ListViewController.swift */; };
@@ -118,6 +119,7 @@
 		9057967602AC40E9A40BF1F7 /* Pods-AddMeal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.debug.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.debug.xcconfig"; sourceTree = "<group>"; };
 		90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddMeal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37E699BF08FFE13363D43F0 /* Pods-AddMeal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.release.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.release.xcconfig"; sourceTree = "<group>"; };
+		A702B3C323DA3E1D00D4551C /* LoginCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCreateViewController.swift; sourceTree = "<group>"; };
 		A715826023A1A48C002D9D59 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		A71F1D0F236CD5DF00796F5E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				A77906A423AC1B04005D0BCD /* MenuViewController.swift */,
 				A715826023A1A48C002D9D59 /* SignUpViewController.swift */,
+				A702B3C323DA3E1D00D4551C /* LoginCreateViewController.swift */,
 				A7C163AF23A2B07400BB7AED /* LoginViewController.swift */,
 				748947C9211A0D73000859F1 /* PlanViewController.swift */,
 				747BF01F2118B6D1006EACA0 /* MealsViewController.swift */,
@@ -568,6 +571,7 @@
 				A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */,
 				747E3558211CE7380065799E /* CoreDataManagerOLD.swift in Sources */,
 				748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */,
+				A702B3C423DA3E1D00D4551C /* LoginCreateViewController.swift in Sources */,
 				A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
