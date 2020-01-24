@@ -54,6 +54,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
 //        static let ViewMealURL = "ViewMealURL"
     }
     
+
     /////////////////////////////
     //View Life Cycle
     /////////////////////////////
