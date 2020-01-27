@@ -166,9 +166,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         switch(indexPath.section) {
         case 0:
              if (indexPath.row == 0) {
-                showSafariVC(for: "https://sporkfed.app")
+                //Check if User Logged In
+                //If not logged in, show login view
+                if Auth.auth().currentUser == nil {
+                    showSafariVC(for: "https://google.com")
+                } else {
+                    showSafariVC(for: "https://sporkfed.app")
+                }
+                //Else if logged in, do nothing
+                
+                
              } else {
-                showSafariVC(for: "https://sporkfed.app")
+                //If not a subscriber, show subcriber page
+                Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+                    if purchaserInfo?.entitlements.active.first != nil {
+                        self.showSafariVC(for: "https://sporkfed.app")
+                    } else {
+                        self.showSafariVC(for: "https://google.com")
+
+                    }
+                }
              }
             break
         case 1:

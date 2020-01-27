@@ -1119,7 +1119,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1N-qM-zXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1761" y="1894"/>
+            <point key="canvasLocation" x="2158" y="1894"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ISi-PG-A9O">
@@ -1254,7 +1254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Abc-Cb-Mje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4736.8000000000002" y="-384.97536945812811"/>
+            <point key="canvasLocation" x="4487" y="-166"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="PqE-Ct-Lsy">
@@ -1394,7 +1394,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="3Ge-yP-ey6" kind="showDetail" id="lzK-R9-QLe"/>
+                                            <segue destination="3Ge-yP-ey6" kind="showDetail" identifier="Login" id="lzK-R9-QLe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCj-2L-4Lt">
@@ -1407,7 +1407,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="kiv-gE-Xvz" kind="showDetail" id="2Q7-Ia-rUK"/>
+                                            <segue destination="kiv-gE-Xvz" kind="showDetail" identifier="CreateLogin" id="2Q7-Ia-rUK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1488,7 +1488,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJf-pA-avF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJf-pA-avF">
                                 <rect key="frame" x="20" y="305" width="335" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1733,7 +1733,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2563.768115942029" y="-599.33035714285711"/>
+            <point key="canvasLocation" x="2158" y="-166"/>
         </scene>
         <!--Meals-->
         <scene sceneID="Txx-hZ-4iU">
@@ -2151,7 +2151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lnj-Pa-m9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="1894"/>
+            <point key="canvasLocation" x="1302" y="1894"/>
         </scene>
         <!--Recipe Ingredient View Controller-->
         <scene sceneID="vDi-eQ-I74">
@@ -2521,7 +2521,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dP-6A-eF5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3757.971014492754" y="-384.375"/>
+            <point key="canvasLocation" x="3594" y="-166"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ff4-Rh-tiP">

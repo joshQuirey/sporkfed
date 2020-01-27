@@ -16,8 +16,9 @@ class LoginCreateViewController: UIViewController {
     @IBOutlet weak var error: UILabel!
     
     @IBAction func signUp(_ sender: Any) {
-        error.text = nil
+        
         signUp()
+        
     }
     
     private enum Segue {
@@ -66,6 +67,7 @@ class LoginCreateViewController: UIViewController {
             showError(_error!)
             return false
         } else {
+            error.text = nil
             return true
         }
     }
@@ -90,7 +92,7 @@ class LoginCreateViewController: UIViewController {
         //Must have 8 characters, special character, and number
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         if !passwordTest.evaluate(with: password.text) {
-            return "Password is invalid"
+            return "Password Length of 8 & 1 Special Character Required"
         }
         
         return nil
@@ -100,6 +102,7 @@ class LoginCreateViewController: UIViewController {
             
 //            //Validate fields
 //            let _error = validateFields()
+        print(error.text)
             if error.text == nil {
                 //showError(error!)
             //} else {
