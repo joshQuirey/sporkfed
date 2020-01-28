@@ -19,14 +19,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setUpElements()
     }
     
     
     func setUpElements() {
-        error.alpha = 0
+        if error != nil {
+            error.alpha = 0
+        }
     }
     
     func validateFields() -> String? {

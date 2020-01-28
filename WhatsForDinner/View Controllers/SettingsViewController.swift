@@ -22,8 +22,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var successLabel: UILabel!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var signUp: UIButton!
-    @IBOutlet weak var logOut: UIButton!
+    //@IBOutlet weak var logOut: UIButton!
     
+    /////////////////////////////
+    //Segues
+    /////////////////////////////
+//    private enum Segue {
+//        static let SettingsLogin = "SettingsLogin"
+//    }
     
     /////////////////////////////
     //View Life Cycle
@@ -62,14 +68,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             //login.isHidden = true
             //signUp.isHidden = true
             successLabel.isHidden = false
-            logOut.isHidden = false
+            //logOut.isHidden = false
         } else {
             //No user is signed in
             successLabel.text = "no user"
             //login.isHidden = false
             //signUp.isHidden = false
             successLabel.isHidden = true
-            logOut.isHidden = true
+            //logOut.isHidden = true
         }
     }
     
@@ -80,6 +86,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let identifier = segue.identifier else { return }
+//
+//        switch identifier {
+//        case Segue.SettingsLogin:
+//            guard let destination = segue.destination as? LoginViewController else {
+//                return
+//            }
+//        default:
+//            break
+//        }
+//    }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
@@ -132,9 +152,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case 0:
             if (indexPath.row == 0) {
                 if Auth.auth().currentUser != nil {
-                    cell.textLabel!.text = "😀 Account \(Auth.auth().currentUser!.email!)"
+                    cell.textLabel!.text = "🙃 \(Auth.auth().currentUser!.email!) Logout"
                 } else {
-                    cell.textLabel!.text = "😀 Account Settings"
+                    cell.textLabel!.text = "🙂 Account Login"
                 }
             } else {
                 cell.textLabel!.text = "💯 Spork Fed Premium"
@@ -168,21 +188,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
              if (indexPath.row == 0) {
                 //Check if User Logged In
                 //If not logged in, show login view
-                if Auth.auth().currentUser == nil {
-                    showSafariVC(for: "https://google.com")
+                if Auth.auth().currentUser != nil {
+                    //showSafariVC(for: "https://google.com")
+                    //logout
+                    logout()
                 } else {
-                    showSafariVC(for: "https://sporkfed.app")
+                    //call login view
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyBoard.instantiateViewController(identifier: "loginViewController")
+                    self.present(viewController, animated: true, completion: nil)
                 }
-                //Else if logged in, do nothing
-                
-                
              } else {
                 //If not a subscriber, show subcriber page
                 Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
                     if purchaserInfo?.entitlements.active.first != nil {
-                        self.showSafariVC(for: "https://sporkfed.app")
+                        //call login view
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let viewController = storyBoard.instantiateViewController(identifier: "subscribedViewController")
+                        self.present(viewController, animated: true, completion: nil)
                     } else {
-                        self.showSafariVC(for: "https://google.com")
+                        //self.showSafariVC(for: "https://google.com")
+                        //call login view
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let viewController = storyBoard.instantiateViewController(identifier: "signUpViewController")
+                        self.present(viewController, animated: true, completion: nil)
 
                     }
                 }
@@ -252,15 +281,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    @IBAction func logoutTapped(_ sender: Any) {
+//    @IBAction func logoutTapped(_ sender: Any) {
+//        self.
+//    }
+    
+    func logout() {
         do {
             try Auth.auth().signOut()
             checkIfUserLoggedIn()
             tableView.reloadData()
         } catch {
-            
         }
-        
     }
     
     

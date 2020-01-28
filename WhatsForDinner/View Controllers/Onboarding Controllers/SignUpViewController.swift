@@ -25,6 +25,11 @@ class SignUpViewController: UIViewController {
         offeringId = nil
         loadOfferings()
         
+//        Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+//        if purchaserInfo?.entitlements.active.first != nil {
+//            //self.showSafariVC(for: "https://sporkfed.app")
+//        }
+        
     }
     
     //func setUpElements() {
@@ -60,6 +65,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
+
     private func showAlert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
