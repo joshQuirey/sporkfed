@@ -54,6 +54,7 @@
                             <constraint firstItem="KAp-mz-dDx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Dwm-Fd-j32"/>
                             <constraint firstItem="nMi-F9-4ej" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-96" id="YCN-kn-AGT"/>
                             <constraint firstItem="nMi-F9-4ej" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bP5-hd-wXJ"/>
+                            <constraint firstItem="nMi-F9-4ej" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="175" id="eT4-Nu-B9c"/>
                             <constraint firstAttribute="trailing" secondItem="nMi-F9-4ej" secondAttribute="trailing" constant="20" id="tCN-MR-Esd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

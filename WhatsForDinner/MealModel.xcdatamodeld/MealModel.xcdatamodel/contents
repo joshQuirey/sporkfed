@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19A558d" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19A558d" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="GroceryList" representedClassName="GroceryList" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="isComplete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -21,7 +21,7 @@
         <attribute name="frequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="mealDesc" optional="YES" attributeType="String"/>
         <attribute name="mealImage" optional="YES" attributeType="Binary" spotlightIndexingEnabled="YES"/>
-        <attribute name="mealName" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="mealName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="nextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="prepTime" optional="YES" attributeType="String"/>
         <attribute name="previousDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -44,10 +44,10 @@
         <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="tags" inverseEntity="Meal"/>
     </entity>
     <elements>
+        <element name="GroceryList" positionX="36" positionY="135" width="128" height="148"/>
         <element name="Ingredient" positionX="169" positionY="117" width="128" height="75"/>
         <element name="Meal" positionX="-63" positionY="-18" width="128" height="283"/>
         <element name="PlannedDay" positionX="36" positionY="135" width="128" height="135"/>
         <element name="Tag" positionX="-90" positionY="305" width="128" height="73"/>
-        <element name="GroceryList" positionX="36" positionY="135" width="128" height="148"/>
     </elements>
 </model>

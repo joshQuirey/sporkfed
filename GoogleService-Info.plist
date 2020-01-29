@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>327259834539-f6n4s8bdu74d91jlqqnqgssegbd1maio.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.327259834539-f6n4s8bdu74d91jlqqnqgssegbd1maio</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBcgRkSUsunj-A9SMNNCaDAFxoQq07EShM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>327259834539</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.app41.sporkfed</string>
+	<key>PROJECT_ID</key>
+	<string>sporkfed-44f8a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sporkfed-44f8a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:327259834539:ios:14eba4074392a331900fee</string>
+	<key>DATABASE_URL</key>
+	<string>https://sporkfed-44f8a.firebaseio.com</string>
+</dict>
+</plist>

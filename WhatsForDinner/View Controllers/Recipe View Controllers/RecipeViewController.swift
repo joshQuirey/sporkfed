@@ -11,8 +11,12 @@ import CoreData
 import AVFoundation
 import Photos
 import SafariServices
+//import Firebase
 
 class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+    
+//    var db: Firestore!
+    
     /////////////////////////////
     //Outlets
     /////////////////////////////
@@ -62,7 +66,7 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     let pickFrequency = UIPickerView()
     let pickTime = UIDatePicker()
     let pickServing = UIPickerView()
-    var managedObjectContext: NSManagedObjectContext?
+    //var managedObjectContext: NSManagedObjectContext?
     var meal: Meal?
     var imageChanged: Bool = false
     var isFavorite: Bool = false
@@ -99,6 +103,12 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         categories.textContainer.lineBreakMode = .byWordWrapping
         
         mealURL.delegate = self
+        
+//        let settings = FirestoreSettings()
+//        Firestore.firestore().settings = settings
+//
+//        db = Firestore.firestore()
+//
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,11 +117,11 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         if (meal == nil) {
-            if (managedObjectContext == nil) {
-                managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).coreDataManager.managedObjectContext
-            }
+            //if (managedObjectContext == nil) {
+            //    managedObjectContext = CoreDataManager.context // (UIApplication.shared.delegate as! AppDelegate).coreDataManager.managedObjectContext
+            //}
             
-            meal = Meal(context: managedObjectContext!)
+            meal = Meal(context: CoreDataManager.context) // managedObjectContext!)
             meal?.mealName = ""
         }
 
@@ -134,7 +144,7 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         if (meal == nil) {
-            meal = Meal(context: managedObjectContext!)
+            meal = Meal(context: CoreDataManager.context) // managedObjectContext!)
         }
         populateMeal(meal!)
 
@@ -309,17 +319,33 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     /////////////////////////////
     @IBAction func save(_ sender: UIBarButtonItem) {
         if (meal == nil) {
-            meal = Meal(context: managedObjectContext!)
+            meal = Meal(context: CoreDataManager.context) // managedObjectContext!)
         }
         
         populateMeal(meal!)
+        
+        // Add a new document with a generated ID
+//        var ref: DocumentReference? = nil
+//        ref = db.collection("users").addDocument(data: [
+//            "first": "Ada",
+//            "last": "Lovelace",
+//            "born": 1815
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancel(_ sender: Any) {
         if (meal != nil) {
             if (meal!.frequency == 0) { //this is a meal that has not been changed
-                managedObjectContext?.delete(meal!)
+                CoreDataManager.context.delete(meal!)
+//                managedObjectContext?.delete(meal!)
             }
         }
         

@@ -10,12 +10,26 @@ import UIKit
 import StoreKit
 import MessageUI
 import SafariServices
+import Firebase
+import FirebaseAuth
+import Purchases
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     /////////////////////////////
     //Outlets
     /////////////////////////////
     @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var successLabel: UILabel!
+    //@IBOutlet weak var login: UIButton!
+    //@IBOutlet weak var signUp: UIButton!
+    //@IBOutlet weak var logOut: UIButton!
+    
+    /////////////////////////////
+    //Segues
+    /////////////////////////////
+//    private enum Segue {
+//        static let SettingsLogin = "SettingsLogin"
+//    }
     
     /////////////////////////////
     //View Life Cycle
@@ -39,6 +53,54 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        checkIfUserLoggedIn()
+        checkIfUserSubscribed()
+    }
+    
+    func checkIfUserLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            //user is signed in
+            let user  = Auth.auth().currentUser
+            
+
+            //login.isHidden = true
+            //signUp.isHidden = true
+            //successLabel.isHidden = false
+            //logOut.isHidden = false
+        } else {
+            //No user is signed in
+            //successLabel.text = "no user"
+            //login.isHidden = false
+            //signUp.isHidden = false
+            //successLabel.isHidden = true
+            //logOut.isHidden = true
+        }
+    }
+    
+    func checkIfUserSubscribed() {
+        Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+            if purchaserInfo?.entitlements.active.first != nil {
+                //self.successLabel.text! += " sub"
+            }
+        }
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let identifier = segue.identifier else { return }
+//
+//        switch identifier {
+//        case Segue.SettingsLogin:
+//            guard let destination = segue.destination as? LoginViewController else {
+//                return
+//            }
+//        default:
+//            break
+//        }
+//    }
+    
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
@@ -47,15 +109,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //Table Functions
     /////////////////////////////
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
             case 0:
-                return 1
-            case 1:
                 return 2
+            case 1:
+                return 1
             case 2:
+                return 2
+            case 3:
                 return 2
             default:
                 return 1
@@ -69,10 +133,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
         case 0:
-            return "Help"
+            return "Account"
         case 1:
-            return "Social"
+            return "Help"
         case 2:
+            return "Social"
+        case 3:
             return "Feedback"
         default:
             return ""
@@ -84,15 +150,26 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch(indexPath.section) {
         case 0:
-            cell.textLabel!.text = "🌐 Visit Our Website"
+            if (indexPath.row == 0) {
+                if Auth.auth().currentUser != nil {
+                    cell.textLabel!.text = "🙃 \(Auth.auth().currentUser!.email!) Logout"
+                } else {
+                    cell.textLabel!.text = "🙂 Account Login/Signup"
+                }
+            } else {
+                cell.textLabel!.text = "💯 Spork Fed Premium"
+            }
             break
         case 1:
+            cell.textLabel!.text = "🌐 Visit Our Website"
+            break
+        case 2:
             if (indexPath.row == 0) {
                 cell.textLabel!.text = "🐦 Tweet @SporkFedApp"
             } else {
                 cell.textLabel!.text = "📷 Follow on Instagram"
             }
-        case 2:
+        case 3:
             if (indexPath.row == 0) {
                 cell.textLabel!.text = "✉️ Send Email"
             } else {
@@ -108,16 +185,49 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.section) {
         case 0:
-            showSafariVC(for: "https://sporkfed.app")
+             if (indexPath.row == 0) {
+                //Check if User Logged In
+                //If not logged in, show login view
+                if Auth.auth().currentUser != nil {
+                    //showSafariVC(for: "https://google.com")
+                    //logout
+                    logout()
+                } else {
+                    //call login view
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyBoard.instantiateViewController(identifier: "loginViewController")
+                    self.present(viewController, animated: true, completion: nil)
+                }
+             } else {
+                //If not a subscriber, show subcriber page
+                Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+                    if purchaserInfo?.entitlements.active.first != nil {
+                        //call login view
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let viewController = storyBoard.instantiateViewController(identifier: "subscribedViewController")
+                        self.present(viewController, animated: true, completion: nil)
+                    } else {
+                        //self.showSafariVC(for: "https://google.com")
+                        //call login view
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let viewController = storyBoard.instantiateViewController(identifier: "signUpViewController")
+                        self.present(viewController, animated: true, completion: nil)
+
+                    }
+                }
+             }
             break
         case 1:
+            showSafariVC(for: "https://sporkfed.app")
+            break
+        case 2:
             if (indexPath.row == 0) {
                 showSafariVC(for: "https://twitter.com/sporkfedapp")
             } else {
-               showSafariVC(for: "https://instagram.com/getsporkfed")
+               showSafariVC(for: "https://instagram.com/sporkfedapp")
             }
             break
-        case 2:
+        case 3:
             if (indexPath.row == 0) {
                 sendFeedbackEmail()
             } else {
@@ -169,4 +279,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         safariVC.preferredControlTintColor = UIColor(named: "_Purple to Teal")
         present(safariVC, animated: true)
     }
+    
+    
+//    @IBAction func logoutTapped(_ sender: Any) {
+//        self.
+//    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            checkIfUserLoggedIn()
+            tableView.reloadData()
+        } catch {
+        }
+    }
+    
+    
 }

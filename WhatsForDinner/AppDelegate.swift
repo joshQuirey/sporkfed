@@ -8,14 +8,21 @@
 
 import UIKit
 import CoreData
+import Firebase
+import GoogleMobileAds
+import Purchases
 
+//App ID Test ca-app-pub-3940256099942544/2934735716
+//App ID ca-app-pub-2588193466211052~2675729023
+//App Unit ID ca-app-pub-2588193466211052/5624012915
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static var hideAds: Bool = false
 
-    public let coreDataManager = CoreDataManager(modelName:"MealModel")
+    public let coreDataManager = CoreDataManager() //(modelName:"MealModel")
     
     enum QuickAction: String {
         case ViewMenu = "viewmenu"
@@ -61,13 +68,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let navController = tabBarController!.viewControllers?[1] {
             let mealsViewController = navController.children[0] as! MealsViewController
-            mealsViewController.managedObjectContext = self.coreDataManager.managedObjectContext
+//            mealsViewController.managedObjectContext = CoreDataManager.context
             mealsViewController.viewMealURL(_mealName: _meal)
         }
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         createQuickActions()
+        
+        
+        FirebaseApp.configure()
+        //let authUI = FUIAuth.defaultAuthUI()
+        //authUI.delegate = self
+        //let authViewController = authUI.authViewController()
+        //let db = Firestore.firestore()
+
+        //RevenueCat
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "NkyrrVYiZIixFALRIHCJhnzWbCHJAUTq")
+        Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+            if purchaserInfo?.entitlements.active.first != nil {
+                AppDelegate.hideAds = true
+            } else {
+                AppDelegate.hideAds = false
+            }
+        }
+        
+        //AdMob
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        //GADMobileAds.configure(withApplicationID: "ca-app-pub-2588193466211052~2675729023") // "test ca-app-pub-3940256099942544/2934735716") //ca-app-pub-2588193466211052~2675729023")
         
         return true
     }
