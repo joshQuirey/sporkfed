@@ -19,9 +19,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //Outlets
     /////////////////////////////
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var successLabel: UILabel!
-    @IBOutlet weak var login: UIButton!
-    @IBOutlet weak var signUp: UIButton!
+    //@IBOutlet weak var successLabel: UILabel!
+    //@IBOutlet weak var login: UIButton!
+    //@IBOutlet weak var signUp: UIButton!
     //@IBOutlet weak var logOut: UIButton!
     
     /////////////////////////////
@@ -63,18 +63,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if Auth.auth().currentUser != nil {
             //user is signed in
             let user  = Auth.auth().currentUser
-            successLabel.text = user?.email
+            
 
             //login.isHidden = true
             //signUp.isHidden = true
-            successLabel.isHidden = false
+            //successLabel.isHidden = false
             //logOut.isHidden = false
         } else {
             //No user is signed in
-            successLabel.text = "no user"
+            //successLabel.text = "no user"
             //login.isHidden = false
             //signUp.isHidden = false
-            successLabel.isHidden = true
+            //successLabel.isHidden = true
             //logOut.isHidden = true
         }
     }
@@ -82,7 +82,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func checkIfUserSubscribed() {
         Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
             if purchaserInfo?.entitlements.active.first != nil {
-                self.successLabel.text! += " sub"
+                //self.successLabel.text! += " sub"
             }
         }
     }
@@ -154,7 +154,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 if Auth.auth().currentUser != nil {
                     cell.textLabel!.text = "🙃 \(Auth.auth().currentUser!.email!) Logout"
                 } else {
-                    cell.textLabel!.text = "🙂 Account Login"
+                    cell.textLabel!.text = "🙂 Account Login/Signup"
                 }
             } else {
                 cell.textLabel!.text = "💯 Spork Fed Premium"
