@@ -31,8 +31,7 @@
 		748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947CB211A0DF2000859F1 /* RecipeViewController.swift */; };
 		91FFD3BF5DB0BC5FA1812D29 /* Pods_AddMeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */; };
 		92D91BBF7AF99B05F6EA8C56 /* Pods_WhatsForDinner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6511BE16A9FDF2B32B3841 /* Pods_WhatsForDinner.framework */; };
-		A702B3C423DA3E1D00D4551C /* LoginCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A702B3C323DA3E1D00D4551C /* LoginCreateViewController.swift */; };
-		A715826123A1A48C002D9D59 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715826023A1A48C002D9D59 /* SignUpViewController.swift */; };
+		A715826123A1A48C002D9D59 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715826023A1A48C002D9D59 /* ProductsViewController.swift */; };
 		A71C3B1E2368A55300D6ECC0 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */; };
 		A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F1D0F236CD5DF00796F5E /* ListViewController.swift */; };
 		A728FE5722A6E2720078C666 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A728FE5622A6E2720078C666 /* SettingsViewController.swift */; };
@@ -46,7 +45,6 @@
 		A78BB80223A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A78BB80323A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A78BB80423A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
-		A7C163B023A2B07400BB7AED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C163AF23A2B07400BB7AED /* LoginViewController.swift */; };
 		A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
 		A7C5D50523578C860002F463 /* CoreDataManagerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManagerOLD.swift */; };
 		A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */; };
@@ -118,8 +116,7 @@
 		9057967602AC40E9A40BF1F7 /* Pods-AddMeal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.debug.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.debug.xcconfig"; sourceTree = "<group>"; };
 		90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddMeal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A37E699BF08FFE13363D43F0 /* Pods-AddMeal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.release.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.release.xcconfig"; sourceTree = "<group>"; };
-		A702B3C323DA3E1D00D4551C /* LoginCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCreateViewController.swift; sourceTree = "<group>"; };
-		A715826023A1A48C002D9D59 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A715826023A1A48C002D9D59 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		A71F1D0F236CD5DF00796F5E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A728FE5622A6E2720078C666 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -132,7 +129,6 @@
 		A777A59B229DB3300071326E /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		A78BB80123A1596E003A0027 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsForDinner.entitlements; sourceTree = "<group>"; };
-		A7C163AF23A2B07400BB7AED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7C5D50623578F910002F463 /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today.entitlements; sourceTree = "<group>"; };
 		A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
 		A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceMealController.swift; sourceTree = "<group>"; };
@@ -187,7 +183,6 @@
 		4029E317213209AD003D3071 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A70E3DDE23E0B1550097D11E /* Onboarding Controllers */,
 				A70E3DDF23E0B22E0097D11E /* Menu View Controllers */,
 				747BF01F2118B6D1006EACA0 /* MealsViewController.swift */,
 				A71F1D0F236CD5DF00796F5E /* ListViewController.swift */,
@@ -272,6 +267,7 @@
 				A78F8D8422A830F700456A9E /* WhatsForDinner.entitlements */,
 				40929389214868EA00B16004 /* Storyboards */,
 				4029E317213209AD003D3071 /* View Controllers */,
+				A715826023A1A48C002D9D59 /* ProductsViewController.swift */,
 				747BF01D2118B6D1006EACA0 /* AppDelegate.swift */,
 				A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */,
 				A7E2FD2A23A8362E00C2AF49 /* CoreDataManager.swift */,
@@ -285,16 +281,6 @@
 				747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */,
 			);
 			path = WhatsForDinner;
-			sourceTree = "<group>";
-		};
-		A70E3DDE23E0B1550097D11E /* Onboarding Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A7C163AF23A2B07400BB7AED /* LoginViewController.swift */,
-				A702B3C323DA3E1D00D4551C /* LoginCreateViewController.swift */,
-				A715826023A1A48C002D9D59 /* SignUpViewController.swift */,
-			);
-			path = "Onboarding Controllers";
 			sourceTree = "<group>";
 		};
 		A70E3DDF23E0B22E0097D11E /* Menu View Controllers */ = {
@@ -567,11 +553,10 @@
 				A777A59C229DB3300071326E /* BaseTabBarController.swift in Sources */,
 				4092938F21486A5600B16004 /* CategoriesViewController.swift in Sources */,
 				4029E3152132096F003D3071 /* RecipeIngredientViewController.swift in Sources */,
-				A715826123A1A48C002D9D59 /* SignUpViewController.swift in Sources */,
+				A715826123A1A48C002D9D59 /* ProductsViewController.swift in Sources */,
 				A7F27D1322F9F0C700EA2368 /* UserDefaults+Key.swift in Sources */,
 				748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */,
 				400C0F32226A5D010039625E /* CreatePlanViewController.swift in Sources */,
-				A7C163B023A2B07400BB7AED /* LoginViewController.swift in Sources */,
 				A71C3B1E2368A55300D6ECC0 /* CoreDataHelpers.swift in Sources */,
 				747BF01E2118B6D1006EACA0 /* AppDelegate.swift in Sources */,
 				4029E31921320B08003D3071 /* RecipeDirectionsViewController.swift in Sources */,
@@ -583,7 +568,6 @@
 				A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */,
 				747E3558211CE7380065799E /* CoreDataManagerOLD.swift in Sources */,
 				748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */,
-				A702B3C423DA3E1D00D4551C /* LoginCreateViewController.swift in Sources */,
 				A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

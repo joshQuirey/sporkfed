@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import FirebaseAuth
-import Firebase
+//import FirebaseAuth
+//import Firebase
 import Purchases
 import GoogleMobileAds
 
-class SignUpViewController: UIViewController {
-    @IBOutlet weak var signUpLogin: UIButton!
+class ProductsViewController: UIViewController {
     private var offeringId : String?
     private var offering: Purchases.Offering?
     

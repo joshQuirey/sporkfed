@@ -10,8 +10,8 @@ import UIKit
 import StoreKit
 import MessageUI
 import SafariServices
-import Firebase
-import FirebaseAuth
+//import Firebase
+//import FirebaseAuth
 import Purchases
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
@@ -23,6 +23,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //@IBOutlet weak var login: UIButton!
     //@IBOutlet weak var signUp: UIButton!
     //@IBOutlet weak var logOut: UIButton!
+    private var offeringId : String?
+    private var offering: Purchases.Offering?
+    var noOfferings: Bool = false
+    var purchased: Bool = false
     
     /////////////////////////////
     //Segues
@@ -51,38 +55,46 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             // Fallback on earlier versions
         }
+        
+        offeringId =  nil
+        loadOfferings()
+        
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
-        checkIfUserLoggedIn()
-        checkIfUserSubscribed()
+       // checkIfUserLoggedIn()
+        checkIfUserPurchased()
     }
     
-    func checkIfUserLoggedIn() {
-        if Auth.auth().currentUser != nil {
-            //user is signed in
-            let user  = Auth.auth().currentUser
+     private func loadOfferings() {
+        Purchases.shared.offerings { (offerings, error) in
+            if error != nil {
+                self.showAlert(title: "Error", message: "Unable to fetch offerings.") { (action) in
+                    self.noOfferings = true
+                }
+            }
+            print(offerings?.current)
+            self.offering = offerings?.current
             
-
-            //login.isHidden = true
-            //signUp.isHidden = true
-            //successLabel.isHidden = false
-            //logOut.isHidden = false
-        } else {
-            //No user is signed in
-            //successLabel.text = "no user"
-            //login.isHidden = false
-            //signUp.isHidden = false
-            //successLabel.isHidden = true
-            //logOut.isHidden = true
+            if self.offering == nil {
+                self.showAlert(title: "Error", message: "No offerings found.") { (action) in
+                    self.noOfferings = true
+                }
+            }
         }
     }
     
-    func checkIfUserSubscribed() {
+    private func showAlert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func checkIfUserPurchased() {
         Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
             if purchaserInfo?.entitlements.active.first != nil {
-                //self.successLabel.text! += " sub"
+                self.purchased = true
             }
         }
     }
@@ -114,7 +126,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
             case 0:
-                return 2
+                return 1
             case 1:
                 return 1
             case 2:
@@ -133,7 +145,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
         case 0:
-            return "Account"
+            return "Upgrades"
         case 1:
             return "Help"
         case 2:
@@ -150,15 +162,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch(indexPath.section) {
         case 0:
-            if (indexPath.row == 0) {
-                if Auth.auth().currentUser != nil {
-                    cell.textLabel!.text = "🙃 \(Auth.auth().currentUser!.email!) Logout"
+            if (purchased) {
+                    cell.textLabel!.text = "💯 Remove Ads (Paid)"
                 } else {
-                    cell.textLabel!.text = "🙂 Account Login/Signup"
+                    cell.textLabel!.text = "💯 Remove Ads"
                 }
-            } else {
-                cell.textLabel!.text = "💯 Spork Fed Premium"
-            }
             break
         case 1:
             cell.textLabel!.text = "🌐 Visit Our Website"
@@ -185,37 +193,32 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.section) {
         case 0:
-             if (indexPath.row == 0) {
-                //Check if User Logged In
-                //If not logged in, show login view
-                if Auth.auth().currentUser != nil {
-                    //showSafariVC(for: "https://google.com")
-                    //logout
-                    logout()
-                } else {
-                    //call login view
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyBoard.instantiateViewController(identifier: "loginViewController")
-                    self.present(viewController, animated: true, completion: nil)
+            //If not a subscriber, show subcriber page
+            if (purchased) {
+                //Upgrades purchased
+            } else {
+                //Purchase upgrade
+                guard let package = offering?.availablePackages[0] else {
+                    print("No available package")
+                    return
                 }
-             } else {
-                //If not a subscriber, show subcriber page
-                Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+                
+                Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
+                    print("1")
+                    print(transaction)
+                    print("2")
+                    print(purchaserInfo)
+                    print("3")
+                    print(error)
+                    print("4")
+                    print(userCancelled)
+                
                     if purchaserInfo?.entitlements.active.first != nil {
-                        //call login view
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let viewController = storyBoard.instantiateViewController(identifier: "subscribedViewController")
-                        self.present(viewController, animated: true, completion: nil)
-                    } else {
-                        //self.showSafariVC(for: "https://google.com")
-                        //call login view
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let viewController = storyBoard.instantiateViewController(identifier: "signUpViewController")
-                        self.present(viewController, animated: true, completion: nil)
-
+                        AppDelegate.hideAds = true
                     }
                 }
-             }
+                      
+            }
             break
         case 1:
             showSafariVC(for: "https://sporkfed.app")
@@ -285,14 +288,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //        self.
 //    }
     
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-            checkIfUserLoggedIn()
-            tableView.reloadData()
-        } catch {
-        }
-    }
+   // func logout() {
+   //     do {
+            //try Auth.auth().signOut()
+            //checkIfUserLoggedIn()
+    //        tableView.reloadData()
+   //     } catch {
+   //     }
+  //  }
     
     
 }

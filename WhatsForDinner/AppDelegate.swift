@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Firebase
+//import Firebase
 import GoogleMobileAds
 import Purchases
 
@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         createQuickActions()
         
         
-        FirebaseApp.configure()
+        //FirebaseApp.configure()
         //let authUI = FUIAuth.defaultAuthUI()
         //authUI.delegate = self
         //let authViewController = authUI.authViewController()
