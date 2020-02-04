@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     /////////////////////////////
@@ -16,7 +17,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var _item: UITextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
+        
     @IBAction func Done(_ sender: Any) {
         //dismiss Keyboard
         _item.resignFirstResponder()
@@ -77,9 +79,23 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                object: nil)
         
         setupNotificationHandling()
+        
+        //AdMob
+        if (AppDelegate.hideAds == false) {
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {        //AdMob
+//        if (AppDelegate.hideAds == false) {
+//            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//            bannerView.rootViewController = self
+//            bannerView.load(GADRequest())
+//            bannerView.delegate = self
+//        }
         fetchGroceries()
     }
     
@@ -518,5 +534,15 @@ extension UITableView {
         let section = indexPath.section
         let row = indexPath.row
         return section < self.numberOfSections && row < self.numberOfRows(inSection: section)
+    }
+}
+
+extension ListViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
     }
 }

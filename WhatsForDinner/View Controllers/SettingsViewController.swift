@@ -204,17 +204,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 
                 Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
-                    print("1")
-                    print(transaction)
-                    print("2")
-                    print(purchaserInfo)
-                    print("3")
-                    print(error)
-                    print("4")
-                    print(userCancelled)
+//                    print("1")
+//                    print(transaction)
+//                    print("2")
+//                    print(purchaserInfo)
+//                    print("3")
+//                    print(error)
+//                    print("4")
+//                    print(userCancelled)
                 
                     if purchaserInfo?.entitlements.active.first != nil {
                         AppDelegate.hideAds = true
+                        
+                        let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                        
+                        self.view.window?.rootViewController = homeViewController
+                        self.view.window?.makeKeyAndVisible()
                     }
                 }
                       
