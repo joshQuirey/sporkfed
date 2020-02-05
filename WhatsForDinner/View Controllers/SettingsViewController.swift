@@ -126,7 +126,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
             case 0:
-                return 1
+                return 2
             case 1:
                 return 1
             case 2:
@@ -159,14 +159,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
+        cell.detailTextLabel!.text = ""
         
         switch(indexPath.section) {
         case 0:
-            if (purchased) {
-                    cell.textLabel!.text = "💯 Remove Ads (Paid)"
+            if (indexPath.row == 0) {
+                if (purchased) {
+                    cell.textLabel!.text = "💯 Purchased Block Ads"
                 } else {
-                    cell.textLabel!.text = "💯 Remove Ads"
+                    cell.textLabel!.text = "🛡 Block Ads"
+                    cell.detailTextLabel!.text = "Removes ALL advertisements - $1.99"
                 }
+            } else {
+                cell.textLabel!.text = "🌱 Restore Purchases"
+            }
             break
         case 1:
             cell.textLabel!.text = "🌐 Visit Our Website"
@@ -193,17 +199,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.section) {
         case 0:
-            //If not a subscriber, show subcriber page
-            if (purchased) {
-                //Upgrades purchased
-            } else {
-                //Purchase upgrade
-                guard let package = offering?.availablePackages[0] else {
-                    print("No available package")
-                    return
-                }
-                
-                Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
+             if (indexPath.row == 0) {
+                //If not a subscriber, show subcriber page
+                if (purchased) {
+                    //Upgrades purchased
+                } else {
+                    //Purchase upgrade
+                    guard let package = offering?.availablePackages[0] else {
+                        print("No available package")
+                        return
+                    }
+                    
+                    Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
 //                    print("1")
 //                    print(transaction)
 //                    print("2")
@@ -213,17 +220,31 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //                    print("4")
 //                    print(userCancelled)
                 
-                    if purchaserInfo?.entitlements.active.first != nil {
-                        AppDelegate.hideAds = true
-                        
-                        let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
-                        
-                        self.view.window?.rootViewController = homeViewController
-                        self.view.window?.makeKeyAndVisible()
+                        if purchaserInfo?.entitlements.active.first != nil {
+                            AppDelegate.hideAds = true
+                            
+                            let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                            
+                            self.view.window?.rootViewController = homeViewController
+                            self.view.window?.makeKeyAndVisible()
+                        }
                     }
                 }
-                      
-            }
+             } else {
+                Purchases.shared.restoreTransactions { (purchaserInfo, error) in
+                    //... check purchaserInfo to see if entitlement is now active
+                    if purchaserInfo?.entitlements.active.first != nil {
+                        AppDelegate.hideAds = true
+                    } else {
+                        AppDelegate.hideAds = false
+                    }
+
+                    let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                    
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+             }
             break
         case 1:
             showSafariVC(for: "https://sporkfed.app")
