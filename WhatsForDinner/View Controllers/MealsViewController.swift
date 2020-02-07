@@ -95,7 +95,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         
         //AdMob
         if (AppDelegate.hideAds == false) {
-            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.adUnitID = "ca-app-pub-2588193466211052/5624012915" //TEST AD"ca-app-pub-3940256099942544/2934735716"
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
