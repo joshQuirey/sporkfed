@@ -2025,7 +2025,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lVg-Cs-Bl2">
-                                <rect key="frame" x="10" y="10" width="355" height="530"/>
+                                <rect key="frame" x="10" y="10" width="355" height="580"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="groceryCell" textLabel="9xs-SE-ubN" rowHeight="43.5" style="IBUITableViewCellStyleDefault" id="OPR-rP-07L">
@@ -2056,7 +2056,7 @@
                                 </connections>
                             </tableView>
                             <textField contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Item and Click Return" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0j6-mz-OT0">
-                                <rect key="frame" x="10" y="593" width="302" height="40"/>
+                                <rect key="frame" x="10" y="598" width="302" height="35"/>
                                 <color key="tintColor" name="_Purple to Teal"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="s4R-hR-fw3"/>
@@ -2066,7 +2066,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVg-iP-fc7">
-                                <rect key="frame" x="322" y="593" width="43" height="40"/>
+                                <rect key="frame" x="322" y="598" width="43" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" name="_Purple to Teal"/>
@@ -2075,25 +2075,19 @@
                                     <action selector="Done:" destination="Pv4-xq-kRT" eventType="touchUpInside" id="oSX-IX-NNO"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="cav-ig-2xA" customClass="GADBannerView">
-                                <rect key="frame" x="27" y="540" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cav-ig-2xA" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" id="2Ej-so-ggw"/>
                             <constraint firstItem="44n-6q-u6s" firstAttribute="bottom" secondItem="0j6-mz-OT0" secondAttribute="bottom" constant="8" id="4hg-JX-ual"/>
                             <constraint firstItem="0j6-mz-OT0" firstAttribute="centerY" secondItem="qVg-iP-fc7" secondAttribute="centerY" id="4vU-fo-0J6"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="trailing" secondItem="44n-6q-u6s" secondAttribute="trailing" constant="-10" id="AqP-lA-obz"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="leading" secondItem="44n-6q-u6s" secondAttribute="leading" constant="10" id="Q0e-0u-nxi"/>
                             <constraint firstItem="44n-6q-u6s" firstAttribute="trailing" secondItem="qVg-iP-fc7" secondAttribute="trailing" constant="10" id="QpO-hO-qaj"/>
+                            <constraint firstItem="0j6-mz-OT0" firstAttribute="top" secondItem="lVg-Cs-Bl2" secondAttribute="bottom" constant="8" id="RcN-xR-oJx"/>
                             <constraint firstItem="0j6-mz-OT0" firstAttribute="bottom" secondItem="qVg-iP-fc7" secondAttribute="bottom" id="Tw7-0Z-wZE"/>
                             <constraint firstItem="0j6-mz-OT0" firstAttribute="leading" secondItem="lVg-Cs-Bl2" secondAttribute="leading" id="fWD-vA-LuR"/>
                             <constraint firstItem="lVg-Cs-Bl2" firstAttribute="top" secondItem="44n-6q-u6s" secondAttribute="top" constant="10" id="fyh-xh-erg"/>
-                            <constraint firstItem="0j6-mz-OT0" firstAttribute="top" secondItem="cav-ig-2xA" secondAttribute="bottom" constant="3" id="gtW-Go-h9Q"/>
                             <constraint firstItem="qVg-iP-fc7" firstAttribute="leading" secondItem="0j6-mz-OT0" secondAttribute="trailing" constant="10" id="hZy-ob-GPT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="44n-6q-u6s"/>
@@ -2108,7 +2102,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="_item" destination="0j6-mz-OT0" id="Dyf-Ji-s1H"/>
-                        <outlet property="bannerView" destination="cav-ig-2xA" id="0jX-pk-pgg"/>
                         <outlet property="bottomConstraint" destination="4hg-JX-ual" id="Xeu-QS-AWJ"/>
                         <outlet property="tableView" destination="lVg-Cs-Bl2" id="ARe-UB-LZj"/>
                     </connections>

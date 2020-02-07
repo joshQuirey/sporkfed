@@ -307,7 +307,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
-            landmarkName = "viewWillAppear(_:)"
+            landmarkName = "keyboardNotification(notification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -323,8 +323,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "493"
             endingLineNumber = "493"
-            landmarkName = "UITableView"
-            landmarkType = "21">
+            landmarkName = "scrollToBottomRow(section:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -339,8 +339,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "475"
             endingLineNumber = "475"
-            landmarkName = "tableView(_:trailingSwipeActionsConfigurationForRowAt:)"
-            landmarkType = "7">
+            landmarkName = "ListViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -371,7 +371,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "484"
             endingLineNumber = "484"
-            landmarkName = "tableView(_:trailingSwipeActionsConfigurationForRowAt:)"
+            landmarkName = "scrollToBottomRow(section:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -387,7 +387,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "483"
             endingLineNumber = "483"
-            landmarkName = "tableView(_:trailingSwipeActionsConfigurationForRowAt:)"
+            landmarkName = "scrollToBottomRow(section:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -403,8 +403,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "523"
             endingLineNumber = "523"
-            landmarkName = "scrollToBottomRow(section:)"
-            landmarkType = "7">
+            landmarkName = "UITableView"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -435,7 +435,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "415"
             endingLineNumber = "415"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -499,8 +499,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "keyboardNotification(notification:)"
-            landmarkType = "7">
+            landmarkName = "ListViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -547,8 +547,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "523"
             endingLineNumber = "523"
-            landmarkName = "scrollToBottomRow(section:)"
-            landmarkType = "7">
+            landmarkName = "UITableView"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -563,7 +563,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "232"
             endingLineNumber = "232"
-            landmarkName = "fetchGroceries()"
+            landmarkName = "refreshList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -579,7 +579,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
             endingLineNumber = "152"
-            landmarkName = "textFieldShouldReturn(_:)"
+            landmarkName = "managedObjectContextObjectsDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -595,7 +595,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "423"
             endingLineNumber = "423"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -611,7 +611,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
             endingLineNumber = "369"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkName = "tableView(_:viewForHeaderInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -634,22 +634,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "34C10CF9-11C1-46CA-9D97-6748C94C0C53"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WhatsForDinner/View Controllers/ListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7CDB1DFA-DBDE-4BA5-8BE7-83FC5CC87D02"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -659,7 +643,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "229"
             endingLineNumber = "229"
-            landmarkName = "fetchGroceries()"
+            landmarkName = "refreshList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -691,7 +675,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "519"
             endingLineNumber = "519"
-            landmarkName = "scrollToBottomRow(section:)"
+            landmarkName = "indexPathIsValid(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
