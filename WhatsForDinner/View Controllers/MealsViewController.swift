@@ -22,6 +22,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     
     /////////////////////////////
@@ -95,10 +96,13 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         
         //AdMob
         if (AppDelegate.hideAds == false) {
-            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //LIVE AD ca-app-pub-2588193466211052/5624012915
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
+            bannerViewHeightConstraint.constant = 50
+        } else {
+            bannerViewHeightConstraint.constant = 0
         }
     }
     

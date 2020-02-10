@@ -395,15 +395,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Configure Cell
         let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
         
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
+        if (object != nil) {
+            let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
+                
+            if object?.isComplete == true {
+                let len = object?.itemName?.count
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple to Teal")!, range: NSMakeRange(0, len!))
+            }
             
-        if object?.isComplete == true {
-            let len = object?.itemName?.count
-            attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
-            attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple to Teal")!, range: NSMakeRange(0, len!))
+            cell.textLabel!.attributedText = attributedString
         }
-            
-        cell.textLabel!.attributedText = attributedString
+        
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         return cell

@@ -44,7 +44,7 @@ class ProductsViewController: UIViewController {
                     self.close()
                 }
             }
-            print(offerings?.current)
+            //print(offerings?.current)
             
             //if let offeringId = self.offeringId {
                // self.offering = offerings?.offering(identifier: offeringId)
@@ -87,14 +87,14 @@ class ProductsViewController: UIViewController {
         }
         
         Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
-            print("1")
-            print(transaction)
-            print("2")
-            print(purchaserInfo)
-            print("3")
-            print(error)
-            print("4")
-            print(userCancelled)
+         //   print("1")
+         //   print(transaction)
+         //   print("2")
+         //   print(purchaserInfo)
+         //   print("3")
+         //   print(error)
+         //   print("4")
+         //   print(userCancelled)
             
             
             

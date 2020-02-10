@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     self.noOfferings = true
                 }
             }
-            print(offerings?.current)
+            //print(offerings?.current)
             self.offering = offerings?.current
             
             if self.offering == nil {
@@ -145,7 +145,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
         case 0:
-            return "Upgrades"
+            return "Spork Fed Premium"
         case 1:
             return "Help"
         case 2:
@@ -165,10 +165,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case 0:
             if (indexPath.row == 0) {
                 if (purchased) {
-                    cell.textLabel!.text = "💯 Purchased Block Ads"
+                    cell.textLabel!.text = "💯 Purchased Premium"
                 } else {
-                    cell.textLabel!.text = "🛡 Block Ads"
-                    cell.detailTextLabel!.text = "Removes ALL advertisements - $1.99"
+                    cell.textLabel!.text = "🛡 Block Ads & Support Development"
+                    cell.detailTextLabel!.text = "Removes ALL ads & buys me a coffee - $2.99"
                 }
             } else {
                 cell.textLabel!.text = "🌱 Restore Purchases"
