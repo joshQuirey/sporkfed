@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     self.noOfferings = true
                 }
             }
-            print(offerings?.current)
+            //print(offerings?.current)
             self.offering = offerings?.current
             
             if self.offering == nil {

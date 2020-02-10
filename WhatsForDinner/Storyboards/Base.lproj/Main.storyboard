@@ -207,6 +207,7 @@
                     <connections>
                         <outlet property="EmptyTableLabel" destination="9k2-WJ-RZu" id="U4l-aM-GcU"/>
                         <outlet property="bannerView" destination="7PI-D2-3rW" id="DQq-Qe-RyX"/>
+                        <outlet property="bannerViewHeightConstraint" destination="Pkg-ID-vmO" id="JD8-WX-tli"/>
                         <outlet property="emptyTableLabel" destination="9k2-WJ-RZu" id="Mqh-uS-gwE"/>
                         <outlet property="searchBar" destination="goC-Ye-WWY" id="7c0-A6-fVE"/>
                         <outlet property="tableView" destination="Pjl-Ga-bM0" id="TpF-px-5d9"/>
@@ -873,9 +874,10 @@
                                 <color key="textColor" name="_Purple to Teal"/>
                                 <color key="highlightedColor" name="_Purple to Teal"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-mP-FcR" customClass="GADBannerView">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-mP-FcR" customClass="GADBannerView">
                                 <rect key="frame" x="27.666666666666657" y="591" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="72f-Mx-uNZ"/>
                                     <constraint firstAttribute="width" constant="320" id="w3j-ER-BCl"/>
@@ -910,6 +912,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="wCg-mP-FcR" id="bBK-Vf-C4X"/>
+                        <outlet property="bannerViewHeightConstraint" destination="72f-Mx-uNZ" id="oPq-sS-wLn"/>
                         <outlet property="emptyTableLabel" destination="VNH-by-DnR" id="TGl-4e-MUJ"/>
                         <outlet property="tableView" destination="t1B-tt-7xy" id="viB-4P-yse"/>
                     </connections>

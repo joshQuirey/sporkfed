@@ -24,6 +24,7 @@ class PlanViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
     
     /////////////////////////////
     //Properties
@@ -97,10 +98,13 @@ class PlanViewController: UIViewController {
         
         //AdMob
         if (AppDelegate.hideAds == false) {
-            bannerView.adUnitID = "ca-app-pub-2588193466211052/5013638826" //TEST ADS "ca-app-pub-3940256099942544/2934735716"
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //LIVE ADS  ca-app-pub-2588193466211052/5013638826
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
+            bannerViewHeightConstraint.constant = 50
+        } else {
+            bannerViewHeightConstraint.constant = 0
         }
     }
     
