@@ -96,7 +96,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         
         //AdMob
         if (AppDelegate.hideAds == false) {
-            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //LIVE AD ca-app-pub-2588193466211052/5624012915
+            bannerView.adUnitID = "ca-app-pub-2588193466211052/5624012915" //LIVE AD   ca-app-pub-3940256099942544/2934735716
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
@@ -133,7 +133,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         notificationCenter.addObserver(self,
                                        selector: #selector(saveMeals(_:)),
                                        name: UIApplication.didEnterBackgroundNotification,
-                                       object: nil)
+                                       object: CoreDataManager.context)
     }
 
     private func updateView() {
