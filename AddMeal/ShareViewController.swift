@@ -18,8 +18,8 @@ class ShareViewController: SLComposeServiceViewController {
 //    private var selectedImage: UIImage?
     
     var selectedMeal: Meal!
-    let manager = CoreDataManager.init(modelName: "MealModel")
-    var managedObjectContext: NSManagedObjectContext?
+    let manager = CoreDataManager.init()
+    //var managedObjectContext: NSManagedObjectContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +67,8 @@ class ShareViewController: SLComposeServiceViewController {
 //            }
 //        }
         
-        self.managedObjectContext = manager.managedObjectContext
-        self.selectedMeal = Meal(context: self.managedObjectContext!)
+        //self.managedObjectContext = CoreDataManager.context // manager.managedObjectContext
+        self.selectedMeal = Meal(context: CoreDataManager.context) // self.managedObjectContext!)
     }
     
     override func isContentValid() -> Bool {
@@ -96,9 +96,10 @@ class ShareViewController: SLComposeServiceViewController {
             selectedMeal.url = self.urlString
         }
         
-        if (self.managedObjectContext!.hasChanges) {
+//        if (self.managedObjectContext!.hasChanges) {
+        if (CoreDataManager.context.hasChanges) {
             do {
-                try self.managedObjectContext!.save()
+                try CoreDataManager.context.save() // self.managedObjectContext!.save()
             } catch {
                 fatalError("Failure to save context: \(error)")
             }

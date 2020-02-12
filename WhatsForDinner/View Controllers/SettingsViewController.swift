@@ -10,12 +10,30 @@ import UIKit
 import StoreKit
 import MessageUI
 import SafariServices
+//import Firebase
+//import FirebaseAuth
+import Purchases
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     /////////////////////////////
     //Outlets
     /////////////////////////////
     @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var successLabel: UILabel!
+    //@IBOutlet weak var login: UIButton!
+    //@IBOutlet weak var signUp: UIButton!
+    //@IBOutlet weak var logOut: UIButton!
+    private var offeringId : String?
+    private var offering: Purchases.Offering?
+    var noOfferings: Bool = false
+    var purchased: Bool = false
+    
+    /////////////////////////////
+    //Segues
+    /////////////////////////////
+//    private enum Segue {
+//        static let SettingsLogin = "SettingsLogin"
+//    }
     
     /////////////////////////////
     //View Life Cycle
@@ -37,7 +55,63 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             // Fallback on earlier versions
         }
+        
+        offeringId =  nil
+        loadOfferings()
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+       // checkIfUserLoggedIn()
+        checkIfUserPurchased()
+    }
+    
+     private func loadOfferings() {
+        Purchases.shared.offerings { (offerings, error) in
+            if error != nil {
+                self.showAlert(title: "Error", message: "Unable to fetch offerings.") { (action) in
+                    self.noOfferings = true
+                }
+            }
+            //print(offerings?.current)
+            self.offering = offerings?.current
+            
+            if self.offering == nil {
+                self.showAlert(title: "Error", message: "No offerings found.") { (action) in
+                    self.noOfferings = true
+                }
+            }
+        }
+    }
+    
+    private func showAlert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func checkIfUserPurchased() {
+        Purchases.shared.purchaserInfo{ (purchaserInfo, error) in
+            if purchaserInfo?.entitlements.active.first != nil {
+                self.purchased = true
+            }
+        }
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let identifier = segue.identifier else { return }
+//
+//        switch identifier {
+//        case Segue.SettingsLogin:
+//            guard let destination = segue.destination as? LoginViewController else {
+//                return
+//            }
+//        default:
+//            break
+//        }
+//    }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
@@ -47,15 +121,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //Table Functions
     /////////////////////////////
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
             case 0:
-                return 1
-            case 1:
                 return 2
+            case 1:
+                return 1
             case 2:
+                return 2
+            case 3:
                 return 2
             default:
                 return 1
@@ -69,10 +145,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
         case 0:
-            return "Help"
+            return "Spork Fed Premium"
         case 1:
-            return "Social"
+            return "Help"
         case 2:
+            return "Social"
+        case 3:
             return "Feedback"
         default:
             return ""
@@ -81,18 +159,31 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
+        cell.detailTextLabel!.text = ""
         
         switch(indexPath.section) {
         case 0:
-            cell.textLabel!.text = "🌐 Visit Our Website"
+            if (indexPath.row == 0) {
+                if (purchased) {
+                    cell.textLabel!.text = "💯 Purchased Premium"
+                } else {
+                    cell.textLabel!.text = "🛡 Block Ads & Support Development"
+                    cell.detailTextLabel!.text = "Removes ALL ads & buys me a coffee - $2.99"
+                }
+            } else {
+                cell.textLabel!.text = "🌱 Restore Purchases"
+            }
             break
         case 1:
+            cell.textLabel!.text = "🌐 Visit Our Website"
+            break
+        case 2:
             if (indexPath.row == 0) {
                 cell.textLabel!.text = "🐦 Tweet @SporkFedApp"
             } else {
                 cell.textLabel!.text = "📷 Follow on Instagram"
             }
-        case 2:
+        case 3:
             if (indexPath.row == 0) {
                 cell.textLabel!.text = "✉️ Send Email"
             } else {
@@ -108,16 +199,64 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.section) {
         case 0:
-            showSafariVC(for: "https://sporkfed.app")
+             if (indexPath.row == 0) {
+                //If not a subscriber, show subcriber page
+                if (purchased) {
+                    //Upgrades purchased
+                } else {
+                    //Purchase upgrade
+                    guard let package = offering?.availablePackages[0] else {
+                        print("No available package")
+                        return
+                    }
+                    
+                    Purchases.shared.purchasePackage(package) { (transaction, purchaserInfo, error, userCancelled) in
+//                    print("1")
+//                    print(transaction)
+//                    print("2")
+//                    print(purchaserInfo)
+//                    print("3")
+//                    print(error)
+//                    print("4")
+//                    print(userCancelled)
+                
+                        if purchaserInfo?.entitlements.active.first != nil {
+                            AppDelegate.hideAds = true
+                            
+                            let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                            
+                            self.view.window?.rootViewController = homeViewController
+                            self.view.window?.makeKeyAndVisible()
+                        }
+                    }
+                }
+             } else {
+                Purchases.shared.restoreTransactions { (purchaserInfo, error) in
+                    //... check purchaserInfo to see if entitlement is now active
+                    if purchaserInfo?.entitlements.active.first != nil {
+                        AppDelegate.hideAds = true
+                    } else {
+                        AppDelegate.hideAds = false
+                    }
+
+                    let homeViewController = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? BaseTabBarController
+                    
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+             }
             break
         case 1:
+            showSafariVC(for: "https://sporkfed.app")
+            break
+        case 2:
             if (indexPath.row == 0) {
                 showSafariVC(for: "https://twitter.com/sporkfedapp")
             } else {
-               showSafariVC(for: "https://instagram.com/getsporkfed")
+               showSafariVC(for: "https://instagram.com/sporkfedapp")
             }
             break
-        case 2:
+        case 3:
             if (indexPath.row == 0) {
                 sendFeedbackEmail()
             } else {
@@ -169,4 +308,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         safariVC.preferredControlTintColor = UIColor(named: "_Purple to Teal")
         present(safariVC, animated: true)
     }
+    
+    
+//    @IBAction func logoutTapped(_ sender: Any) {
+//        self.
+//    }
+    
+   // func logout() {
+   //     do {
+            //try Auth.auth().signOut()
+            //checkIfUserLoggedIn()
+    //        tableView.reloadData()
+   //     } catch {
+   //     }
+  //  }
+    
+    
 }

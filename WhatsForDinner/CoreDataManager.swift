@@ -2,183 +2,128 @@
 //  CoreDataManager.swift
 //  WhatsForDinner
 //
-//  Created by Josh Quirey on 8/9/18.
-//  Copyright © 2018 jquirey. All rights reserved.
+//  Created by Josh Quirey on 12/16/19.
+//  Copyright © 2019 jquirey. All rights reserved.
 //
 
-import CoreData
 import Foundation
-import UIKit
+import CoreData
 
-open class CoreDataManager {
-    //static let manager = CoreDataManager()
-    private let modelName: String
-    //private init() { self.modelName = "MealModel" }
+class CoreDataManager {
     
+    //private init() {}
     
-//    class var sharedInstance : CoreDataManager {
-//        struct Static {
-//            static var onceToken: dispatch_once_t = 0
-//            static var instance: CoreDataManager? = nil
-//        }
-//        dispatch_once(&Static.onceToken) {
-//            Static.instance = CoreDataManager()
-//        }
-//        return Static.instance!
-//    }
+    static var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
     
-    init(modelName: String) {
-        self.modelName = modelName
+    static var persistentContainer: NSPersistentContainer = {
         
-        setupNotificationHandling()
-    }
-    
-    func addMeal(withName name: String, atURL url: String) {
-      //  let meal = Meal(context: managedObjectContext)
-      //  meal.mealName = name
-      //  meal.mealDesc = url
-      //  saveChanges()
-      }
-    
-    private func setupNotificationHandling() {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self,
-                                       selector: #selector(saveChanges(_:)),
-                                       name: UIApplication.willTerminateNotification,
-                                       object: nil)
-        
-        notificationCenter.addObserver(self,
-                                       selector: #selector(saveChanges(_:)),
-                                       name: UIApplication.didEnterBackgroundNotification,
-                                       object: nil)
-    }
-    
-    @objc func saveChanges(_ notification: Notification?) {
-        saveChanges()
-    }
-    
-    private func saveChanges() {
-        guard managedObjectContext.hasChanges else { return }
+        let container = NSPersistentCloudKitContainer(name: "MealModel")
+        //let container = NSPersistentContainer(name: "MealModel")
         
         do {
-            try managedObjectContext.save()
+            try container.initializeCloudKitSchema()
         } catch {
-            print("Unable to Save Managed Object Context")
-            print("\(error), \(error.localizedDescription)")
-        }
-    }
-    
-    private lazy var managedObjectModel: NSManagedObjectModel? = {
-        //Fetch Model URL
-        guard let modelURL = Bundle.main.url(forResource: self.modelName, withExtension: "momd") else {
-            return nil
-        }
-        
-        //Initialize Managed Object Model
-        let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL)
-        
-        return managedObjectModel
-    }()
-    
-    private var persistentStoreURL: URL {
-        //Helpers
-        let storeName = "\(modelName).sqlite"
-        let fileManager = FileManager.default
-    
-        //new
-        let documentsDirectoryURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier:"group.co.app41.sporkfed")
-        
-        return documentsDirectoryURL!.appendingPathComponent(storeName)
-    }
-    
-    //Used before the app group update
-    private var oldPersistentStoreURL: URL {
-        //Helpers
-            let storeName = "\(modelName).sqlite"
-            let fileManager = FileManager.default
-        
-            //old
-            let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
-            return documentsDirectoryURL.appendingPathComponent(storeName) as URL
-    }
-    
-    private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
-        guard let managedObjectModel = self.managedObjectModel else {
-            return nil
         }
         
         var options = [AnyHashable : Any]()
-        options[NSMigratePersistentStoresAutomaticallyOption] = true
-        options[NSInferMappingModelAutomaticallyOption] = true
+               options[NSMigratePersistentStoresAutomaticallyOption] = true
+               options[NSInferMappingModelAutomaticallyOption] = true
         
-        let oldPersistentStoreURL = self.oldPersistentStoreURL
-        let persistentStoreURL = self.persistentStoreURL
-        var targetURL : URL? = nil
+        var previousStoreURL = previousLocalPersistentStoreURL
+        print("Old \(previousStoreURL)")
+//        var previousStore = container.persistentStoreCoordinator.persistentStore(for: previousStoreURL)
+//        print("Old Store \(previousStore)")
+        
         var needMigrate = false
         var needDeleteOld = false
-
-        //Check if old data store exists
-        if FileManager.default.fileExists(atPath: oldPersistentStoreURL.path){
+        
+        if FileManager.default.fileExists(atPath: previousStoreURL.path){
             needMigrate = true
-            targetURL = oldPersistentStoreURL
             needDeleteOld = true
         } else { //No old data store, use new going forward
-            if FileManager.default.fileExists(atPath: persistentStoreURL.path){
+            //if FileManager.default.fileExists(atPath: persistentStoreURL.path){
                 needMigrate = false
-                targetURL = persistentStoreURL
                 needDeleteOld = false
-            }
+            //}
         }
-    
-       if targetURL == nil {
-           targetURL = persistentStoreURL
-       }
         
-        //Initialize Persistent Store Coordinator
-        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-
+        //Add Old Store to coordinator
         if needMigrate {
             do {
-                try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: targetURL!, options: options)
-                if let store = persistentStoreCoordinator.persistentStore(for: targetURL!) {
-                    do {
-                        try persistentStoreCoordinator.migratePersistentStore(store, to: persistentStoreURL, options: options, withType: NSSQLiteStoreType)
-                    } catch let error {
-                        print("migrate failed with error : \(error)")
-                    }
-                }
-            } catch {
-                 let addPersistentStoreError = error as NSError
-                 print("Unable to Add Persistent Store")
-                 print("\(addPersistentStoreError.localizedDescription)")
-            }
-        } else {
-            do {
-                try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL as URL, options: options)
+                try container.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: previousStoreURL, options: options)
+                    
             } catch {
                 let addPersistentStoreError = error as NSError
-    
                 print("Unable to Add Persistent Store")
                 print("\(addPersistentStoreError.localizedDescription)")
             }
         }
         
-        if needDeleteOld {
-            CoreDataManager.deleteDocumentAtUrl(url: oldPersistentStoreURL)
+        //Get Old Store
+//        previousStore = container.persistentStoreCoordinator.persistentStore(for: previousStoreURL)
+        
+        //var newStoreURL: URL
+        //Add New Store to coordinator
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+                
+            var newStoreURL = storeDescription.url!
+            print("New \(newStoreURL)")
+            //Both Old and New are in the coordinator
+            print(container.persistentStoreCoordinator.persistentStores)
+    
+            //If Old Store Exists
+            if needMigrate {
+                do {
+                    //Replace
+                    try container.persistentStoreCoordinator.replacePersistentStore(at: newStoreURL, destinationOptions: options, withPersistentStoreFrom: previousStoreURL, sourceOptions: options, ofType: NSSQLiteStoreType)
+                    //Migrate Old store to New store
+                    //try container.persistentStoreCoordinator.migratePersistentStore(previousStore!, to: newStoreURL, options: options, withType: NSSQLiteStoreType)
+                    
+                } catch let error {
+                        print("migrate failed with error : \(error)")
+                }
+                
+                //??delete or truncate old store
+                do {
+                    //use replace persistentstore
+                    try container.persistentStoreCoordinator.destroyPersistentStore(at: previousStoreURL, ofType: NSSQLiteStoreType, options: options)
 
-            var storeName = "s\(modelName).sqlite-shm"
+                } catch let error {
+                        print("destroy failed with error : \(error)")
+                }
+                
+                container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+                           if let error = error as NSError? {
+                               fatalError("Unresolved error \(error), \(error.userInfo)")
+                           }
+                })
+            }
+            
+            print(container.persistentStoreCoordinator.persistentStores)
+            
+        })
+        
+        if needDeleteOld {
+            CoreDataManager.deleteDocumentAtUrl(url: previousStoreURL)
+
+            var storeName = "MealModel.sqlite-shm"
             let fileManager = FileManager.default
             let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let shmDocumentURL = documentsDirectoryURL.appendingPathComponent(storeName)
             CoreDataManager.deleteDocumentAtUrl(url: shmDocumentURL)
 
-            storeName = "\(modelName).sqlite-wal"
+            storeName = "MealModel.sqlite-wal"
             let walDocumentURL = documentsDirectoryURL.appendingPathComponent(storeName)
             CoreDataManager.deleteDocumentAtUrl(url: walDocumentURL)
         }
-                
-        return persistentStoreCoordinator
+        
+        return container
     }()
     
     //Delete of Old Store Files
@@ -194,32 +139,33 @@ open class CoreDataManager {
         })
     }
     
-    private lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "MealModel")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+    static var previousLocalPersistentStoreURL: URL {
+        //Helpers
+        let storeName = "MealModel.sqlite"
+        let fileManager = FileManager.default
+    
+        //new
+        let documentsDirectoryURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier:"group.co.app41.sporkfed")
+        
+        return documentsDirectoryURL!.appendingPathComponent(storeName)
+    }
+    
+    func migrateLocalToCloud() {
+
+    }
+    
+    static func saveContext() {
+        
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        })
-        return container
-    }()
-    
-    public private(set) lazy var managedObjectContext: NSManagedObjectContext = {
-        //Initialize
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        
-        //Configure
-        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
-        
-        return managedObjectContext
-    }()
-    
-    
-    
-    
-    
-    
-    
-    
+        }
+    }
     
 }

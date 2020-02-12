@@ -184,9 +184,9 @@ class RecipeIngredientViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func addNewIngredient() {
-        guard let managedObjectContext = meal?.managedObjectContext else { return }
+        //guard let managedObjectContext =  meal?.managedObjectContext else { return }
         
-        ingredient = Ingredient(context: managedObjectContext)
+        ingredient = Ingredient(context: CoreDataManager.context) // managedObjectContext)
         ingredient!.item = _ingredient.text
         meal?.addToIngredients(ingredient!)
     }

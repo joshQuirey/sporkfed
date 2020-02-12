@@ -13,8 +13,8 @@ import CoreData
 class TodayViewController: UIViewController, NCWidgetProviding {
 
     var today: [PlannedDay] = []
-    let manager = CoreDataManager.init(modelName: "MealModel")
-    var managedObjectContext: NSManagedObjectContext?
+    let manager = CoreDataManager.init() //(modelName: "MealModel")
+//    var managedObjectContext: NSManagedObjectContext?
     //var mealObjectID = NSManagedObjectID()
     
     @IBOutlet weak var buttonToolbar: UIToolbar!
@@ -41,7 +41,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.managedObjectContext = manager.managedObjectContext
+//        self.managedObjectContext = CoreDataManager.context // manager.managedObjectContext
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -83,7 +83,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(PlannedDay.date), ascending: true)]
         
         // Perform Fetch Request
-        self.managedObjectContext!.performAndWait {
+        CoreDataManager.context.performAndWait {
             do {
                 // Execute Fetch Request
                 today = try fetchRequest.execute()

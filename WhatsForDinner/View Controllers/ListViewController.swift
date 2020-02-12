@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     /////////////////////////////
@@ -26,7 +27,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     /////////////////////////////
     //Properties
     /////////////////////////////
-    var managedObjectContext: NSManagedObjectContext?
+//    var managedObjectContext: NSManagedObjectContext?
     private var currentIndex: Int?
     var plannedMenu: [PlannedDay]?
     var numberOfMeals: Int = 0
@@ -52,7 +53,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         title = "Grocery List"
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = tabBar.coreDataManager.managedObjectContext
+//        managedObjectContext = CoreDataManager.context //tabBar.coreDataManager.managedObjectContext
 
         tableView.tableFooterView = UIView()
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -88,7 +89,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
          notificationCenter.addObserver(self,
                                         selector: #selector(managedObjectContextObjectsDidChange(_:)),
                                         name: Notification.Name.NSManagedObjectContextObjectsDidChange,
-                                        object: self.managedObjectContext)
+                                        object: CoreDataManager.context) // self.managedObjectContext)
      }
     
     @objc func keyboardNotification(notification: NSNotification) {
@@ -188,7 +189,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func deleteGroceries() {
-        helpers.deleteGroceries(context: self.managedObjectContext!)
+        helpers.deleteGroceries(context: CoreDataManager.context)  // self.managedObjectContext!)
     }
     
     func fetchGroceries() {
@@ -197,7 +198,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Groceries = []
                
         // Execute Fetch Request
-        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
+        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: CoreDataManager.context) // self.managedObjectContext!)
         //need to change planned menu to not include restaurant days or leftovers
         for menu in fullPlannedMenu {
            if (menu.meal != nil) {
@@ -206,7 +207,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
            }
         }
         
-        Groceries = helpers.fetchGroceries(context: managedObjectContext!)
+        Groceries = helpers.fetchGroceries(context: CoreDataManager.context) // managedObjectContext!)
         var prevMeal: String = ""
 
         for item in Groceries {
@@ -225,14 +226,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func refreshList() {
-        helpers.deleteGroceries(context: self.managedObjectContext!)
+        helpers.deleteGroceries(context: CoreDataManager.context) // self.managedObjectContext!)
 
         plannedMenu = []
         numberOfMeals = 0
         Groceries = []
         
         // Execute Fetch Request
-        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: self.managedObjectContext!)
+        let fullPlannedMenu: [PlannedDay] = helpers.fetchPlans(context: CoreDataManager.context) // self.managedObjectContext!)
         //need to change planned menu to not include restaurant days or leftovers
         for menu in fullPlannedMenu {
             if (menu.meal != nil) {
@@ -251,7 +252,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     var itemIndex: Int = 0
                    
                     for _ingredient in (_planned.meal!.ingredients!.allObjects as? [Ingredient])! {
-                        groceryItem = GroceryList(context: managedObjectContext!)
+                        groceryItem = GroceryList(context: CoreDataManager.context) // managedObjectContext!)
                         groceryItem.mealName = _planned.meal!.mealName!
                         groceryItem.mealIndex = Int16(mealIndex)
                         groceryItem.itemIndex = Int16(itemIndex)
@@ -317,7 +318,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
     func addNewItem() {
-        let groceryItem = GroceryList(context: managedObjectContext!)
+        let groceryItem = GroceryList(context: CoreDataManager.context) // managedObjectContext!)
         groceryItem.mealIndex = Int16(sectionOfAddedItems)
 
         if self.Groceries.count > 0 {
@@ -394,15 +395,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Configure Cell
         let object = Groceries.first(where: { $0.mealIndex == indexPath.section && $0.itemIndex == indexPath.row })
         
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
+        if (object != nil) {
+            let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: object!.itemName!)
+                
+            if object?.isComplete == true {
+                let len = object?.itemName?.count
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
+                attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple to Teal")!, range: NSMakeRange(0, len!))
+            }
             
-        if object?.isComplete == true {
-            let len = object?.itemName?.count
-            attributedString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 3, range: NSMakeRange(0, len!))
-            attributedString.addAttribute(NSAttributedString.Key.strikethroughColor, value: UIColor(named: "_Purple to Teal")!, range: NSMakeRange(0, len!))
+            cell.textLabel!.attributedText = attributedString
         }
-            
-        cell.textLabel!.attributedText = attributedString
+        
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         return cell
@@ -518,5 +522,15 @@ extension UITableView {
         let section = indexPath.section
         let row = indexPath.row
         return section < self.numberOfSections && row < self.numberOfRows(inSection: section)
+    }
+}
+
+extension ListViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
     }
 }

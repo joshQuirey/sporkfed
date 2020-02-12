@@ -6,8 +6,13 @@
 //  Copyright © 2018 jquirey. All rights reserved.
 //
 
+//App ID Test ca-app-pub-3940256099942544/2934735716
+//App ID ca-app-pub-2588193466211052~2675729023
+//App Unit ID ca-app-pub-2588193466211052/5624012915
+
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBarDelegate {
     ////////////////////////////
@@ -16,11 +21,14 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyTableLabel: UILabel!
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
+    
     
     /////////////////////////////
     //Properties
     /////////////////////////////
-    var managedObjectContext: NSManagedObjectContext?
+    //var managedObjectContext: NSManagedObjectContext?
     private var selectedObjectID = NSManagedObjectID()
     var meals: [Meal]?
     
@@ -47,6 +55,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
 //        static let ViewMealURL = "ViewMealURL"
     }
     
+
     /////////////////////////////
     //View Life Cycle
     /////////////////////////////
@@ -55,7 +64,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 
         title = "Meals"
         let tabBar = tabBarController as! BaseTabBarController
-        managedObjectContext = tabBar.coreDataManager.managedObjectContext
+        //managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.managedObjectContext
 
         fetchMeals()
         updateView()
@@ -84,6 +93,17 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         }
         
         tableView.keyboardDismissMode = .onDrag
+        
+        //AdMob
+        if (AppDelegate.hideAds == false) {
+            bannerView.adUnitID = "ca-app-pub-2588193466211052/5624012915" //LIVE AD   ca-app-pub-3940256099942544/2934735716
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+            bannerViewHeightConstraint.constant = 50
+        } else {
+            bannerViewHeightConstraint.constant = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,12 +128,12 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         notificationCenter.addObserver(self,
                                        selector: #selector(managedObjectContextObjectsDidChange(_:)),
                                        name: Notification.Name.NSManagedObjectContextObjectsDidChange,
-                                       object: self.managedObjectContext)
+                                       object: CoreDataManager.context) // self.managedObjectContext)
         
         notificationCenter.addObserver(self,
                                        selector: #selector(saveMeals(_:)),
                                        name: UIApplication.didEnterBackgroundNotification,
-                                       object: nil)
+                                       object: CoreDataManager.context)
     }
 
     private func updateView() {
@@ -131,14 +151,14 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
                 return
             }
             
-            destination.managedObjectContext = self.managedObjectContext
+//            destination.managedObjectContext =  self.managedObjectContext
 
         case Segue.ViewMeal:
             guard let destination = segue.destination as? RecipeViewController else {
                 return
             }
             
-            destination.managedObjectContext = self.managedObjectContext
+//            destination.managedObjectContext = self.managedObjectContext
             if (meal != nil) {
                 destination.meal = meal
                 meal = nil
@@ -217,32 +237,32 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
 
     @objc private func saveMeals(_ notification: Notification) {
         do {
-            try self.managedObjectContext!.save()
+            try CoreDataManager.context.save() // self.managedObjectContext!.save()
         } catch {
             fatalError("Failure to save context: \(error)")
         }
     }
 
     private func fetchMeals() {
-        self.meals = helpers.fetchMeals(context: self.managedObjectContext!)
+        self.meals = helpers.fetchMeals(context: CoreDataManager.context) // self.managedObjectContext!)
         self.allMeals = self.meals
         tableView.reloadData()
     }
     
     private func fetchMealsUpNext() {
-        self.meals = helpers.fetchMealsUpNext(context: self.managedObjectContext!)
+        self.meals = helpers.fetchMealsUpNext(context: CoreDataManager.context) // self.managedObjectContext!)
         self.allMeals = self.meals
         tableView.reloadData()
     }
     
     private func fetchMealsFavorites() {
-        self.meals = helpers.fetchMealsFavorites(context: self.managedObjectContext!)
+        self.meals = helpers.fetchMealsFavorites(context: CoreDataManager.context) // self.managedObjectContext!)
         self.allMeals = self.meals
         tableView.reloadData()
     }
     
     private func fetchMeal(name: String) {
-        meal = helpers.fetchMeal(name: name, context: self.managedObjectContext!)
+        meal = helpers.fetchMeal(name: name, context: CoreDataManager.context) // self.managedObjectContext!)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -456,5 +476,15 @@ extension MealsViewController: NSFetchedResultsControllerDelegate {
         @unknown default:
             break
         }
+    }
+}
+
+extension MealsViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
     }
 }
