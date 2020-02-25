@@ -642,7 +642,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
@@ -669,7 +669,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -811,7 +811,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -839,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -863,7 +863,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
@@ -889,7 +889,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
