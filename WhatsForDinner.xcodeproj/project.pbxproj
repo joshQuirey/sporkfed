@@ -18,7 +18,6 @@
 		409A3DFD2320403500F5E220 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409A3DFB2320403500F5E220 /* MainInterface.storyboard */; };
 		409A3E012320403500F5E220 /* AddMeal.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 409A3DF72320403500F5E220 /* AddMeal.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		409A3E052320412F00F5E220 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
-		40C7F14E232199E0002B2859 /* CoreDataManagerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManagerOLD.swift */; };
 		5406235020BEF3D639D7E1AA /* Pods_Today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE419F26F1CD6E9FDAAF0574 /* Pods_Today.framework */; };
 		747BF01E2118B6D1006EACA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747BF01D2118B6D1006EACA0 /* AppDelegate.swift */; };
 		747BF0202118B6D1006EACA0 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747BF01F2118B6D1006EACA0 /* MealsViewController.swift */; };
@@ -26,7 +25,6 @@
 		747BF0272118B6D4006EACA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0262118B6D4006EACA0 /* Assets.xcassets */; };
 		747BF02A2118B6D4006EACA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 747BF0282118B6D4006EACA0 /* LaunchScreen.storyboard */; };
 		747E3535211CDD1B0065799E /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
-		747E3558211CE7380065799E /* CoreDataManagerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManagerOLD.swift */; };
 		748947CA211A0D73000859F1 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947C9211A0D73000859F1 /* PlanViewController.swift */; };
 		748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748947CB211A0DF2000859F1 /* RecipeViewController.swift */; };
 		91FFD3BF5DB0BC5FA1812D29 /* Pods_AddMeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC2452FC6C58F2CB601B6F /* Pods_AddMeal.framework */; };
@@ -46,7 +44,6 @@
 		A78BB80323A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A78BB80423A1596E003A0027 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A78BB80123A1596E003A0027 /* GoogleService-Info.plist */; };
 		A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 747E3533211CDD1B0065799E /* MealModel.xcdatamodeld */; };
-		A7C5D50523578C860002F463 /* CoreDataManagerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E3557211CE7380065799E /* CoreDataManagerOLD.swift */; };
 		A7D07DEB2266835F0017B047 /* MealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */; };
 		A7E1BEDB2295D174000F053E /* ReplaceMealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1BEDA2295D174000F053E /* ReplaceMealController.swift */; };
 		A7E2FD2B23A8362E00C2AF49 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2FD2A23A8362E00C2AF49 /* CoreDataManager.swift */; };
@@ -110,7 +107,6 @@
 		747BF0292118B6D4006EACA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		747BF02B2118B6D4006EACA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747E3534211CDD1B0065799E /* MealModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealModel.xcdatamodel; sourceTree = "<group>"; };
-		747E3557211CE7380065799E /* CoreDataManagerOLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerOLD.swift; sourceTree = "<group>"; };
 		748947C9211A0D73000859F1 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		748947CB211A0DF2000859F1 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		9057967602AC40E9A40BF1F7 /* Pods-AddMeal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddMeal.debug.xcconfig"; path = "Target Support Files/Pods-AddMeal/Pods-AddMeal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -271,7 +267,6 @@
 				747BF01D2118B6D1006EACA0 /* AppDelegate.swift */,
 				A730AE4122E62D9000728E7C /* AppStoreReviewManager.swift */,
 				A7E2FD2A23A8362E00C2AF49 /* CoreDataManager.swift */,
-				747E3557211CE7380065799E /* CoreDataManagerOLD.swift */,
 				A71C3B1D2368A55300D6ECC0 /* CoreDataHelpers.swift */,
 				A7D07DEA2266835F0017B047 /* MealTableViewCell.swift */,
 				A7F27D1222F9F0C700EA2368 /* UserDefaults+Key.swift */,
@@ -538,7 +533,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40C7F14E232199E0002B2859 /* CoreDataManagerOLD.swift in Sources */,
 				409A3E052320412F00F5E220 /* MealModel.xcdatamodeld in Sources */,
 				A7E2FD2D23A8385D00C2AF49 /* CoreDataManager.swift in Sources */,
 				409A3DFA2320403500F5E220 /* ShareViewController.swift in Sources */,
@@ -566,7 +560,6 @@
 				A7E1BEDB2295D174000F053E /* ReplaceMealController.swift in Sources */,
 				747BF0202118B6D1006EACA0 /* MealsViewController.swift in Sources */,
 				A71F1D10236CD5DF00796F5E /* ListViewController.swift in Sources */,
-				747E3558211CE7380065799E /* CoreDataManagerOLD.swift in Sources */,
 				748947CC211A0DF2000859F1 /* RecipeViewController.swift in Sources */,
 				A730AE4222E62D9000728E7C /* AppStoreReviewManager.swift in Sources */,
 			);
@@ -576,7 +569,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7C5D50523578C860002F463 /* CoreDataManagerOLD.swift in Sources */,
 				A7C5D504235789580002F463 /* MealModel.xcdatamodeld in Sources */,
 				A7E2FD2C23A8385D00C2AF49 /* CoreDataManager.swift in Sources */,
 				A72EDAFF2351215500E886CE /* TodayViewController.swift in Sources */,
@@ -650,7 +642,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
@@ -677,7 +669,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.AddMeal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -819,7 +811,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -847,7 +839,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -871,7 +863,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
@@ -897,7 +889,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = co.app41.sporkfed.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";

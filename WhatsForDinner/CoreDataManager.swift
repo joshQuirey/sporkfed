@@ -10,17 +10,14 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    
-    //private init() {}
-    
+
     static var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
-    static var persistentContainer: NSPersistentContainer = {
+    static var persistentContainer: NSPersistentCloudKitContainer = {
         
         let container = NSPersistentCloudKitContainer(name: "MealModel")
-        //let container = NSPersistentContainer(name: "MealModel")
         
         do {
             try container.initializeCloudKitSchema()
@@ -34,9 +31,7 @@ class CoreDataManager {
         
         var previousStoreURL = previousLocalPersistentStoreURL
         print("Old \(previousStoreURL)")
-//        var previousStore = container.persistentStoreCoordinator.persistentStore(for: previousStoreURL)
-//        print("Old Store \(previousStore)")
-        
+
         var needMigrate = false
         var needDeleteOld = false
         
@@ -44,10 +39,8 @@ class CoreDataManager {
             needMigrate = true
             needDeleteOld = true
         } else { //No old data store, use new going forward
-            //if FileManager.default.fileExists(atPath: persistentStoreURL.path){
-                needMigrate = false
-                needDeleteOld = false
-            //}
+            needMigrate = false
+            needDeleteOld = false
         }
         
         //Add Old Store to coordinator
@@ -62,10 +55,6 @@ class CoreDataManager {
             }
         }
         
-        //Get Old Store
-//        previousStore = container.persistentStoreCoordinator.persistentStore(for: previousStoreURL)
-        
-        //var newStoreURL: URL
         //Add New Store to coordinator
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -82,14 +71,11 @@ class CoreDataManager {
                 do {
                     //Replace
                     try container.persistentStoreCoordinator.replacePersistentStore(at: newStoreURL, destinationOptions: options, withPersistentStoreFrom: previousStoreURL, sourceOptions: options, ofType: NSSQLiteStoreType)
-                    //Migrate Old store to New store
-                    //try container.persistentStoreCoordinator.migratePersistentStore(previousStore!, to: newStoreURL, options: options, withType: NSSQLiteStoreType)
-                    
                 } catch let error {
                         print("migrate failed with error : \(error)")
                 }
                 
-                //??delete or truncate old store
+                //delete or truncate old store
                 do {
                     //use replace persistentstore
                     try container.persistentStoreCoordinator.destroyPersistentStore(at: previousStoreURL, ofType: NSSQLiteStoreType, options: options)
@@ -106,7 +92,6 @@ class CoreDataManager {
             }
             
             print(container.persistentStoreCoordinator.persistentStores)
-            
         })
         
         if needDeleteOld {
@@ -148,10 +133,6 @@ class CoreDataManager {
         let documentsDirectoryURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier:"group.co.app41.sporkfed")
         
         return documentsDirectoryURL!.appendingPathComponent(storeName)
-    }
-    
-    func migrateLocalToCloud() {
-
     }
     
     static func saveContext() {

@@ -63,7 +63,7 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         super.viewDidLoad()
                 
         title = "Meals"
-        let tabBar = tabBarController as! BaseTabBarController
+        _ = tabBarController as! BaseTabBarController
         //managedObjectContext = CoreDataManager.context // tabBar.coreDataManager.managedObjectContext
 
         fetchMeals()
@@ -96,7 +96,9 @@ class MealsViewController: UIViewController, UISearchDisplayDelegate, UISearchBa
         
         //AdMob
         if (AppDelegate.hideAds == false) {
-            bannerView.adUnitID = "ca-app-pub-2588193466211052/5624012915" //LIVE AD   ca-app-pub-3940256099942544/2934735716
+            bannerView.adUnitID = "ca-app-pub-2588193466211052/5624012915"
+            //LIVE ca-app-pub-2588193466211052/5624012915
+            //TEST ca-app-pub-3940256099942544/2934735716
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self

@@ -11,11 +11,11 @@ import CoreData
 import AVFoundation
 import Photos
 import SafariServices
-//import Firebase
+import GoogleMobileAds
 
 class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
     
-//    var db: Firestore!
+
     
     /////////////////////////////
     //Outlets
@@ -32,6 +32,9 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var mealURL: UITextView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
+
     
     @IBAction func favorite(_ sender: UIButton) {
         print(isFavorite)
@@ -104,11 +107,18 @@ class RecipeViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         mealURL.delegate = self
         
-//        let settings = FirestoreSettings()
-//        Firestore.firestore().settings = settings
-//
-//        db = Firestore.firestore()
-//
+        //AdMob
+        if (AppDelegate.hideAds == false) {
+            bannerView.adUnitID = "ca-app-pub-2588193466211052/2797328540"
+            //LIVE ca-app-pub-2588193466211052/2797328540
+            //TEST ca-app-pub-3940256099942544/2934735716
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+            bannerViewHeightConstraint.constant = 50
+        } else {
+            bannerViewHeightConstraint.constant = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -524,4 +534,14 @@ fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [U
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
 	return input.rawValue
+}
+
+extension RecipeViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
+    }
 }
