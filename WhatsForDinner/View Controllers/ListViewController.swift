@@ -17,7 +17,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var _item: UITextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerViewHeightConstraint: NSLayoutConstraint!
+
     @IBAction func Done(_ sender: Any) {
         //dismiss Keyboard
         _item.resignFirstResponder()
@@ -52,7 +54,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         _item.delegate = self
         
         title = "Grocery List"
-        let tabBar = tabBarController as! BaseTabBarController
+        _ = tabBarController as! BaseTabBarController
 //        managedObjectContext = CoreDataManager.context //tabBar.coreDataManager.managedObjectContext
 
         tableView.tableFooterView = UIView()
@@ -78,6 +80,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                                object: nil)
         
         setupNotificationHandling()
+        
+        //AdMob
+        if (AppDelegate.hideAds == false) {
+            bannerView.adUnitID = "ca-app-pub-2588193466211052/3918838523"
+            //LIVE ca-app-pub-2588193466211052/3918838523
+            //TEST ca-app-pub-3940256099942544/2934735716
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+            bannerViewHeightConstraint.constant = 50
+        } else {
+            bannerViewHeightConstraint.constant = 0
+        }
+        
+        //ca-app-pub-2588193466211052/3918838523
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,13 +118,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
             let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
             if endFrameY >= UIScreen.main.bounds.size.height {
-                self.bottomConstraint?.constant = 10.0
+                self.bottomConstraint?.constant = 8.0
             } else {
-                if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                    let keyboardHeight: CGFloat = (endFrame?.size.height)! - 60
-                    self.bottomConstraint?.constant = keyboardHeight
+                if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                    let keyboardRectangle = keyboardFrame.cgRectValue
+                    //print(keyboardRectangle.height)
+                    var keyboardHeight = keyboardRectangle.height
+                    if (keyboardHeight >= 300) { //11 and 11 Pro max = 346 11 PRO = 336
+                        keyboardHeight = keyboardRectangle.height - 80
+                    } else { //8 = 260  8 Plus = 271
+                        keyboardHeight = keyboardRectangle.height - 45
+                    }
+                    
+                    self.bottomConstraint?.constant = keyboardHeight - bannerViewHeightConstraint.constant
                 } else {
-                    self.bottomConstraint?.constant = 10.0
+                    self.bottomConstraint?.constant = 8.0
                 }
             }
                 
@@ -501,8 +526,8 @@ extension UITableView {
                 section = max(section-1, 0)
                 row = max(self.numberOfRows(inSection: section) - 1, 0)
                 indexPath = IndexPath(row: row, section: section)
-                print("section2 - \(section)")
-                print("row2 - \(row)")
+//                print("section2 - \(section)")
+//                print("row2 - \(row)")
                 // If we're down to the last section, attempt to use the first row
                 if indexPath.section == 0 {
                     indexPath = IndexPath(row: 0, section: 0)
